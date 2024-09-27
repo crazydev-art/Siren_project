@@ -1,7 +1,6 @@
 """module for function that request the API and get token"""
 import requests
 from requests.auth import HTTPBasicAuth
-#import json
 
 
 def get_token():
@@ -24,8 +23,8 @@ def get_token():
     }
 
     # Identifiants App
-    client_id = '7ipl4xVNlUgN0oEn15vW1nvKBfwa'
-    client_secret = 'ugRBiowPafCJC5gSNtyFKLAn8S4a'
+    client_id = 'YOUR CLIENT ID'
+    client_secret = 'YOUR CLIENT SECRET PASSWORD'
 
     # Effectuer la requête POST avec l'authentification Basic
     response = requests.post(url, data=data, auth=HTTPBasicAuth(client_id, client_secret), verify=True,timeout=10)
@@ -40,4 +39,4 @@ def get_token():
     return token
 
 
-print(get_token())
+
