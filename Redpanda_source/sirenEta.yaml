@@ -1,0 +1,17 @@
+input:
+  http_client:
+    url: "https://www.data.gouv.fr/fr/datasets/r/d8c31348-8630-4918-b6d1-5dd689b05f29"
+    verb: GET
+    retries: 3
+    retry_backoff: 1s
+    request:
+      headers:
+        User-Agent: "Benthos"
+
+output:
+  file:
+    path: ./downloaded_stockn_doublon.zip
+    codec: all-bytes
+
+logger:
+  level: INFO

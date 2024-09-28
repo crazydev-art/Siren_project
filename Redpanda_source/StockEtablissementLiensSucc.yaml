@@ -1,0 +1,39 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+  cert_file: ""
+  key_file: ""
+ 
+input:
+  read_until:
+    input:
+      http_client:
+        url: "https://www.data.gouv.fr/fr/datasets/r/9c4d5d9c-4bbb-4b9c-837a-6155cb589e26"
+        verb: GET
+        timeout: "1800s" 
+    check: true
+
+pipeline:
+  processors:
+  - label: "unzip_the_downloaded_file"
+    unarchive:
+      format: zip
+
+output:
+  file:
+    path: "/home/ubuntu/Files_Siren/StockEtablissementLiensSuccession_utf8.csv"
+    codec: all-bytes
+
+logger:
+  level: INFO
+  format: logfmt
+  add_timestamp: false
+  level_name: level
+  timestamp_name: time
+  message_name: msg
+  static_fields:
+    '@service': redpanda-connect
+
+

@@ -1,0 +1,48 @@
+input:
+  http_client:
+    url: "https://api.insee.fr/token"
+    verb: POST
+    headers:
+      Authorization: "Basic WEdIVXVDTnlJUFFCclVNUENLSUJUNWpydjFnYTo5dERUajk4d1VDMGVnNnhBSmN2Ym81SDJPQmth"
+      Content-Type: "application/x-www-form-urlencoded"
+  form_data:
+    grant_type: "client_credentials"
+    
+      
+    
+#input:
+  # First request to obtain OAuth token
+#  http_client:
+#    url: "https://api.insee.fr/token"
+#    verb: POST
+#    headers:
+#      Authorization: "Basic WEdIVXVDTnlJUFFCclVNUENLSUJUNWpydjFnYTo5dERUajk4d1VDMGVnNnhBSmN2Ym81SDJPQmth"
+    #payload: |
+    #  grant_type=client_credentials
+    
+    #codec: form-urlencoded
+    #processors:
+    #  - bloblang: |
+    #      root = this.body.token
+#input:
+#  http_client:
+#    url: >-
+#      https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001565137?startPeriod=2012-Q3.escape_url_query()
+#      ) }${! ("&next_token="+this.meta.next_token.not_null()) | "" }
+#    verb: GET
+#    rate_limit: foo_searches
+#    oauth2:
+#      enabled: true
+#      token_url: https://api.insee.fr/token
+#      client_key: "XGHUuCNyIPQBrUMPCKIBT5jrv1ga"
+#      client_secret: "9tDTj98wUC0eg6xAJcvbo5H2OBka"
+
+rate_limit_resources:
+  - label: foo_searches
+    local:
+      count: 1
+      interval: 30s
+output:
+  file:
+    path: "/home/ubuntu/Files_Siren/CodeNaf.txt"
+    codec: all-bytes
