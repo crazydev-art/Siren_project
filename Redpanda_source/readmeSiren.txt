@@ -26,3 +26,7 @@ Dans le cadre du projet, il a été rajouté un fichier timestamp pour analyser 
 job_time.txt
 
 
+Test for API Call avec Redpanda, version simple:
+docker run --rm --user 1000:1000 -it -v $(pwd)/SirenAPI_Json.yaml:/SirenAPI_Json.yaml   -v /home/ubuntu/Files_Siren:/home/ubuntu/Files_Siren   docker.redpanda.com/redpandadata/connect run ./SirenAPI_Json.yaml
+
+
