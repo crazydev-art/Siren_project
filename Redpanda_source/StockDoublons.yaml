@@ -1,0 +1,39 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+  cert_file: ""
+  key_file: ""
+ 
+input:
+  read_until:
+    input:
+      http_client:
+        url: "https://www.data.gouv.fr/fr/datasets/r/d8c31348-8630-4918-b6d1-5dd689b05f29"
+        verb: GET
+    check: true
+      # timeout: "1800s"
+    
+pipeline:
+  threads: 4
+  processors:
+  - label: "unzip_the_downloaded_file"
+    unarchive:
+      format: zip
+
+output:
+  file:
+    path: "/home/ubuntu/Files_Siren/StockDoublons_utf8.csv"
+    codec: all-bytes
+
+logger:
+  level: DETAILS
+  format: logfmt
+  add_timestamp: false
+  level_name: level
+  timestamp_name: time
+  message_name: msg
+  static_fields:
+    '@service': redpanda-connect
+
