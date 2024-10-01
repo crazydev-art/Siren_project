@@ -1,0 +1,1 @@
+The raw_data file is a JSON file that serves as a snapshot of data retrieved from the SIRENE API.
