@@ -1,0 +1,34 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+  cert_file: ""
+  key_file: ""
+ 
+input:
+  read_until:
+    input:
+      http_client:
+        url: "https://www.data.gouv.fr/fr/datasets/r/0651fb76-bcf3-4f6a-a38d-bc04fa708576"
+        verb: GET
+        timeout: "3600s"
+    check: true
+ 
+output:
+  file:
+    path: "/home/ubuntu/Files_Siren/StockEtablissement_utf8.zip"
+    codec: all-bytes
+
+
+logger:
+  level: INFO
+  format: logfmt
+  add_timestamp: false
+  level_name: level
+  timestamp_name: time
+  message_name: msg
+  static_fields:
+    '@service': redpanda-connect
+
+

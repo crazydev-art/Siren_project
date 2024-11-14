@@ -1,0 +1,85 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+
+input:
+  csv:
+    paths: [/home/ubuntu/Files_Siren/StockUniteLegale_utf8.csv]
+    parse_header_row: true
+    delimiter: ','
+
+pipeline:
+  threads: 8
+  processors:
+    - mapping: |
+        root.siren = this.siren
+        root.statutDiffusionUniteLegale = this.statutDiffusionUniteLegale
+        root.unitePurgeeUniteLegale = this.unitePurgeeUniteLegale
+        root.dateCreationUniteLegale = this.dateCreationUniteLegale.ts_parse("2006-01-02").catch(null)
+        root.sigleUniteLegale = this.sigleUniteLegale
+        root.sexeUniteLegale = this.sexeUniteLegale
+        root.prenom1UniteLegale = this.prenom1UniteLegale
+        root.prenom2UniteLegale = this.prenom2UniteLegale
+        root.prenom3UniteLegale = this.prenom3UniteLegale
+        root.prenom4UniteLegale = this.prenom4UniteLegale
+        root.prenomUsuelUniteLegale = this.prenomUsuelUniteLegale
+        root.pseudonymeUniteLegale = this.pseudonymeUniteLegale
+        root.identifiantAssociationUniteLegale = this.identifiantAssociationUniteLegale
+        root.trancheEffectifsUniteLegale = this.trancheEffectifsUniteLegale.trim()
+        root.anneeEffectifsUniteLegale = this.anneeEffectifsUniteLegale.trim()
+        root.dateDernierTraitementUniteLegale = this.dateDernierTraitementUniteLegale.ts_parse("2006-01-02T15:04:05").catch(null)
+        root.nombrePeriodesUniteLegale = this.nombrePeriodesUniteLegale
+        root.categorieEntreprise = this.categorieEntreprise
+        root.anneeCategorieEntreprise = this.anneeCategorieEntreprise
+        root.dateDebut = this.dateDebut.trim()
+        root.etatAdministratifUniteLegale = this.etatAdministratifUniteLegale
+        root.nomUniteLegale = this.nomUniteLegale
+        root.nomUsageUniteLegale = this.nomUsageUniteLegale
+        root.denominationUniteLegale = this.denominationUniteLegale
+        root.denominationUsuelle1UniteLegale = this.denominationUsuelle1UniteLegale
+        root.denominationUsuelle2UniteLegale = this.denominationUsuelle2UniteLegale
+        root.denominationUsuelle3UniteLegale = this.denominationUsuelle3UniteLegale
+        root.categorieJuridiqueUniteLegale = this.categorieJuridiqueUniteLegale
+        root.activitePrincipaleUniteLegale = this.activitePrincipaleUniteLegale
+        root.nomenclatureActivitePrincipaleUniteLegale = this.nomenclatureActivitePrincipaleUniteLegale
+        root.nicSiegeUniteLegale = this.nicSiegeUniteLegale
+        root.economieSocialeSolidaireUniteLegale = this.economieSocialeSolidaireUniteLegale
+        root.societeMissionUniteLegale = this.societeMissionUniteLegale
+        root.caractereEmployeurUniteLegale = this.caractereEmployeurUniteLegale
+  
+   
+output:
+  broker:
+    batching:
+      count: 4500
+      period: 25s
+    outputs:
+      - sql_insert:
+          driver: postgres
+          dsn: postgres://matt:ubuntu@192.168.1.28:5432/siren?sslmode=disable
+          table: unitelegale
+          columns: [siren, datecreationunitelegale, trancheeffectifsunitelegale, anneeEffectifsUniteLegale, dateDernierTraitementUniteLegale, categorieEntreprise, anneeCategorieEntreprise, etatAdministratifUniteLegale, nomUniteLegale, nomUsageUniteLegale, categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale, nicSiegeUniteLegale]
+          args_mapping: root = [siren, dateCreationUniteLegale, trancheEffectifsUniteLegale, anneeEffectifsUniteLegale, dateDernierTraitementUniteLegale, categorieEntreprise, anneeCategorieEntreprise, etatAdministratifUniteLegale, nomUniteLegale, nomUsageUniteLegale, categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale, nicSiegeUniteLegale]
+          init_statement: |
+            CREATE TABLE IF NOT EXISTS unitelegale (
+              siren VARCHAR(9),
+              dateCreationUniteLegale DATE,
+              trancheEffectifsUniteLegale TEXT,
+              anneeEffectifsUniteLegale TEXT,
+              dateDernierTraitementUniteLegale TIMESTAMP,
+              categorieEntreprise TEXT,
+              anneeCategorieEntreprise TEXT,
+              etatAdministratifUniteLegale TEXT,
+              nomUniteLegale VARCHAR(255),
+              nomUsageUniteLegale VARCHAR(255),
+              denominationUniteLegale VARCHAR(255),
+              categorieJuridiqueUniteLegale TEXT,
+              activitePrincipaleUniteLegale TEXT,
+              nicSiegeUniteLegale TEXT,
+              primary key (siren)
+            );
+
+logger:
+  level: DEBUG
