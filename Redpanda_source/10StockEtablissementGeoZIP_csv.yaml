@@ -8,7 +8,7 @@ http:
  
 input:
   file:
-    paths: ["${FILESIREN}/StockEtablissement_utf8.zip"]
+    paths: ["${FILESIREN}/GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8.zip"]
     codec: all-bytes
 
 pipeline:
@@ -19,7 +19,7 @@ pipeline:
 
 output:
   file:
-    path: "${FILESIREN}/StockEtablissement_utf8.csv" 
+    path: "${FILESIREN}/GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8.csv" 
     codec: all-bytes
 
 logger:

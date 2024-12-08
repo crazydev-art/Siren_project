@@ -17,7 +17,7 @@ input:
  
 output:
   file:
-    path: "/home/ubuntu/Files_Siren/StockEtablissement_utf8.zip"
+    path: "${FILESIREN}/StockEtablissement_utf8.zip"
     codec: all-bytes
 
 

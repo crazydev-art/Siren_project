@@ -8,7 +8,7 @@ http:
  
 input:
   file:
-    paths: ["/home/ubuntu/Files_Siren/StockUniteLegale_utf8.zip"]
+    paths: ["${FILESIREN}/StockUniteLegale_utf8.zip"]
     codec: all-bytes
 
 pipeline:
@@ -19,7 +19,7 @@ pipeline:
 
 output:
   file:
-    path: "/home/ubuntu/Files_Siren/StockUniteLegale_utf8.csv" 
+    path: "${FILESIREN}/StockUniteLegale_utf8.csv" 
     codec: all-bytes
 
 logger:

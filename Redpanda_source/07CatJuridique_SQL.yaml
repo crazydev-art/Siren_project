@@ -6,7 +6,7 @@ http:
 
 input:
   csv:
-    paths: [/home/ubuntu/Files_Siren/cj_sept2022.csv]
+    paths: [${FILESIREN}/cj_sept2022.csv]
     parse_header_row: true
     delimiter: ';'
 
@@ -37,4 +37,4 @@ output:
             );
 
 logger:
-  level: ERROR
+  level: DEBUG

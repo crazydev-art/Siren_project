@@ -7,20 +7,19 @@ http:
   key_file: ""
  
 input:
-  file:
-    paths: ["${FILESIREN}/StockEtablissement_utf8.zip"]
-    codec: all-bytes
-
-pipeline:
-  processors:
-  - label: "unzip_the_file"
-    unarchive:
-      format: zip
-
+  read_until:
+    input:
+      http_client:
+        url: "https://www.data.gouv.fr/fr/datasets/r/ba6a4e4c-aac6-4764-bbd2-f80ae345afc5"
+        verb: GET
+        timeout: "3600s"
+    check: true
+ 
 output:
   file:
-    path: "${FILESIREN}/StockEtablissement_utf8.csv" 
+    path: "${FILESIREN}/GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8.zip"
     codec: all-bytes
+
 
 logger:
   level: INFO

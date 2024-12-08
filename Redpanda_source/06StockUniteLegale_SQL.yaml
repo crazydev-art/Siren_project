@@ -6,7 +6,7 @@ http:
 
 input:
   csv:
-    paths: [/home/ubuntu/Files_Siren/StockUniteLegale_utf8.csv]
+    paths: [${FILESIREN}/StockUniteLegale_utf8.csv]
     parse_header_row: true
     delimiter: ','
 

@@ -6,7 +6,7 @@ http:
 
 input:
   csv:
-    paths: [/home/ubuntu/Files_Siren/naf_rev_2.csv]
+    paths: [${FILESIREN}/naf_rev_2.csv]
     parse_header_row: true
     delimiter: ';'
 
