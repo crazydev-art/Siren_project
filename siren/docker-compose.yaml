@@ -1,0 +1,75 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres17_db
+    networks:
+      - postgre17_network
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+        
+  pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin4_v2
+      networks:
+        - postgre17_network
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+        DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres17_db:5432/${POSTGRES_DB}"
+      ports:
+        - "5051:80"
+      depends_on:
+        - postgres
+    
+  #redpanda:
+  #    image: docker.redpanda.com/redpandadata/connect
+  #    container_name: redpanda
+  #    ports:
+  #      - "4195:4195"
+      
+  redpdandascript:
+      build: 
+        context: ./Redpanda
+        dockerfile: Dockerfile
+        args:
+          MYDIR: ${MYDIR}
+          REDPANDA: ${REDPANDA}
+          FILESIREN: ${FILESIREN}
+          IPHOST: ${IPHOST}
+      container_name: redpanda_script
+      networks:
+        - postgre17_network
+      depends_on:
+        - postgres
+      ports:
+        - "4195:4195"
+      volumes:
+        #- ${VOLUME}:${REDPANDA}
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./siren:${MYDIR}
+        - ./Redpanda:${MYDIR}/Redpanda
+        - ./Files_Siren:${MYDIR}/Files_Siren
+      environment:
+        - MYDIR=${MYDIR}
+        - REDPANDA=${MYDIR}/Redpanda
+        - FILESIREN=${MYDIR}/Files_Siren
+      command: ./siren_de.sh
+      privileged: true
+      tty: true
+
+#volumes:
+#  dataengsiren: 
+#    driver: local
+#    driver_opts:
+#      type: none
+#     device: ${MYDIR}
+#      o: bind
+    
+
+networks:
+  postgre17_network:
+    external: true

@@ -1,0 +1,77 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: true
+  cert_file: ""
+  key_file: ""
+
+input:
+  csv:
+    paths: [${FILESIREN}/GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8.csv]
+    parse_header_row: true
+    delimiter: ';'
+    lazy_quotes: true      # Allow the parser to handle unbalanced quotes
+
+pipeline:
+  threads: 8
+  processors: 
+    - mapping: | 
+        root.siret = this.siret
+        root.x = this.x.not_empty() | deleted()
+        root.y = this.y.not_empty() | deleted()
+        root.qualite_xy = this.qualite_xy
+        root.epsg = this.epsg
+        root.plg_qp24 = this.plg_qp24
+        root.plg_iris = this.plg_iris
+        root.plg_zus = this.plg_zus
+        root.plg_qp15 = this.plg_qp15
+        root.plg_qva = this.plg_qva
+        root.plg_code_commune = this.plg_code_commune
+        root.distance_precision = this.distance_precision.not_empty() | deleted()
+        root.qualite_qp24 = this.qualite_qp24
+        root.qualite_iris = this.qualite_iris
+        root.qualite_zus = this.qualite_zus
+        root.qualite_qp15 = this.qualite_qp15
+        root.qualite_qva = this.qualite_qva
+        root.y_latitude = this.y_latitude.not_empty() | deleted()
+        root.x_longitude = this.x_longitude.not_empty() | deleted()
+    
+output:
+  broker:
+    batching:
+      count: 2500
+      period: 25s
+    outputs:
+      - sql_insert:  # Ensure this line is correctly indented
+          driver: postgres
+          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+          table: geolocalisation
+          columns: [siret, x, y, qualite_xy, epsg, plg_qp24, plg_iris, plg_zus, plg_qp15, plg_qva, plg_code_commune, distance_precision, qualite_qp24, qualite_iris, qualite_zus, qualite_qp15, qualite_qva, y_latitude, x_longitude]
+          args_mapping: root = [siret, x, y, qualite_xy, epsg, plg_qp24, plg_iris, plg_zus, plg_qp15, plg_qva, plg_code_commune, distance_precision, qualite_qp24, qualite_iris, qualite_zus, qualite_qp15, qualite_qva, y_latitude, x_longitude]
+          init_statement: |
+            CREATE TABLE IF NOT EXISTS geolocalisation (
+              siret VARCHAR(14),
+              x NUMERIC,
+              y NUMERIC,
+              qualite_xy VARCHAR(2),
+              epsg VARCHAR(4),
+              plg_qp24 VARCHAR(10),
+              plg_iris VARCHAR(4),
+              plg_zus VARCHAR (10),
+              plg_qp15 VARCHAR(10),
+              plg_qva VARCHAR(10),
+              plg_code_commune VARCHAR(5),
+              distance_precision NUMERIC, 
+              qualite_qp24 VARCHAR(1),
+              qualite_iris VARCHAR (1),
+              qualite_zus VARCHAR(1),
+              qualite_qp15 VARCHAR(1),
+              qualite_qva VARCHAR(1),
+              y_latitude NUMERIC,
+              x_longitude NUMERIC,
+              primary key (siret)                       
+            );                      
+
+logger:
+  level: DEBUG
