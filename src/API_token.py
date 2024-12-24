@@ -39,4 +39,7 @@ def get_token():
     return token
 
 
+print(get_token())
+
+
 

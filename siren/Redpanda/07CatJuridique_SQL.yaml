@@ -1,0 +1,40 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+
+input:
+  csv:
+    paths: [${FILESIREN}/cj_sept2022.csv]
+    parse_header_row: true
+    delimiter: ';'
+
+pipeline:
+  threads: 8
+  processors:
+    - mapping: |
+        root.codecj = this.codecj
+        root.designationcj = this.designationcj
+   
+output:
+  broker:
+    batching:
+      count: 4500
+      period: 25s
+    outputs:
+      - sql_insert:
+          driver: postgres
+          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+          table: categorie_juridique
+          columns: [codecj,designationcj]
+          args_mapping: root = [codecj,designationcj]
+          init_statement: |
+            CREATE TABLE IF NOT EXISTS categorie_juridique (
+              codecj VARCHAR(4),
+              designationcj VARCHAR(150),
+              primary key (codecj)
+            );
+
+logger:
+  level: DEBUG
