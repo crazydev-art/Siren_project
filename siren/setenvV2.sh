@@ -13,18 +13,6 @@ export MONGO_INITDB_ROOT_USERNAME="root"
 export MONGO_INITDB_ROOT_PASSWORD="root2024"
 export ME_CONFIG_MONGODB_ADMINUSERNAME="root"
 export ME_CONFIG_MONGODB_ADMINPASSWORD="root2024"
-#volume pour utilisation dans le container
-#if ! docker volume inspect $VOLUME > /dev/null 2>&1; then
-#  docker volume create --name $VOLUME
-#fi
-#définition du réseau pour la communication entre les pipelines
-if ! docker network inspect postgre17_network > /dev/null 2>&1; then
-  docker network create postgre17_network
-fi
-if [ ! -d "$FILESIREN" ]; then
-  echo "Le répertoire $FILESIREN n'existe pas. Création en cours..."
-  mkdir -p "$FILESIREN"
-fi
 #création des variables pour docker-compose
 echo "MYDIR=$(pwd)" > .env
 echo "REDPANDA=${REDPANDA}" >> .env
@@ -41,6 +29,3 @@ echo "MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}" >> .env
 echo "ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}" >> .env
 echo "ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}" >> .env
 cp .env ./Redpanda
-# Execution du pipeline avec docker compose
-docker-compose --build --no-cache
-docker-compose up -d
