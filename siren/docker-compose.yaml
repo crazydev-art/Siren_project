@@ -58,6 +58,7 @@ services: # definition of the services
       privileged: true # grant permission to write on the local drive
       tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
 
+<<<<<<< HEAD
   mongo:
     image: mongo:4.4.18
     container_name: mongo_db
@@ -96,6 +97,14 @@ volumes: # persistance of the data locally
   mongodb:
     driver: local
 
+=======
+volumes: # persistance of the data locally 
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+>>>>>>> 011b3dfd81c935a7fdf181f4c642051d0f92e33e
 networks: # network definition
   postgre17_network:
     external: true
