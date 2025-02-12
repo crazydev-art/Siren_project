@@ -56,30 +56,41 @@ output:
       count: 4500
       period: 25s
     outputs:
-      - sql_insert:
-          driver: postgres
-          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-          table: unitelegale
-          columns: [siren, datecreationunitelegale, trancheeffectifsunitelegale, anneeEffectifsUniteLegale, dateDernierTraitementUniteLegale, categorieEntreprise, anneeCategorieEntreprise, etatAdministratifUniteLegale, nomUniteLegale, nomUsageUniteLegale, categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale, nicSiegeUniteLegale]
-          args_mapping: root = [siren, dateCreationUniteLegale, trancheEffectifsUniteLegale, anneeEffectifsUniteLegale, dateDernierTraitementUniteLegale, categorieEntreprise, anneeCategorieEntreprise, etatAdministratifUniteLegale, nomUniteLegale, nomUsageUniteLegale, categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale, nicSiegeUniteLegale]
-          init_statement: |
-            CREATE TABLE IF NOT EXISTS unitelegale (
-              siren VARCHAR(9),
-              dateCreationUniteLegale DATE,
-              trancheEffectifsUniteLegale TEXT,
-              anneeEffectifsUniteLegale TEXT,
-              dateDernierTraitementUniteLegale TIMESTAMP,
-              categorieEntreprise TEXT,
-              anneeCategorieEntreprise TEXT,
-              etatAdministratifUniteLegale TEXT,
-              nomUniteLegale VARCHAR(255),
-              nomUsageUniteLegale VARCHAR(255),
-              denominationUniteLegale VARCHAR(255),
-              categorieJuridiqueUniteLegale TEXT,
-              activitePrincipaleUniteLegale TEXT,
-              nicSiegeUniteLegale TEXT,
-              primary key (siren)
-            );
-
+      - retry:
+          max_retries: 5
+          backoff:
+            initial_interval: 1s
+            max_interval: 30s
+          output:
+            sql_insert:
+              driver: postgres
+              dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+              table: unitelegale
+              columns: [siren, datecreationunitelegale, trancheeffectifsunitelegale, anneeeffectifsunitelegale, datederniertraitementunitelegale, categorieentreprise, anneecategorieentreprise, etatadministratifunitelegale, nomunitelegale, nomusageunitelegale, denominationunitelegale, categoriejuridiqueunitelegale, activiteprincipaleunitelegale, nicsiegeunitelegale]
+              args_mapping: root = [siren, dateCreationUniteLegale, trancheEffectifsUniteLegale, anneeEffectifsUniteLegale, dateDernierTraitementUniteLegale, categorieEntreprise, anneeCategorieEntreprise, etatAdministratifUniteLegale, nomUniteLegale, nomUsageUniteLegale, denominationUniteLegale, categorieJuridiqueUniteLegale, activitePrincipaleUniteLegale, nicSiegeUniteLegale]
+              init_statement: |
+                  CREATE TABLE IF NOT EXISTS unitelegale (
+                    siren VARCHAR(9),
+                    dateCreationUniteLegale DATE,
+                    trancheEffectifsUniteLegale TEXT,
+                    anneeEffectifsUniteLegale TEXT,
+                    dateDernierTraitementUniteLegale TIMESTAMP,
+                    categorieEntreprise TEXT,
+                    anneeCategorieEntreprise TEXT,
+                    etatAdministratifUniteLegale TEXT,
+                    nomUniteLegale VARCHAR(255),
+                    nomUsageUniteLegale VARCHAR(255),
+                    denominationUniteLegale VARCHAR(255),
+                    categorieJuridiqueUniteLegale TEXT,
+                    activitePrincipaleUniteLegale TEXT,
+                    nicSiegeUniteLegale TEXT,
+                    primary key (siren)
+                  );
+                  CREATE INDEX IF NOT EXISTS siren_idx ON unitelegale (siren);
+                  CREATE INDEX IF NOT EXISTS dateDernierTraitementUniteLegale_idx ON unitelegale (dateDernierTraitementUniteLegale);
+                  CREATE INDEX IF NOT EXISTS nicSiegeUniteLegale_idx ON unitelegale (nicSiegeUniteLegale);
+                  CREATE INDEX IF NOT EXISTS categorieJuridiqueUniteLegale_idx ON unitelegale (categorieJuridiqueUniteLegale);
+                  CREATE INDEX IF NOT EXISTS activitePrincipaleUniteLegale_idx ON unitelegale (activitePrincipaleUniteLegale);
+            
 logger:
   level: DEBUG

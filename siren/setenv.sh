@@ -7,12 +7,11 @@ export PGADMIN_DEFAULT_PASSWORD="team2024"
 export POSTGRES_USER="admin"
 export POSTGRES_PASSWORD="team2024"
 export POSTGRES_DB="siren"
+export ADMIN_USERNAME="apiadmin"
+export ADMIN_MAIL="admin@gmail.com"
+export ADMIN_PASSWORD="dataeng24"
 export VOLUME="dataengsiren"
 export IPHOST="192.168.1.28"
-export MONGO_INITDB_ROOT_USERNAME="root"
-export MONGO_INITDB_ROOT_PASSWORD="root2024"
-export ME_CONFIG_MONGODB_ADMINUSERNAME="root"
-export ME_CONFIG_MONGODB_ADMINPASSWORD="root2024"
 #volume pour utilisation dans le container
 #if ! docker volume inspect $VOLUME > /dev/null 2>&1; then
 #  docker volume create --name $VOLUME
@@ -36,10 +35,6 @@ echo "POSTGRES_USER=${POSTGRES_USER}" >> .env
 echo "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}" >> .env
 echo "POSTGRES_DB=${POSTGRES_DB}" >> .env
 echo "IPHOST=${IPHOST}" >> .env
-echo "MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}" >> .env
-echo "MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}" >> .env
-echo "ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}" >> .env
-echo "ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}" >> .env
 cp .env ./Redpanda
 # Execution du pipeline avec docker compose
 docker-compose --build --no-cache

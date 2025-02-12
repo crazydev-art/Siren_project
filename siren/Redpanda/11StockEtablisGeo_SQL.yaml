@@ -43,35 +43,30 @@ output:
       count: 2500
       period: 25s
     outputs:
-      - sql_insert:  # Ensure this line is correctly indented
-          driver: postgres
-          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-          table: geolocalisation
-          columns: [siret, x, y, qualite_xy, epsg, plg_qp24, plg_iris, plg_zus, plg_qp15, plg_qva, plg_code_commune, distance_precision, qualite_qp24, qualite_iris, qualite_zus, qualite_qp15, qualite_qva, y_latitude, x_longitude]
-          args_mapping: root = [siret, x, y, qualite_xy, epsg, plg_qp24, plg_iris, plg_zus, plg_qp15, plg_qva, plg_code_commune, distance_precision, qualite_qp24, qualite_iris, qualite_zus, qualite_qp15, qualite_qva, y_latitude, x_longitude]
-          init_statement: |
-            CREATE TABLE IF NOT EXISTS geolocalisation (
-              siret VARCHAR(14),
-              x NUMERIC,
-              y NUMERIC,
-              qualite_xy VARCHAR(2),
-              epsg VARCHAR(4),
-              plg_qp24 VARCHAR(10),
-              plg_iris VARCHAR(4),
-              plg_zus VARCHAR (10),
-              plg_qp15 VARCHAR(10),
-              plg_qva VARCHAR(10),
-              plg_code_commune VARCHAR(5),
-              distance_precision NUMERIC, 
-              qualite_qp24 VARCHAR(1),
-              qualite_iris VARCHAR (1),
-              qualite_zus VARCHAR(1),
-              qualite_qp15 VARCHAR(1),
-              qualite_qva VARCHAR(1),
-              y_latitude NUMERIC,
-              x_longitude NUMERIC,
-              primary key (siret)                       
-            );                      
-
+      - retry:
+          max_retries: 5
+          backoff:
+            initial_interval: 1s
+            max_interval: 30s
+          output:
+            sql_insert:  # Ensure this line is correctly indented
+              driver: postgres
+              dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+              table: geolocalisation
+              columns: [siret, x, y, qualite_xy, epsg, y_latitude, x_longitude]
+              args_mapping: root = [siret, x, y, qualite_xy, epsg, y_latitude, x_longitude]
+              init_statement: |
+                CREATE TABLE IF NOT EXISTS geolocalisation (
+                  siret VARCHAR(14),
+                  x NUMERIC,
+                  y NUMERIC,
+                  qualite_xy VARCHAR(2),
+                  epsg VARCHAR(4),
+                  y_latitude NUMERIC,
+                  x_longitude NUMERIC,
+                  primary key (siret)                       
+                );                 
+                CREATE INDEX IF NOT EXISTS siret_idx ON geolocalisation (siret);     
+        
 logger:
   level: DEBUG
