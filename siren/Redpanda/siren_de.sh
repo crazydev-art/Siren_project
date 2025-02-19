@@ -25,3 +25,4 @@ docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/11StockEtabl
 echo "$(date) End of Bash" >> $FILESIREN/job_time.txt
 # docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/low_StockEtablissementZIP_csv.yaml:/low_StockEtablissementZIP_csv.yaml -v $FILESIREN:$FILESIREN  docker.redpanda.com/redpandadata/connect run ./low_StockEtablissementZIP_csv.yaml
 # docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/06StockUniteLegale_SQL_join.yaml:/06StockUniteLegale_SQL_join.yaml   -v $FILESIREN:$FILESIREN   docker.redpanda.com/redpandadata/connect run ./06StockUniteLegale_SQL_join.yaml
+# docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/03StockEtabl_SQL_bis.yaml:/03StockEtabl_SQL_bis.yaml   -v $FILESIREN:$FILESIREN   docker.redpanda.com/redpandadata/connect run ./03StockEtabl_SQL_bis.yaml

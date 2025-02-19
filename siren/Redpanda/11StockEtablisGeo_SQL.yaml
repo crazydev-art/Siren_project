@@ -53,15 +53,14 @@ output:
               driver: postgres
               dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
               table: geolocalisation
-              columns: [siret, x, y, qualite_xy, epsg, y_latitude, x_longitude]
-              args_mapping: root = [siret, x, y, qualite_xy, epsg, y_latitude, x_longitude]
+              columns: [siret, x, y, qualite_xy, y_latitude, x_longitude]
+              args_mapping: root = [siret, x, y, qualite_xy, y_latitude, x_longitude]
               init_statement: |
                 CREATE TABLE IF NOT EXISTS geolocalisation (
                   siret VARCHAR(14),
                   x NUMERIC,
                   y NUMERIC,
-                  qualite_xy VARCHAR(2),
-                  epsg VARCHAR(4),
+                  qualite_xy VARCHAR(25),
                   y_latitude NUMERIC,
                   x_longitude NUMERIC,
                   primary key (siret)                       

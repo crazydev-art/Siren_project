@@ -19,7 +19,7 @@ RUN apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # Set the container to run as root
-USER root
+# USER root # modified 19.12.2024#
 
 #User external ENV during Build of container
 ARG MYDIR
@@ -33,16 +33,13 @@ ENV REDPANDA=${REDPANDA}
 ENV FILESIREN=${FILESIREN}
 ENV IPHOST=${IPHOST}
 
-# Create folder based on .env
-RUN mkdir -p $REDPANDA $FILESIREN
-
 # Copy files to the container
 COPY *.yaml $REDPANDA/
 COPY .env $REDPANDA/
 COPY siren_de.sh $REDPANDA/siren_de.sh
 RUN chmod +x $REDPANDA/siren_de.sh
 
-RUN mkdir -p $REDPANDA/Files_Siren/
+# RUN mkdir -p $REDPANDA/Files_Siren/ #modified 19.12.2024
 
 
 # Set the working directory

@@ -35,14 +35,12 @@ output:
               driver: postgres
               dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
               table: nafv2
-              columns: [codenaf,nafvfinale,naf65caract,naf40caract]
-              args_mapping: root = [codenaf,nafvfinale,naf65caract,naf40caract]
+              columns: [codenaf,nafvfinale]
+              args_mapping: root = [codenaf,nafvfinale]
               init_statement: |
                 CREATE TABLE IF NOT EXISTS nafv2 (
                   codenaf VARCHAR(9),
-                  nafvfinale VARCHAR(150),
-                  naf65caract VARCHAR(65),
-                  naf40caract VARCHAR(40),
+                  nafvfinale VARCHAR(255),
                   primary key (codenaf)
                 );
                 CREATE INDEX IF NOT EXISTS codenaf_idx ON nafv2 (codenaf);

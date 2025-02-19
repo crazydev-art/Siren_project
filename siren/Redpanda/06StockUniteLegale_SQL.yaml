@@ -72,18 +72,18 @@ output:
                   CREATE TABLE IF NOT EXISTS unitelegale (
                     siren VARCHAR(9),
                     dateCreationUniteLegale DATE,
-                    trancheEffectifsUniteLegale TEXT,
-                    anneeEffectifsUniteLegale TEXT,
+                    trancheEffectifsUniteLegale VARCHAR(255),
+                    anneeEffectifsUniteLegale VARCHAR(255),
                     dateDernierTraitementUniteLegale TIMESTAMP,
-                    categorieEntreprise TEXT,
-                    anneeCategorieEntreprise TEXT,
-                    etatAdministratifUniteLegale TEXT,
+                    categorieEntreprise VARCHAR(255),
+                    anneeCategorieEntreprise VARCHAR(255), 
+                    etatAdministratifUniteLegale VARCHAR(255),
                     nomUniteLegale VARCHAR(255),
                     nomUsageUniteLegale VARCHAR(255),
                     denominationUniteLegale VARCHAR(255),
-                    categorieJuridiqueUniteLegale TEXT,
-                    activitePrincipaleUniteLegale TEXT,
-                    nicSiegeUniteLegale TEXT,
+                    categorieJuridiqueUniteLegale VARCHAR(25),
+                    activitePrincipaleUniteLegale VARCHAR(12),
+                    nicSiegeUniteLegale VARCHAR(5),
                     primary key (siren)
                   );
                   CREATE INDEX IF NOT EXISTS siren_idx ON unitelegale (siren);
