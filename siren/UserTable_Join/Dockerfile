@@ -38,4 +38,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Start Docker daemon and run the script
 # Run the Docker daemon as a background process
 # Commande d'exécution des deux scripts (séquentielle)
-CMD ["sh", "-c", "user_table.py && inner_join.py"]
+CMD ["sh", "-c", "python user_table.py && python inner_join.py"]
