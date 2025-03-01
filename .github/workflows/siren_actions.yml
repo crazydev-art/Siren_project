@@ -59,6 +59,7 @@ jobs:
         if: success()
         run: |
           git config --global user.email "lionel.matter@oultook.fr"
+          git config --global user.name "MatterLMA"
           git add siren/
           if ! git diff-index --quiet HEAD; then
             git commit -m "Update siren folder from dev branch (GitHub Actions)"
