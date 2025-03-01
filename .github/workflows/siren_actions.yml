@@ -1,47 +1,84 @@
-name: Copy PY file to Test_*.Py Check (PyTest) and Deploy Python Files
+name: Check and Deploy Python Files
 
 on:
   push:
     branches:
-      - dev  # Trigger on pushes to the 'dev' branch
+      - dev
 
 jobs:
   check-python-files:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all branches and commit history
 
       - name: Find Python Files
         id: find_py_files
         run: |
           PY_FILES=$(find . -type f -name "*.py")
           if [ -z "$PY_FILES" ]; then
-            echo "No Python files found."
             echo "found_py=false" >> $GITHUB_ENV
+            echo "No Python files found."
           else
+            echo "found_py=true" >> $GITHUB_ENV
             echo "Found Python files:"
             echo "$PY_FILES"
-            echo "found_py=true" >> $GITHUB_ENV
           fi
 
       - name: Install Dependencies
         if: env.found_py == 'true'
         run: |
-          pip install --upgrade pip
-          pip install pytest python-dotenv psycopg2 requests 
+          python -m pip install --upgrade pip
+          pip install pytest python-dotenv
 
-      - name: Create Test Files
+      - name: Create Test Files with Selective Imports
         if: env.found_py == 'true'
         run: |
-          for file in $(find . -type f -name "*.py"); do
-            test_file="$(dirname "$file")/test_$(basename "$file")"
-            # Avoid overwriting existing test files
-            if [ ! -f "$test_file" ]; then
-              cp "$file" "$test_file"
-            fi
+          find . -type f -name "*.py" | while read file; do
+            dir=$(dirname "$file")
+            base=$(basename "$file")
+            test_file="$dir/test_${base}"
+            
+            # Copy original to test file
+            cp "$file" "$test_file"
+            
+            # Process imports selectively
+            while IFS= read -r line; do
+              # Handle 'from ... import' statements
+              if [[ "$line" =~ ^([[:space:]]*from[[:space:]]+)([a-zA-Z0-9_]+)([[:space:]]+import.*) ]]; then
+                prefix="${BASH_REMATCH[1]}"
+                module="${BASH_REMATCH[2]}"
+                suffix="${BASH_REMATCH[3]}"
+                
+                # Check if module exists in project
+                if find . -name "${module}.py" -print -quit | grep -q .; then
+                  echo "${prefix}test_${module}${suffix}"
+                else
+                  echo "$line"
+                fi
+
+              # Handle 'import ...' statements
+              elif [[ "$line" =~ ^([[:space:]]*import[[:space:]]+)([a-zA-Z0-9_]+)([[:space:]]*$) ]]; then
+                prefix="${BASH_REMATCH[1]}"
+                module="${BASH_REMATCH[2]}"
+                suffix="${BASH_REMATCH[3]}"
+                
+                # Check if module exists in project
+                if find . -name "${module}.py" -print -quit | grep -q .; then
+                  echo "${prefix}test_${module}${suffix}"
+                else
+                  echo "$line"
+                fi
+
+              # Preserve other lines
+              else
+                echo "$line"
+              fi
+            done < "$test_file" > "$test_file.tmp"
+            
+            mv "$test_file.tmp" "$test_file"
           done
 
       - name: Run Pytest
@@ -49,33 +86,35 @@ jobs:
         run: |
           pytest --maxfail=1 --disable-warnings
 
-      - name: Deploy to Prod and Main
-        if: env.found_py == 'true'
+      - name: Cleanup Test Files and Imports
+        if: always() && env.found_py == 'true'
         run: |
-          git config --global user.name "GitHub Actions"
+          # Remove test files
+          find . -type f -name "test_*.py" -delete
+          
+          # Revert imports in original files
+          find . -type f -name "*.py" | while read file; do
+            sed -i -E "s/from test_([a-zA-Z0-9_]+) import/from \1 import/g" "$file"
+            sed -i -E "s/import test_([a-zA-Z0-9_]+)/import \1/g" "$file"
+          done
+
+      - name: Deploy to Prod and Main
+        if: success() && env.found_py == 'true'
+        run: |
           git config --global user.email "lionel.matter@outlook.fr"
+          git config --global user.name "GitHub Actions"
+          
+          deploy_to_branch() {
+            target_branch=$1
+            git checkout $target_branch
+            git pull origin $target_branch
+            git checkout dev -- .
+            git commit -am "Deploy from dev: $(date +'%Y-%m-%d %H:%M:%S')"
+            git push origin $target_branch
+          }
 
-          # Deploy to main branch
-          git checkout main
-          git pull origin main
-          git checkout dev -- .
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to deploy to main."
-          else
-            git commit -am "Deploying Python files from dev to main"
-            git push origin main
-          fi
-
-          # Deploy to prod branch
-          git checkout prod
-          git pull origin prod
-          git checkout dev -- .
-          if git diff-index --quiet HEAD --; then
-            echo "No changes to deploy to prod."
-          else
-            git commit -am "Deploying Python files from dev to prod"
-            git push origin prod
-          fi
+          deploy_to_branch main
+          deploy_to_branch prod
 
       - name: Log No Python Files
         if: env.found_py == 'false'
