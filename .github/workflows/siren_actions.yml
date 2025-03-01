@@ -14,11 +14,11 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
           IPHOST: ${{ secrets.IPHOST }}
         ports:
           - 5432:5432
@@ -28,24 +28,24 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-         ref: dev
-      
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest python-dotenv psycopg2 requests prometheus_client bcrypt
-      
       - name: Run specific tests
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
+          IPHOST: ${{ secrets.IPHOST }}
         run: pytest test_UserTable_Join/{inner_join_test,user_table_test}.py
     
       - name: Prepare main branch
