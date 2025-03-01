@@ -23,18 +23,25 @@ output:
       count: 4500
       period: 25s
     outputs:
-      - sql_insert:
-          driver: postgres
-          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-          table: categorie_juridique
-          columns: [codecj,designationcj]
-          args_mapping: root = [codecj,designationcj]
-          init_statement: |
-            CREATE TABLE IF NOT EXISTS categorie_juridique (
-              codecj VARCHAR(4),
-              designationcj VARCHAR(150),
-              primary key (codecj)
-            );
+      - retry:
+          max_retries: 5
+          backoff:
+            initial_interval: 1s
+            max_interval: 30s
+          output:
+            sql_insert:
+              driver: postgres
+              dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+              table: categorie_juridique
+              columns: [codecj,designationcj]
+              args_mapping: root = [codecj,designationcj]
+              init_statement: |
+                  CREATE TABLE IF NOT EXISTS categorie_juridique (
+                    codecj VARCHAR(4),
+                    designationcj VARCHAR(150),
+                    primary key (codecj)
+                  );
+                  CREATE INDEX IF NOT EXISTS codecj_idx ON categorie_juridique (codecj);
 
 logger:
   level: DEBUG

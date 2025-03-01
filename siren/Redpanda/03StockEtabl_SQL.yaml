@@ -100,47 +100,71 @@ output:
               count: 4500
               period: 45s
             outputs:
-              - sql_insert:  # Ensure this line is correctly indented
-                  driver: postgres
-                  dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-                  table: etablissement
-                  columns: [siren,nic,siret,trancheeffectifsetablissement,anneeeffectifsetablissement,activiteprincipaleregistremetiersetablissement,datederniertraitementetablissement,etablissementsiege,adresse_id]
-                  args_mapping: root = [siren,nic,siret,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleRegistreMetiersEtablissement,dateDernierTraitementEtablissement,etablissementSiege,adresse_id]
-                  init_statement: |
-                      CREATE TABLE IF NOT EXISTS etablissement (
-                        siren VARCHAR(9) NOT NULL,
-                        nic VARCHAR(5) NOT NULL,
-                        siret VARCHAR(14) NOT NULL,
-                        trancheEffectifsEtablissement VARCHAR(10),
-                        anneeEffectifsEtablissement VARCHAR(10),
-                        activitePrincipaleRegistreMetiersEtablissement VARCHAR(12),
-                        dateDernierTraitementEtablissement TIMESTAMP,
-                        etablissementSiege VARCHAR (10),
-                        adresse_id VARCHAR(36),
-                        primary key (siret)
-                      );
-            
+              - retry:
+                  max_retries: 5
+                  backoff:
+                    initial_interval: 1s
+                    max_interval: 30s
+                  output:
+                    sql_insert:  # Ensure this line is correctly indented
+                      driver: postgres
+                      dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+                      table: etablissement
+                      columns: [siret,nic,siren,datecreationetablissement,trancheeffectifsetablissement,anneeeffectifsetablissement,activiteprincipaleetablissement,datederniertraitementetablissement,etatadministratifetablissement,etablissementsiege,enseigne1etablissement,enseigne2etablissement,enseigne3etablissement,denominationusuelleetablissement]
+                      args_mapping: root = [siret,nic,siren,dateCreationEtablissement,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleEtablissement,dateDernierTraitementEtablissement,etatAdministratifEtablissement,etablissementSiege,enseigne1Etablissement,enseigne2Etablissement,enseigne3Etablissement,denominationUsuelleEtablissement]
+                      init_statement: |
+                          CREATE TABLE IF NOT EXISTS etablissement (
+                            siret VARCHAR(14) NOT NULL,  
+                            nic VARCHAR(5) NOT NULL,
+                            siren VARCHAR(9) NOT NULL,
+                            dateCreationEtablissement DATE,
+                            trancheEffectifsEtablissement VARCHAR(10), 
+                            anneeEffectifsEtablissement VARCHAR (10),
+                            activitePrincipaleEtablissement VARCHAR(12),
+                            dateDernierTraitementEtablissement TIMESTAMP,
+                            etatAdministratifEtablissement VARCHAR (1),
+                            etablissementSiege BOOLEAN,
+                            enseigne1Etablissement VARCHAR (50),
+                            enseigne2Etablissement VARCHAR (50),
+                            enseigne3Etablissement VARCHAR (50),
+                            denominationUsuelleEtablissement VARCHAR (100),
+                            primary key (siret)
+                          );
+                          CREATE INDEX IF NOT EXISTS etabl_siren_idx ON etablissement (siren);
+                          CREATE INDEX IF NOT EXISTS etabl_nic_idx ON etablissement (nic);
+                          CREATE INDEX IF NOT EXISTS etabl_siret_idx ON etablissement (siret);
+                          CREATE INDEX IF NOT EXISTS etabl_etablissementSiege_idx ON etablissement (etablissementSiege);
+                          CREATE INDEX IF NOT EXISTS etabl_dateDernierTraitementEtablissement_idx ON etablissement (dateDernierTraitementEtablissement);
+                      
               # Output 2: Insert into second table based on a different condition (e.g., siren starts with '2')
-              - sql_insert:  # Ensure this line is correctly indented
-                  driver: postgres
-                  dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-                  table: adresse
-                  columns: [adresse_id,numerovoieetablissement,complementadresseetablissement,indicerepetitionetablissement,typevoieetablissement,libellevoieetablissement,codepostaletablissement,libellecommuneetablissement,codecommuneetablissement]
-                  args_mapping: root = [adresse_id,numeroVoieEtablissement,complementAdresseEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,codeCommuneEtablissement]
-                  init_statement: |
-                      CREATE TABLE IF NOT EXISTS adresse (
-                        adresse_id VARCHAR(36),
-                        numeroVoieEtablissement VARCHAR(50),
-                        complementAdresseEtablissement VARCHAR(255),
-                        indiceRepetitionEtablissement VARCHAR(10),
-                        typeVoieEtablissement VARCHAR(50),
-                        libelleVoieEtablissement VARCHAR(255),
-                        codePostalEtablissement VARCHAR(10),
-                        libelleCommuneEtablissement VARCHAR(100),
-                        codeCommuneEtablissement VARCHAR(50),
-                        primary key (adresse_id)
-                      );
-
+              - retry:
+                  max_retries: 5
+                  backoff:
+                    initial_interval: 1s
+                    max_interval: 30s
+                  output:
+                    sql_insert:  # Ensure this line is correctly indented
+                      driver: postgres
+                      dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+                      table: adresse
+                      columns: [siret,complementadresseetablissement,numerovoieetablissement,indicerepetitionetablissement,typevoieetablissement,libellevoieetablissement,codepostaletablissement,libellecommuneetablissement,codecommuneetablissement]
+                      args_mapping: root = [siret,complementAdresseEtablissement,numeroVoieEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,codeCommuneEtablissement]
+                      init_statement: |
+                          CREATE TABLE IF NOT EXISTS adresse (
+                            siret VARCHAR(14) NOT NULL,
+                            complementAdresseEtablissement VARCHAR(255),
+                            numeroVoieEtablissement VARCHAR(50),
+                            indiceRepetitionEtablissement VARCHAR(10),
+                            typeVoieEtablissement VARCHAR(50),
+                            libelleVoieEtablissement VARCHAR(255),
+                            codePostalEtablissement VARCHAR(10),
+                            libelleCommuneEtablissement VARCHAR(100),
+                            codeCommuneEtablissement VARCHAR(50)
+                          );
+                          CREATE INDEX IF NOT EXISTS adr_codePostalEtablissement_idx ON adresse (codePostalEtablissement);
+                          CREATE INDEX IF NOT EXISTS adr_siret_idx ON adresse (siret);
+                          CREATE INDEX IF NOT EXISTS adr_libelleCommuneEtablissement_idx ON adresse (libelleCommuneEtablissement);
+                    
       - check: "false"
         output:
           drop: {}

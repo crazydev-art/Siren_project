@@ -1,7 +1,5 @@
 #!/bin/bash
-#rm $FILESIREN/job_time.txt
-# echo "$(date) pull docker redpanda connect" > $FILESIREN/job_time.txt
-# docker pull docker.redpanda.com/redpandadata/connect
+env > $FILESIREN/environ.txt
 echo "$(date) 01 Stock Etabl. ZIP" > $FILESIREN/job_time.txt
 docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/01StockEtablissementZIP.yaml:/01StockEtablissementZIP.yaml -v $FILESIREN:$FILESIREN  docker.redpanda.com/redpandadata/connect run ./01StockEtablissementZIP.yaml
 echo "$(date) 02 Stock Etabl. ZIP to CSV" >> $FILESIREN/job_time.txt
@@ -25,4 +23,6 @@ docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/10StockEtabl
 echo "$(date) 10 Stock Etablissement Geo PostgreSQL" >> $FILESIREN/job_time.txt
 docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/11StockEtablisGeo_SQL.yaml:/11StockEtablisGeo_SQL.yaml   -v $FILESIREN:$FILESIREN   docker.redpanda.com/redpandadata/connect run ./11StockEtablisGeo_SQL.yaml
 echo "$(date) End of Bash" >> $FILESIREN/job_time.txt
-
+# docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/low_StockEtablissementZIP_csv.yaml:/low_StockEtablissementZIP_csv.yaml -v $FILESIREN:$FILESIREN  docker.redpanda.com/redpandadata/connect run ./low_StockEtablissementZIP_csv.yaml
+# docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/06StockUniteLegale_SQL_join.yaml:/06StockUniteLegale_SQL_join.yaml   -v $FILESIREN:$FILESIREN   docker.redpanda.com/redpandadata/connect run ./06StockUniteLegale_SQL_join.yaml
+# docker run --rm --user 1000:1000 -it --env-file ./.env -v $REDPANDA/03StockEtabl_SQL_bis.yaml:/03StockEtabl_SQL_bis.yaml   -v $FILESIREN:$FILESIREN   docker.redpanda.com/redpandadata/connect run ./03StockEtabl_SQL_bis.yaml

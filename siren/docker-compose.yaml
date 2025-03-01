@@ -54,10 +54,33 @@ services: # definition of the services
         - MYDIR=${MYDIR}
         - REDPANDA=${MYDIR}/Redpanda
         - FILESIREN=${MYDIR}/Files_Siren
-      command: ./siren_de.sh
+      #command: ./siren_de.sh (is already started in the dockerfile)
       privileged: true # grant permission to write on the local drive
       tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
+      restart: "no"
 
+  scriptpython: # Python section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./UserTable_Join # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          IPHOST: ${IPHOST}
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+          POSTGRES_DB: ${POSTGRES_DB}
+          USERTABLEJOIN: ${USERTABLEJOIN}
+          POSTGRES_DB_USER: ${POSTGRES_DB_USER}
+          ADMIN_USERNAME: ${ADMIN_USERNAME}
+          ADMIN_MAIL: ${ADMIN_MAIL}
+          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      container_name: scriptpython # name of the container
+      networks: # definition of the network 
+        - postgre17_network
+      depends_on: # Wait for `redpdandascript` to complete successfully
+        redpdandascript:
+          condition: service_completed_successfully
+                
 volumes: # persistance of the data locally 
   postgres_data:
     driver: local

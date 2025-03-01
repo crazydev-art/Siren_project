@@ -25,20 +25,26 @@ output:
       count: 4500
       period: 25s
     outputs:
-      - sql_insert:
-          driver: postgres
-          dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
-          table: nafv2
-          columns: [codenaf,nafvfinale,naf65caract,naf40caract]
-          args_mapping: root = [codenaf,nafvfinale,naf65caract,naf40caract]
-          init_statement: |
-            CREATE TABLE IF NOT EXISTS nafv2 (
-              codenaf VARCHAR(9),
-              nafvfinale VARCHAR(150),
-              naf65caract VARCHAR(65),
-              naf40caract VARCHAR(40),
-              primary key (codenaf)
-            );
+      - retry:
+          max_retries: 5
+          backoff:
+            initial_interval: 1s
+            max_interval: 30s
+          output:
+            sql_insert:
+              driver: postgres
+              dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+              table: nafv2
+              columns: [codenaf,nafvfinale]
+              args_mapping: root = [codenaf,nafvfinale]
+              init_statement: |
+                CREATE TABLE IF NOT EXISTS nafv2 (
+                  codenaf VARCHAR(9),
+                  nafvfinale VARCHAR(255),
+                  primary key (codenaf)
+                );
+                CREATE INDEX IF NOT EXISTS codenaf_idx ON nafv2 (codenaf);
+
 
 logger:
   level: DEBUG
