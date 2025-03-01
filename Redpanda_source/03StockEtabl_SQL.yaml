@@ -1,0 +1,149 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: true
+  cert_file: ""
+  key_file: ""
+
+input:
+  csv:
+    paths: [${FILESIREN}/StockEtablissement_utf8.csv]
+    parse_header_row: true
+    delimiter: ','
+
+pipeline:
+  threads: 8
+  processors: 
+    #- log: 
+    #    message: "Processing row: ${!this.index(0)}" 
+    - mapping: |
+        root.siren = this.siren
+        root.nic = this.nic
+        root.siret = this.siret
+        root.statutDiffusionEtablissement = this.statutDiffusionEtablissement
+        root.dateCreationEtablissement = this.dateCreationEtablissement
+        root.trancheEffectifsEtablissement = this.trancheEffectifsEtablissement
+        root.anneeEffectifsEtablissement = this.anneeEffectifsEtablissement
+        root.activitePrincipaleRegistreMetiersEtablissement = this.activitePrincipaleRegistreMetiersEtablissement
+        root.dateDernierTraitementEtablissement = this.dateDernierTraitementEtablissement.ts_parse("2006-01-02T15:04:05")
+        root.etablissementSiege = this.etablissementSiege
+        root.nombrePeriodesEtablissement = this.nombrePeriodesEtablissement
+        root.complementAdresseEtablissement = this.complementAdresseEtablissement
+        root.numeroVoieEtablissement = this.numeroVoieEtablissement
+        root.indiceRepetitionEtablissement = this.indiceRepetitionEtablissement
+        root.dernierNumeroVoieEtablissement = this.dernierNumeroVoieEtablissement
+        root.indiceRepetitionDernierNumeroVoieEtablissement = this.indiceRepetitionDernierNumeroVoieEtablissement
+        root.typeVoieEtablissement = this.typeVoieEtablissement
+        root.libelleVoieEtablissement = this.libelleVoieEtablissement
+        root.codePostalEtablissement = this.codePostalEtablissement
+        root.libelleCommuneEtablissement = this.libelleCommuneEtablissement
+        root.libelleCommuneEtrangerEtablissement = this.libelleCommuneEtrangerEtablissement
+        root.distributionSpecialeEtablissement = this.distributionSpecialeEtablissement
+        root.codeCommuneEtablissement = this.codeCommuneEtablissement
+        root.codeCedexEtablissement = this.codeCedexEtablissement
+        root.libelleCedexEtablissement = this.libelleCedexEtablissement
+        root.codePaysEtrangerEtablissement = this.codePaysEtrangerEtablissement
+        root.libellePaysEtrangerEtablissement = this.libellePaysEtrangerEtablissement
+        root.identifiantAdresseEtablissement = this.identifiantAdresseEtablissement
+        root.coordonneeLambertAbscisseEtablissement = this.coordonneeLambertAbscisseEtablissement
+        root.coordonneeLambertOrdonneeEtablissement = this.coordonneeLambertOrdonneeEtablissement
+        root.complementAdresse2Etablissement = this.complementAdresse2Etablissement
+        root.numeroVoie2Etablissement = this.numeroVoie2Etablissement
+        root.indiceRepetition2Etablissement = this.indiceRepetition2Etablissement
+        root.typeVoie2Etablissement = this.typeVoie2Etablissement
+        root.libelleVoie2Etablissement = this.libelleVoie2Etablissement
+        root.codePostal2Etablissement = this.codePostal2Etablissement
+        root.libelleCommune2Etablissement = this.libelleCommune2Etablissement
+        root.libelleCommuneEtranger2Etablissement = this.libelleCommuneEtranger2Etablissement
+        root.distributionSpeciale2Etablissement = this.distributionSpeciale2Etablissement
+        root.codeCommune2Etablissement = this.codeCommune2Etablissement
+        root.codeCedex2Etablissement = this.codeCedex2Etablissement
+        root.libelleCedex2Etablissement = this.libelleCedex2Etablissement
+        root.codePaysEtranger2Etablissement = this.codePaysEtranger2Etablissement
+        root.libellePaysEtranger2Etablissement = this.libellePaysEtranger2Etablissement
+        root.dateDebut = this.dateDebut
+        root.etatAdministratifEtablissement = this.etatAdministratifEtablissement
+        root.enseigne1Etablissement = this.enseigne1Etablissement
+        root.enseigne2Etablissement = this.enseigne2Etablissement
+        root.enseigne3Etablissement = this.enseigne3Etablissement
+        root.denominationUsuelleEtablissement = this.denominationUsuelleEtablissement
+        root.activitePrincipaleEtablissement = this.activitePrincipaleEtablissement
+        root.nomenclatureActivitePrincipaleEtablissement = this.nomenclatureActivitePrincipaleEtablissement
+        root.caractereEmployeurEtablissement = this.caractereEmployeurEtablissement
+        root.adresse_id = uuid_v4()
+      
+      # Branch processor to filter rows based on postal code prefixes
+    - mutation: |
+        root.prefix = this.codePostalEtablissement.string().slice(0, 2)
+        # Manually check if the postal code starts with desired prefixes
+        root.match = (this.prefix == "75" || this.prefix == "77" || this.prefix == "78" || this.prefix == "91" || this.prefix == "92" || this.prefix == "93" || this.prefix == "94" || this.prefix == "95" ) && 
+                    (this.statutDiffusionEtablissement == "O" )  && 
+                    (this.etatAdministratifEtablissement == "A" )
+          
+        root = if this.match { this } else { deleted() }
+   
+        
+    #- catch:
+    #    - log:
+    #        message: "catch: ${!this}"
+    #    - mapping: |
+    #        root = deleted()
+
+output:
+  switch:
+    cases:
+      - check: "this.match == true"
+        output:
+          broker:
+            batching:  # Adding batch processor to collect the rows in batches
+              count: 4500
+              period: 45s
+            outputs:
+              - sql_insert:  # Ensure this line is correctly indented
+                  driver: postgres
+                  dsn: postgres://matt:ubuntu@192.168.1.28:5432/siren?sslmode=disable
+                  table: etablissement
+                  columns: [siren,nic,siret,trancheeffectifsetablissement,anneeeffectifsetablissement,activiteprincipaleregistremetiersetablissement,datederniertraitementetablissement,etablissementsiege,adresse_id]
+                  args_mapping: root = [siren,nic,siret,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleRegistreMetiersEtablissement,dateDernierTraitementEtablissement,etablissementSiege,adresse_id]
+                  init_statement: |
+                      CREATE TABLE IF NOT EXISTS etablissement (
+                        siren VARCHAR(9) NOT NULL,
+                        nic VARCHAR(5) NOT NULL,
+                        siret VARCHAR(14) NOT NULL,
+                        trancheEffectifsEtablissement VARCHAR(10),
+                        anneeEffectifsEtablissement VARCHAR(10),
+                        activitePrincipaleRegistreMetiersEtablissement VARCHAR(12),
+                        dateDernierTraitementEtablissement TIMESTAMP,
+                        etablissementSiege VARCHAR (10),
+                        adresse_id VARCHAR(36),
+                        primary key (siret)
+                      );
+            
+              # Output 2: Insert into second table based on a different condition (e.g., siren starts with '2')
+              - sql_insert:  # Ensure this line is correctly indented
+                  driver: postgres
+                  dsn: postgres://matt:ubuntu@192.168.1.28:5432/siren?sslmode=disable
+                  table: adresse
+                  columns: [adresse_id,numerovoieetablissement,complementadresseetablissement,indicerepetitionetablissement,typevoieetablissement,libellevoieetablissement,codepostaletablissement,libellecommuneetablissement,codecommuneetablissement]
+                  args_mapping: root = [adresse_id,numeroVoieEtablissement,complementAdresseEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,codeCommuneEtablissement]
+                  init_statement: |
+                      CREATE TABLE IF NOT EXISTS adresse (
+                        adresse_id VARCHAR(36),
+                        numeroVoieEtablissement VARCHAR(50),
+                        complementAdresseEtablissement VARCHAR(255),
+                        indiceRepetitionEtablissement VARCHAR(10),
+                        typeVoieEtablissement VARCHAR(50),
+                        libelleVoieEtablissement VARCHAR(255),
+                        codePostalEtablissement VARCHAR(10),
+                        libelleCommuneEtablissement VARCHAR(100),
+                        codeCommuneEtablissement VARCHAR(50),
+                        primary key (adresse_id)
+                      );
+
+      - check: "false"
+        output:
+          drop: {}
+
+logger:
+  level: DEBUG
