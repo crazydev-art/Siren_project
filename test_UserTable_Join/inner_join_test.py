@@ -1,137 +1,71 @@
-from prometheus_client import start_http_server, Counter, Histogram
-import os
-import logging
+# tests/test_db_cleaner.py
+import pytest
+from unittest.mock import patch, MagicMock
+from app.db_cleaner import DBCleaner
 import psycopg2
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-import time
-from concurrent.futures import ProcessPoolExecutor
+import os
 
-# GitHub actions variables
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
+@pytest.fixture
+def db_cleaner():
+    return DBCleaner()
 
-BATCH_SIZE = 10000  # Batch size for deletions
+@pytest.fixture
+def mock_db_connection():
+    conn = MagicMock()
+    cursor = MagicMock()
+    conn.cursor.return_value = cursor
+    return conn
 
-# Prometheus Metrics
-REQUESTS_TOTAL = Counter("script_requests_total", "Total number of cleanup requests")
-DELETION_TIME = Histogram("deletion_duration_seconds", "Time taken to delete orphaned records")
-DB_CONNECTION_ERRORS = Counter("db_connection_errors_total", "Total database connection errors")
+def test_get_env_variable_success(db_cleaner):
+    with patch.dict(os.environ, {'POSTGRES_DB': 'test_db'}):
+        assert db_cleaner.get_env_variable('POSTGRES_DB') == 'test_db'
 
-def test_get_env_variable(var_name, default=None, required=True):
-    """Fetch an environment variable or raise an error if it's required and not set."""
-    value = os.getenv(var_name, default)
-    if required and value is None:
-        raise EnvironmentError(f"Environment variable '{var_name}' is not set.")
-    return value
+def test_get_env_variable_missing(db_cleaner):
+    with pytest.raises(EnvironmentError):
+        db_cleaner.get_env_variable('NON_EXISTENT_VAR')
 
-def test_get_db_connection():
-    """Returns a new database connection."""
-    try:
-        conn = psycopg2.connect(
-            dbname=test_get_env_variable('POSTGRES_DB'),
-            user=test_get_env_variable('POSTGRES_USER'),
-            password=test_get_env_variable('POSTGRES_PASSWORD'),
-            host=test_get_env_variable('IPHOST'),
-            port=test_get_env_variable('POSTGRES_PORT', '5432', required=False)
-        )
-        return conn
-    except psycopg2.Error as e:
-        DB_CONNECTION_ERRORS.inc()
-        logger.error(f"Database connection error: {e}")
-        raise
+def test_get_db_connection_success(db_cleaner):
+    with patch('psycopg2.connect') as mock_connect:
+        mock_connect.return_value = 'connection'
+        with patch.dict(os.environ, {
+            'POSTGRES_DB': 'db',
+            'POSTGRES_USER': 'user',
+            'POSTGRES_PASSWORD': 'pass',
+            'IPHOST': 'host'
+        }):
+            conn = db_cleaner.get_db_connection()
+            assert conn == 'connection'
 
-def test_delete_orphaned_records_unitelegale(conn):
-    """Deletes orphaned records in unitelegale where siren doesn't exist in etablissement."""
-    start_time = time.time()
-    try:
-        with conn.cursor() as cursor:
-            while True:
-                cursor.execute("""
-                    DELETE FROM unitelegale AS u
-                    WHERE NOT EXISTS (
-                        SELECT 1 FROM etablissement AS e
-                        WHERE u.siren = e.siren
-                    )
-                    RETURNING u.siren;
-                """)
-                deleted_rows = cursor.fetchall()
-                conn.commit()
-                if not deleted_rows:
-                    break
-                logger.info(f"{len(deleted_rows)} orphaned records deleted from unitelegale.")
-                time.sleep(0.05)  # Short pause for optimization
-    except psycopg2.Error as e:
-        logger.error(f"Error deleting orphaned records in unitelegale: {e}")
-    finally:
-        DELETION_TIME.observe(time.time() - start_time)
+def test_delete_orphaned_records(db_cleaner, mock_db_connection):
+    mock_cursor = mock_db_connection.cursor.return_value
+    mock_cursor.fetchall.side_effect = [[1, 2, 3], []]
 
-def test_delete_orphaned_records_geolocalisation(conn):
-    """Deletes orphaned records in geolocalisation where siret doesn't exist in etablissement."""
-    start_time = time.time()
-    try:
-        with conn.cursor() as cursor:
-            while True:
-                cursor.execute("""
-                    DELETE FROM geolocalisation AS g
-                    WHERE NOT EXISTS (
-                        SELECT 1 FROM etablissement AS e
-                        WHERE g.siret = e.siret
-                    )
-                    RETURNING g.siret;
-                """)
-                deleted_rows = cursor.fetchall()
-                conn.commit()
-                if not deleted_rows:
-                    break
-                logger.info(f"{len(deleted_rows)} orphaned records deleted from geolocalisation.")
-                time.sleep(0.05)
-    except psycopg2.Error as e:
-        logger.error(f"Error deleting orphaned records in geolocalisation: {e}")
-    finally:
-        DELETION_TIME.observe(time.time() - start_time)
+    db_cleaner.delete_orphaned_records(
+        mock_db_connection,
+        'test_table',
+        'foreign_table',
+        'test_id'
+    )
 
-def test_vacuum_analyze():
-    """Performs a VACUUM ANALYZE on the database to optimize performance."""
-    conn = get_db_connection()
-    try:
-        with conn.cursor() as cursor:
-            logger.info("Running VACUUM ANALYZE...")
-            cursor.execute("VACUUM ANALYZE;")
-            conn.commit()
-            logger.info("VACUUM ANALYZE completed.")
-    except psycopg2.Error as e:
-        logger.error(f"Error during VACUUM ANALYZE: {e}")
-    finally:
-        conn.close()
+    assert mock_cursor.execute.call_count == 2
+    mock_db_connection.commit.assert_called()
+    mock_db_connection.rollback.assert_not_called()
 
-def test_get_valid_siren_and_siret(conn):
-    """Dummy function to validate siren and siret values.
-    Replace this with actual validation logic if needed."""
-    logger.info("Validating siren and siret values...")
-    # Add validation logic here if needed.
+def test_vacuum_analyze(db_cleaner):
+    with patch('app.db_cleaner.DBCleaner.get_db_connection') as mock_conn:
+        mock_cursor = MagicMock()
+        mock_conn.return_value.cursor.return_value = mock_cursor
+        db_cleaner._vacuum_analyze()
+        mock_cursor.execute.assert_called_with("VACUUM ANALYZE;")
 
-def test_process_cleanup_task():
-    """Handles orphaned record cleanup in a session."""
-    conn = get_db_connection()
-    try:
-        test_get_valid_siren_and_siret(conn)
-        test_delete_orphaned_records_unitelegale(conn)
-        test_delete_orphaned_records_geolocalisation(conn)
-    finally:
-        conn.close()
+def test_run_cleanup_sequential(db_cleaner):
+    with patch('app.db_cleaner.DBCleaner._run_sequential') as mock_seq, \
+         patch('app.db_cleaner.DBCleaner._vacuum_analyze') as mock_vacuum:
+        db_cleaner.run_cleanup()
+        mock_seq.assert_called_once()
+        mock_vacuum.assert_called_once()
 
-def test_clean_orphan_records_parallel():
-    """Runs cleanup in parallel using multiple processes."""
-    REQUESTS_TOTAL.inc()  # Track cleanup requests
-    with ProcessPoolExecutor(max_workers=4) as process_executor:
-        tasks = [process_executor.submit(process_cleanup_task) for _ in range(2)]
-        for task in tasks:
-            task.result()
-    test_vacuum_analyze()
-
-if __name__ == "__main__":
-    # Start Prometheus metrics server on port 9000
-    start_http_server(9000)
-    logger.info("Prometheus metrics server running on port 9000")
-    test_clean_orphan_records_parallel()
+@patch('app.db_cleaner.ProcessPoolExecutor')
+def test_run_cleanup_parallel(mock_executor, db_cleaner):
+    db_cleaner.run_cleanup(parallel=True)
+    mock_executor.return_value.__enter__.return_value.submit.assert_called()
