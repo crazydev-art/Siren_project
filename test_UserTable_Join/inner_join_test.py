@@ -29,11 +29,11 @@ def test_get_db_connection():
     """Returns a new database connection."""
     try:
         conn = psycopg2.connect(
-            dbname=get_env_variable('POSTGRES_DB'),
-            user=get_env_variable('POSTGRES_USER'),
-            password=get_env_variable('POSTGRES_PASSWORD'),
-            host=get_env_variable('IPHOST'),
-            port=get_env_variable('POSTGRES_PORT', '5432', required=False)
+            dbname=test_get_env_variable('POSTGRES_DB'),
+            user=test_get_env_variable('POSTGRES_USER'),
+            password=test_get_env_variable('POSTGRES_PASSWORD'),
+            host=test_get_env_variable('IPHOST'),
+            port=test_get_env_variable('POSTGRES_PORT', '5432', required=False)
         )
         return conn
     except psycopg2.Error as e:

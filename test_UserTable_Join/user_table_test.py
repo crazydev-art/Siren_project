@@ -38,11 +38,11 @@ def test_get_env_variable(var_name, default=None, required=True):
 @DB_CREATE_DURATION.time()
 def test_create_user_db():
     DB_CREATE_COUNTER.inc()
-    db_name = get_env_variable('POSTGRES_DB_USER')
-    db_host = get_env_variable('IPHOST')
-    db_user = get_env_variable('POSTGRES_USER')
-    db_password = get_env_variable('POSTGRES_PASSWORD')
-    db_port = get_env_variable('POSTGRES_PORT', '5432', required=False)
+    db_name = test_get_env_variable('POSTGRES_DB_USER')
+    db_host = test_get_env_variable('IPHOST')
+    db_user = test_get_env_variable('POSTGRES_USER')
+    db_password = test_get_env_variable('POSTGRES_PASSWORD')
+    db_port = test_get_env_variable('POSTGRES_PORT', '5432', required=False)
 
     try:
         conn = psycopg2.connect(
@@ -66,11 +66,11 @@ def test_create_user_db():
 @TABLE_CREATE_DURATION.time()
 def test_create_users_table():
     TABLE_CREATE_COUNTER.inc()
-    db_name = get_env_variable('POSTGRES_DB_USER')
-    db_host = get_env_variable('IPHOST')
-    db_user = get_env_variable('POSTGRES_USER')
-    db_password = get_env_variable('POSTGRES_PASSWORD')
-    db_port = get_env_variable('POSTGRES_PORT', '5432', required=False)
+    db_name = test_get_env_variable('POSTGRES_DB_USER')
+    db_host = test_get_env_variable('IPHOST')
+    db_user = test_get_env_variable('POSTGRES_USER')
+    db_password = test_get_env_variable('POSTGRES_PASSWORD')
+    db_port = test_get_env_variable('POSTGRES_PORT', '5432', required=False)
 
     try:
         with psycopg2.connect(dbname=db_name, user=db_user, password=db_password, host=db_host, port=db_port) as conn:
@@ -92,15 +92,15 @@ def test_create_users_table():
 @ADMIN_CREATE_DURATION.time()
 def test_create_admin_user():
     ADMIN_CREATE_COUNTER.inc()
-    db_name = get_env_variable('POSTGRES_DB_USER')
-    db_host = get_env_variable('IPHOST')
-    db_user = get_env_variable('POSTGRES_USER')
-    db_password = get_env_variable('POSTGRES_PASSWORD')
-    db_port = get_env_variable('POSTGRES_PORT', '5432', required=False)
+    db_name = test_get_env_variable('POSTGRES_DB_USER')
+    db_host = test_get_env_variable('IPHOST')
+    db_user = test_get_env_variable('POSTGRES_USER')
+    db_password = test_get_env_variable('POSTGRES_PASSWORD')
+    db_port = test_get_env_variable('POSTGRES_PORT', '5432', required=False)
 
-    admin_username = get_env_variable('ADMIN_USERNAME', 'admin', required=False)
-    admin_email = get_env_variable('ADMIN_EMAIL', 'admin@gmail.com', required=False)
-    admin_password = get_env_variable('ADMIN_PASSWORD', 'admin_password', required=False)
+    admin_username = test_get_env_variable('ADMIN_USERNAME', 'admin', required=False)
+    admin_email = test_get_env_variable('ADMIN_EMAIL', 'admin@gmail.com', required=False)
+    admin_password = test_get_env_variable('ADMIN_PASSWORD', 'admin_password', required=False)
 
     hashed_password = bcrypt.hashpw(admin_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
@@ -119,7 +119,7 @@ def test_create_admin_user():
 
 if __name__ == "__main__":
     # Start Prometheus metrics server in a separate thread
-    metrics_thread = threading.Thread(target=start_metrics_server, args=(9000,), daemon=True)
+    metrics_thread = threading.Thread(target=test_start_metrics_server, args=(9000,), daemon=True)
     metrics_thread.start()
 
     test_create_user_db()
