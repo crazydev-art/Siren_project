@@ -1,4 +1,4 @@
-name: Check and Deploy Python Files
+name: Copy PY file to Test_*.Py Check (PyTest) and Deploy Python Files
 
 on:
   push:
@@ -11,13 +11,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all branches and commit history
 
-      - name: Install Dependencies
-        if: env.found_py == 'true'
-        run: |
-          pip install --upgrade pip
-          pip install pytest python-dotenv
-      
       - name: Find Python Files
         id: find_py_files
         run: |
@@ -31,36 +27,55 @@ jobs:
             echo "found_py=true" >> $GITHUB_ENV
           fi
 
+      - name: Install Dependencies
+        if: env.found_py == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install pytest python-dotenv
+
       - name: Create Test Files
         if: env.found_py == 'true'
         run: |
           for file in $(find . -type f -name "*.py"); do
-            cp "$file" "$(dirname $file)/test_$(basename $file)"
+            test_file="$(dirname "$file")/test_$(basename "$file")"
+            # Avoid overwriting existing test files
+            if [ ! -f "$test_file" ]; then
+              cp "$file" "$test_file"
+            fi
           done
 
       - name: Run Pytest
         if: env.found_py == 'true'
         run: |
-          pip install pytest
           pytest --maxfail=1 --disable-warnings
 
       - name: Deploy to Prod and Main
         if: env.found_py == 'true'
         run: |
+          git config --global user.name "GitHub Actions"
           git config --global user.email "lionel.matter@outlook.fr"
 
-          # Copy files to main and prod branches
+          # Deploy to main branch
           git checkout main
           git pull origin main
           git checkout dev -- .
-          git commit -am "Deploying Python files from dev to main"
-          git push origin main
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to deploy to main."
+          else
+            git commit -am "Deploying Python files from dev to main"
+            git push origin main
+          fi
 
+          # Deploy to prod branch
           git checkout prod
           git pull origin prod
           git checkout dev -- .
-          git commit -am "Deploying Python files from dev to prod"
-          git push origin prod
+          if git diff-index --quiet HEAD --; then
+            echo "No changes to deploy to prod."
+          else
+            git commit -am "Deploying Python files from dev to prod"
+            git push origin prod
+          fi
 
       - name: Log No Python Files
         if: env.found_py == 'false'
