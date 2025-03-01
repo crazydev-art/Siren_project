@@ -12,7 +12,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Find Python Files
+      - name: Install Dependencies
+        if: ${{ env.found_py == 'true' }}
+        run: |
+          pip install --upgrade pip
+          pip install pytest python-dotenv
+      
+          - name: Find Python Files
         id: find_py_files
         run: |
           PY_FILES=$(find . -type f -name "*.py")
