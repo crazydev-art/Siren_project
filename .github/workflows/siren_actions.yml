@@ -1,4 +1,4 @@
-name: Check and Deploy Python Files
+name: Test and Deploy Siren
 
 on:
   push:
@@ -6,116 +6,62 @@ on:
       - dev
 
 jobs:
-  check-python-files:
+  test-and-deploy-siren:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Find Python Files
-        id: find_py_files
-        run: |
-          PY_FILES=$(find . -type f -name "*.py")
-          if [ -z "$PY_FILES" ]; then
-            echo "found_py=false" >> $GITHUB_ENV
-            echo "No Python files found."
-          else
-            echo "found_py=true" >> $GITHUB_ENV
-            echo "Found Python files:"
-            echo "$PY_FILES"
-          fi
+        with:
+         ref: dev
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
 
       - name: Install Dependencies
-        if: env.found_py == 'true'
         run: |
           python -m pip install --upgrade pip
-          pip install pytest python-dotenv psycopg2 requests
-
-      - name: Create Test Files with Selective Imports
-        if: env.found_py == 'true'
+          pip install pytest python-dotenv psycopg2 requests prometheus_client
+      
+      - name: Run specific tests
+        run: pytest test_UserTable_Join/{inner_join_test,user_table_test}.py
+    
+      - name: Prepare main branch
+        if: success()
         run: |
-          find . -type f -name "*.py" | while read file; do
-            dir=$(dirname "$file")
-            base=$(basename "$file")
-            test_file="$dir/test_${base}"
-            
-            # Copy original to test file
-            cp "$file" "$test_file"
-            
-            # Process imports selectively
-            while IFS= read -r line; do
-              # Handle 'from ... import' statements
-              if [[ "$line" =~ ^([[:space:]]*from[[:space:]]+)([a-zA-Z0-9_]+)([[:space:]]+import.*) ]]; then
-                prefix="${BASH_REMATCH[1]}"
-                module="${BASH_REMATCH[2]}"
-                suffix="${BASH_REMATCH[3]}"
-                
-                # Check if module exists in project
-                if find . -name "${module}.py" -print -quit | grep -q .; then
-                  echo "${prefix}test_${module}${suffix}"
-                else
-                  echo "$line"
-                fi
-
-              # Handle 'import ...' statements
-              elif [[ "$line" =~ ^([[:space:]]*import[[:space:]]+)([a-zA-Z0-9_]+)([[:space:]]*$) ]]; then
-                prefix="${BASH_REMATCH[1]}"
-                module="${BASH_REMATCH[2]}"
-                suffix="${BASH_REMATCH[3]}"
-                
-                # Check if module exists in project
-                if find . -name "${module}.py" -print -quit | grep -q .; then
-                  echo "${prefix}test_${module}${suffix}"
-                else
-                  echo "$line"
-                fi
-
-              # Preserve other lines
-              else
-                echo "$line"
-              fi
-            done < "$test_file" > "$test_file.tmp"
-            
-            mv "$test_file.tmp" "$test_file"
-          done
-
-      - name: Run Pytest
-        if: env.found_py == 'true'
-        run: |
-          pytest --maxfail=1 --disable-warnings
-
-      - name: Cleanup Test Files and Imports
-        if: always() && env.found_py == 'true'
-        run: |
-          # Remove test files
-          find . -type f -name "test_*.py" -delete
+          # Configure git
+          git config --global user.email "lionel.matter@oultook.fr"
           
-          # Revert imports in original files
-          find . -type f -name "*.py" | while read file; do
-            sed -i -E "s/from test_([a-zA-Z0-9_]+) import/from \1 import/g" "$file"
-            sed -i -E "s/import test_([a-zA-Z0-9_]+)/import \1/g" "$file"
-          done
-
-      - name: Deploy to Prod and Main
-        if: success() && env.found_py == 'true'
+          # Create temporary directory
+          mkdir -p /tmp/siren
+          cp -r siren/* /tmp/siren/
+    
+      - name: Checkout main branch
+        if: success()
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+    
+      - name: Update siren in main branch
+        if: success()
         run: |
-          git config --global user.email "lionel.matter@outlook.fr"
-          git config --global user.name "GitHub Actions"
+          # Remove existing siren folder and copy new version
+          rm -rf siren
+          cp -r /tmp/siren/ .
+    
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git add siren/
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Update siren folder from dev branch (GitHub Actions)"
+            git push origin main
+          else
+            echo "No changes to siren folder"
+          fi
           
-          deploy_to_branch() {
-            target_branch=$1
-            git checkout $target_branch
-            git pull origin $target_branch
-            git checkout dev -- .
-            git commit -am "Deploy from dev: $(date +'%Y-%m-%d %H:%M:%S')"
-            git push origin $target_branch
-          }
-
-          deploy_to_branch main
-          deploy_to_branch prod
-
-      - name: Log No Python Files
-        if: env.found_py == 'false'
-        run: echo "No Python files found in this push."
