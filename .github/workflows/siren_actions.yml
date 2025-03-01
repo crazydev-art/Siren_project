@@ -14,7 +14,6 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
@@ -31,10 +30,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - name: echo Secrets
-        run: |
-          echo ${{ secrets.POSTGRES_PASSWORD }}
-          echo ${{ secrets.POSTGRES_DB }}
       - name: Validate Secrets
         run: |
           if [ -z "${{ secrets.POSTGRES_PASSWORD }}" ]; then
