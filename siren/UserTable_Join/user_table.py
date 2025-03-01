@@ -8,6 +8,7 @@ from prometheus_client import Counter, Histogram, start_http_server
 import time
 import threading
 
+#Test GitHubAction
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
