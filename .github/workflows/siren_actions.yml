@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest python-dotenv psycopg2 requests prometheus_client
+          pip install pytest python-dotenv psycopg2 requests prometheus_client bcrypt
       
       - name: Run specific tests
         run: pytest test_UserTable_Join/{inner_join_test,user_table_test}.py
