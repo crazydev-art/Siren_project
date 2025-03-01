@@ -1,0 +1,9 @@
+Wed Nov 13 08:53:41 PM UTC 2024 01 Stock Etabl. ZIP
+Wed Nov 13 09:11:35 PM UTC 2024 02 Stock Etabl. ZIP to CSV
+Wed Nov 13 09:14:34 PM UTC 2024 03 Stock Etabl. CSV to PostgreSQL
+Wed Nov 13 09:34:06 PM UTC 2024 04 Stock Unite Legale ZIP
+Wed Nov 13 09:34:48 PM UTC 2024 05 Stock Unite Legale ZIP to CSV
+Wed Nov 13 09:35:11 PM UTC 2024 06 Stock Unite Legale to PostgreSQL
+Wed Nov 13 09:48:07 PM UTC 2024 07 categorie juridique PostgreSQL
+Wed Nov 13 09:48:33 PM UTC 2024 08 code NAF V2 PostgreSQL
+Wed Nov 13 09:48:59 PM UTC 2024 End of Bash
