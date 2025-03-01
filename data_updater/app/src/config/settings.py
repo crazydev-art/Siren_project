@@ -19,5 +19,4 @@ LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 DUMPS_DIR = os.path.join(BASE_DIR, 'dumps')
 
 # Créer les répertoires nécessaires - test
-for directory in [LOGS_DIR, DUMPS_DIR]:
-    os.makedirs(directory, exist_ok=True) 
+for directory in [LOGS_DIR, DUMPS_DIR]:os.makedirs(directory, exist_ok=True) 
