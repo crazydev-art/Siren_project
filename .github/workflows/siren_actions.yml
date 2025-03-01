@@ -18,7 +18,7 @@ jobs:
           pip install --upgrade pip
           pip install pytest python-dotenv
       
-          - name: Find Python Files
+      - name: Find Python Files
         id: find_py_files
         run: |
           PY_FILES=$(find . -type f -name "*.py")
