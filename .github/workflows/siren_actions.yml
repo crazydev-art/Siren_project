@@ -45,8 +45,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-mock psycopg2-binary prometheus-client bcrypt
-          pytest python-dotenv psycopg2 requests prometheus_client bcrypt
+          pip install pytest pytest-mock psycopg2-binary prometheus-client bcrypt python-dotenv
       - name: Run specific tests
         env:
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
