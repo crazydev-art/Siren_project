@@ -31,6 +31,13 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
+      - name: Validate Secrets
+        run: |
+          if [ -z "${{ secrets.POSTGRES_PASSWORD }}" ]; then
+            echo "Error: POSTGRES_PASSWORD is not set."
+            exit 1
+          fi
+      # Optionally, check other secrets similarly.
       - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
