@@ -31,7 +31,7 @@ jobs:
         if: env.found_py == 'true'
         run: |
           pip install --upgrade pip
-          pip install pytest python-dotenv
+          pip install pytest python-dotenv psycopg2 requests 
 
       - name: Create Test Files
         if: env.found_py == 'true'
