@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Dependencies
-        if: ${{ env.found_py == 'true' }}
+        if: env.found_py == 'true'
         run: |
           pip install --upgrade pip
           pip install pytest python-dotenv
