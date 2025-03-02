@@ -13,14 +13,17 @@ jobs:
     steps:
       # Optionally, check other secrets similarly.
       - uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
+      
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pytest pytest-mock psycopg2-binary python-dotenv prometheus-client bcrypt
+      
       - name: Run specific tests
         env:
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
@@ -32,24 +35,24 @@ jobs:
         run: pytest siren/UserTable_Join/tests/{inner_join_test,user_table_test}.py
     
       - name: Prepare main branch
-        if: success()
+        if: ${{ success() }}
         run: |
           # Configure git
-          git config --global user.email "lionel.matter@oultook.fr"
-          
+          git config --global user.email "lionel.matter@outlook.fr"
+          git config --global user.name "MatterLMA"
           # Create temporary directory
           mkdir -p /tmp/siren
           cp -r siren/* /tmp/siren/
     
       - name: Checkout main branch
-        if: success()
+        if: ${{ success() }}
         uses: actions/checkout@v4
         with:
           ref: main
           token: ${{ secrets.GITHUB_TOKEN }}
     
       - name: Update siren in main branch
-        if: success()
+        if: ${{ success() }}
         run: |
           # Remove existing siren folder and copy new version
           rm -rf siren
@@ -58,7 +61,7 @@ jobs:
       - name: Commit and push changes
         if: success()
         run: |
-          git config --global user.email "lionel.matter@oultook.fr"
+          git config --global user.email "lionel.matter@outlook.fr"
           git config --global user.name "MatterLMA"
           git add siren/
           if ! git diff-index --quiet HEAD; then
