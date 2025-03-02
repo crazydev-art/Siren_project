@@ -1,0 +1,92 @@
+services: # definition of the services
+  postgres: # postges section for definition of the config
+    image: postgres:latest # which postgres image will be downloaded
+    container_name: postgres17_db # name of the container
+    networks: # definition of the network 
+      - postgre17_network
+    environment: # definition of user for the postgreSQL database
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports: # definition of the postgreSQL ports oustide/inside from the container
+      - "5432:5432"
+    volumes: # declaration of a named volume for postgres data
+      - postgres_data:/var/lib/postgresql/data    
+        
+  pgadmin: # pgadmin section for definition of the config
+      image: dpage/pgadmin4 # which pgadmin image will be downloaded
+      container_name: pgadmin4_v2 # name of the container
+      networks: # definition of the network 
+        - postgre17_network
+      environment: # definition of the pgadmin user with database information
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+        DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres17_db:5432/${POSTGRES_DB}"
+      ports: # definition of the pgadmin ports outside/inside from the container
+        - "5051:80"
+      depends_on: # start when postgres are available
+        - postgres
+      volumes: # declaration of a named volume for pgadmin data. Needed when backup the database.
+        - pgadmin_data:/var/lib/pgadmin
+         
+  redpdandascript: # Redpanda section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./Redpanda # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          REDPANDA: ${REDPANDA}
+          FILESIREN: ${FILESIREN}
+          IPHOST: ${IPHOST}
+      container_name: redpanda_script # name of the container
+      networks: # definition of the network 
+        - postgre17_network
+      depends_on: # start when postgres are available
+        - postgres
+      ports: # definition of the Redpanda ports outside/inside from the container
+        - "4195:4195"
+      volumes: # mapping of the volume out-/in-side the container for data exchange
+        - /var/run/docker.sock:/var/run/docker.sock 
+        - ${MYDIR}:${MYDIR} 
+        - ${MYDIR}/Redpanda:${MYDIR}/Redpanda
+        - ${MYDIR}/Files_Siren:${MYDIR}/Files_Siren
+      environment: # definition for the environnement parameter execution of the container
+        - MYDIR=${MYDIR}
+        - REDPANDA=${MYDIR}/Redpanda
+        - FILESIREN=${MYDIR}/Files_Siren
+      #command: ./siren_de.sh (is already started in the dockerfile)
+      privileged: true # grant permission to write on the local drive
+      tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
+      restart: "no"
+
+  scriptpython: # Python section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./UserTable_Join # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          IPHOST: ${IPHOST}
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+          POSTGRES_DB: ${POSTGRES_DB}
+          USERTABLEJOIN: ${USERTABLEJOIN}
+          POSTGRES_DB_USER: ${POSTGRES_DB_USER}
+          ADMIN_USERNAME: ${ADMIN_USERNAME}
+          ADMIN_MAIL: ${ADMIN_MAIL}
+          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      container_name: scriptpython # name of the container
+      networks: # definition of the network 
+        - postgre17_network
+      depends_on: # Wait for `redpdandascript` to complete successfully
+        redpdandascript:
+          condition: service_completed_successfully
+                
+volumes: # persistance of the data locally 
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks: # network definition
+  postgre17_network:
+    external: true

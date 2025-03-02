@@ -1,0 +1,39 @@
+services: # definition of the services
+  mongo:
+    image: mongo:4.4.18
+    container_name: mongo_db
+    # restart: always
+    ports:
+      - '27017:27017'
+    networks: # definition of the network 
+      - postgre17_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - mongodb:/data/db
+    
+
+  mongo-express:
+    image: mongo-express
+    # restart: always
+    ports:
+      - 8081:8081
+    networks: # definition of the network 
+      - postgre17_network
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/
+      ME_CONFIG_BASICAUTH: false  
+    depends_on: # start when mongo are available
+        - mongo
+    
+
+volumes: # persistance of the data locally 
+  mongodb:
+    driver: local
+
+networks: # network definition
+  postgre17_network:
+    external: true
