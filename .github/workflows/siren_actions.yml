@@ -86,12 +86,12 @@ jobs:
         with:
           ref: prod
     
-          #before I have locally git pull origin main --allow-unrelated-histories
+    ## Add the flag to allow merging unrelated histories
       - name: Push to main
         run: |
           git config --global user.email "lionel.matter@outlook.fr"
           git config --global user.name "MatterLMA"
           git fetch origin main  # Fetch latest changes
           git checkout main
-          git merge --no-edit prod  # Merge prod into main
+          git merge --allow-unrelated-histories --no-edit prod
           git push origin main
