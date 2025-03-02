@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - prod
 
 jobs:
   test-and-deploy-siren:
