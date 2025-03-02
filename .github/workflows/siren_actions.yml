@@ -6,12 +6,11 @@ on:
       - dev
 
 jobs:
-  test-and-deploy-siren:
+  test-siren:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      # Optionally, check other secrets similarly.
       - uses: actions/checkout@v4
       
       - name: Set up Python
@@ -33,41 +32,60 @@ jobs:
           POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
           IPHOST: ${{ secrets.IPHOST }}
         run: pytest siren/UserTable_Join/tests/{inner_join_test,user_table_test}.py
-    
-      - name: Prepare main branch
-        if: ${{ success() }}
-        run: |
-          # Configure git
-          git config --global user.email "lionel.matter@outlook.fr"
-          git config --global user.name "MatterLMA"
-          # Create temporary directory
-          mkdir -p /tmp/siren
-          cp -r siren/* /tmp/siren/
-    
-      - name: Checkout main branch
-        if: ${{ success() }}
+
+  deploy-to-prod:
+    needs: test-siren
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout dev branch
         uses: actions/checkout@v4
         with:
-          ref: main
-          token: ${{ secrets.GITHUB_TOKEN }}
-    
-      - name: Update siren in main branch
-        if: ${{ success() }}
+          ref: dev
+      
+      - name: Prepare prod branch
         run: |
-          # Remove existing siren folder and copy new version
+          git config --global user.email "lionel.matter@outlook.fr"
+          git config --global user.name "MatterLMA"
+          mkdir -p /tmp/siren
+          cp -r siren/* /tmp/siren/
+      
+      - name: Checkout prod branch
+        uses: actions/checkout@v4
+        with:
+          ref: prod
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update siren in prod branch
+        run: |
           rm -rf siren
           cp -r /tmp/siren/ .
-    
-      - name: Commit and push changes
-        if: success()
+      
+      - name: Commit and push changes to prod
         run: |
           git config --global user.email "lionel.matter@outlook.fr"
           git config --global user.name "MatterLMA"
           git add siren/
           if ! git diff-index --quiet HEAD; then
             git commit -m "Update siren folder from dev branch (GitHub Actions)"
-            git push origin main prod
+            git push origin prod
           else
             echo "No changes to siren folder"
-          fi
-          
+
+  deploy-to-main:
+    needs: deploy-to-prod
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout prod branch
+        uses: actions/checkout@v4
+        with:
+          ref: prod
+      
+      - name: Push to main
+        run: |
+          git config --global user.email "lionel.matter@outlook.fr"
+          git config --global user.name "MatterLMA"
+          git push origin prod:main
