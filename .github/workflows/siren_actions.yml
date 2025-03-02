@@ -1,0 +1,71 @@
+name: Test and Deploy Siren
+
+on:
+  push:
+    branches:
+      - dev
+      - prod
+
+jobs:
+  test-and-deploy-siren:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Optionally, check other secrets similarly.
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-mock psycopg2-binary prometheus-client bcrypt python-dotenv
+      - name: Run specific tests
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
+          IPHOST: ${{ secrets.IPHOST }}
+        run: pytest siren/UserTable_Join/tests/{inner_join_test,user_table_test}.py
+    
+      - name: Prepare main branch
+        if: success()
+        run: |
+          # Configure git
+          git config --global user.email "lionel.matter@oultook.fr"
+          
+          # Create temporary directory
+          mkdir -p /tmp/siren
+          cp -r siren/* /tmp/siren/
+    
+      - name: Checkout main branch
+        if: success()
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+    
+      - name: Update siren in main branch
+        if: success()
+        run: |
+          # Remove existing siren folder and copy new version
+          rm -rf siren
+          cp -r /tmp/siren/ .
+    
+      - name: Commit and push changes
+        if: success()
+        run: |
+          git config --global user.email "lionel.matter@oultook.fr"
+          git config --global user.name "MatterLMA"
+          git add siren/
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Update siren folder from dev branch (GitHub Actions)"
+            git push origin main prod
+          else
+            echo "No changes to siren folder"
+          fi
+          
