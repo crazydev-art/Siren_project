@@ -90,4 +90,7 @@ jobs:
         run: |
           git config --global user.email "lionel.matter@outlook.fr"
           git config --global user.name "MatterLMA"
-          git push origin prod:main
+          git fetch origin main  # Fetch latest changes
+          git checkout main
+          git merge --no-edit prod  # Merge prod into main
+          git push origin main
