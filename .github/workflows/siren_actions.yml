@@ -85,7 +85,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: prod
-      
+    
+          #before I have locally git pull origin main --allow-unrelated-histories
       - name: Push to main
         run: |
           git config --global user.email "lionel.matter@outlook.fr"
