@@ -73,6 +73,7 @@ jobs:
             git push origin prod
           else
             echo "No changes to siren folder"
+          fi
 
   deploy-to-main:
     needs: deploy-to-prod
