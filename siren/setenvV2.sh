@@ -2,6 +2,7 @@
 export MYDIR=$(pwd)
 export REDPANDA="$MYDIR/Redpanda"
 export FILESIREN="$MYDIR/Files_Siren"
+export NETWORK_DOCKER="siren_network"
 export USERTABLEJOIN="$MYDIR/UserTable_Join"
 export PGADMIN_DEFAULT_EMAIL="dataeng@gmail.com"
 export PGADMIN_DEFAULT_PASSWORD="team2024"
@@ -12,8 +13,10 @@ export POSTGRES_DB_USER="user_api"
 export ADMIN_USERNAME="apiadmin"
 export ADMIN_MAIL="admin@gmail.com"
 export ADMIN_PASSWORD="dataeng24"
+export GF_SECURITY_ADMIN_USER="admin"
+export GF_SECURITY_ADMIN_PASSWORD="adminpwd"
 export VOLUME="dataengsiren"
-export IPHOST="192.168.1.28"
+export IPHOST="192.168.1.59"
 export POSTGRES_PORT="5432"
 export MONGO_INITDB_ROOT_USERNAME="root"
 export MONGO_INITDB_ROOT_PASSWORD="root2024"
@@ -23,6 +26,7 @@ export ME_CONFIG_MONGODB_ADMINPASSWORD="root2024"
 echo "MYDIR=$(pwd)" > .env
 echo "REDPANDA=${REDPANDA}" >> .env
 echo "FILESIREN=${FILESIREN}" >> .env
+echo "NETWORK_DOCKER=${NETWORK_DOCKER}" >> .env
 echo "USERTABLEJOIN=${USERTABLEJOIN}" >> .env
 echo "VOLUME=${VOLUME}" >> .env
 echo "PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}" >> .env
@@ -34,6 +38,8 @@ echo "POSTGRES_DB_USER=${POSTGRES_DB_USER}" >> .env
 echo "ADMIN_USERNAME=${ADMIN_USERNAME}" >> .env
 echo "ADMIN_MAIL=${ADMIN_MAIL}" >> .env
 echo "ADMIN_PASSWORD=${ADMIN_PASSWORD}" >> .env
+echo "GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}" >> .env
+echo "GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}" >> .env
 echo "IPHOST=${IPHOST}" >> .env
 echo "POSTGRES_PORT=${POSTGRES_PORT}" >> .env
 echo "MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}" >> .env
@@ -42,3 +48,4 @@ echo "ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}" >> .en
 echo "ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}" >> .env
 cp .env ./Redpanda
 cp .env ./UserTable_Join
+#./prometheus_template.sh
