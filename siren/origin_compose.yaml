@@ -1,0 +1,216 @@
+services: # definition of the services
+  postgres: # postges section for definition of the config
+    image: postgres:latest # which postgres image will be downloaded
+    container_name: postgres17_db # name of the container
+    networks: # definition of the network 
+      - ${NETWORK_DOCKER}
+    environment: # definition of user for the postgreSQL database
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports: # definition of the postgreSQL ports oustide/inside from the container
+      - "5432:5432"
+    volumes: # declaration of a named volume for postgres data
+      - postgres_data:/var/lib/postgresql/data  
+    restart: always  
+        
+  pgadmin: # pgadmin section for definition of the config
+      image: dpage/pgadmin4:latest # which pgadmin image will be downloaded
+      container_name: pgadmin4 # name of the container
+      networks: # definition of the network 
+        - ${NETWORK_DOCKER}
+      environment: # definition of the pgadmin user with database information
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+        DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres17_db:5432/${POSTGRES_DB}"
+      ports: # definition of the pgadmin ports outside/inside from the container
+        - "5051:80"
+      depends_on: # start when postgres are available
+        - postgres
+      volumes: # declaration of a named volume for pgadmin data. Needed when backup the database.
+        - pgadmin_data:/var/lib/pgadmin
+      restart: always
+         
+  redpdandascript: # Redpanda section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./Redpanda # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          REDPANDA: ${REDPANDA}
+          FILESIREN: ${FILESIREN}
+          IPHOST: ${IPHOST}
+          NETWORK_DOCKER: ${NETWORK_DOCKER}
+      container_name: redpanda_script # name of the container
+      networks: # definition of the network 
+        - ${NETWORK_DOCKER}
+      depends_on: # start when postgres are available
+        - postgres
+      ports: # definition of the Redpanda ports outside/inside from the container
+        - "4195:4195"
+      volumes: # mapping of the volume out-/in-side the container for data exchange
+        - /var/run/docker.sock:/var/run/docker.sock 
+        - ${MYDIR}:${MYDIR} 
+        - ${MYDIR}/Redpanda:${MYDIR}/Redpanda
+        - ${MYDIR}/Files_Siren:${MYDIR}/Files_Siren
+      environment: # definition for the environnement parameter execution of the container
+        - MYDIR=${MYDIR}
+        - REDPANDA=${MYDIR}/Redpanda
+        - FILESIREN=${MYDIR}/Files_Siren
+      #command: ./siren_de.sh (is already started in the dockerfile)
+      privileged: true # grant permission to write on the local drive
+      tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
+      restart: "no"
+
+  scriptpython: # Python section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./UserTable_Join # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          IPHOST: ${IPHOST}
+          POSTGRES_USER: ${POSTGRES_USER}
+          POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+          POSTGRES_DB: ${POSTGRES_DB}
+          USERTABLEJOIN: ${USERTABLEJOIN}
+          POSTGRES_DB_USER: ${POSTGRES_DB_USER}
+          ADMIN_USERNAME: ${ADMIN_USERNAME}
+          ADMIN_MAIL: ${ADMIN_MAIL}
+          ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      container_name: scriptpython # name of the container
+      networks: # definition of the network 
+        - ${NETWORK_DOCKER}
+      ports:
+      - "8000:8000"
+      depends_on: # Wait for `redpdandascript` to complete successfully
+        redpdandascript:
+          condition: service_completed_successfully
+
+  postgres_exporter:
+      image: prometheuscommunity/postgres-exporter:latest
+      container_name: postgres_exporter
+      environment:
+        DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres17_db:5432/${POSTGRES_DB}?sslmode=disable"
+      ports:
+        - "9187:9187"
+      networks:
+        - ${NETWORK_DOCKER}
+      depends_on:
+        - postgres
+      restart: always
+      
+  prometheus:
+      image: prom/prometheus:latest
+      container_name: prometheus
+      volumes:
+        - ./prometheus-grafana-siren/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        - prometheus_data:/prometheus
+      command:
+        - --config.file=/etc/prometheus/prometheus.yml
+        - '--storage.tsdb.path=/prometheus'
+        - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+        - '--web.console.templates=/usr/share/prometheus/consoles'
+        - --storage.tsdb.retention.time=10d
+      ports:
+        - "9090:9090"
+      links:
+        - cadvisor:cadvisor
+        - alertmanager:alertmanager
+      depends_on:
+        - cadvisor
+      networks:
+        - ${NETWORK_DOCKER}
+      restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - ${NETWORK_DOCKER}
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+    volumes:
+      - ./prometheus-grafana-siren/grafana/provisioning/:/etc/grafana/provisioning/
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - ./prometheus-grafana-siren/grafana/config.monitoring
+    depends_on:
+      - prometheus
+    restart: always
+
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: pushgateway
+    ports:
+      - "9091:9091"
+    networks:
+      - ${NETWORK_DOCKER}
+    restart: unless-stopped
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./prometheus-grafana-siren/alertmanager/:/etc/alertmanager/
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    networks:
+      - ${NETWORK_DOCKER}
+    restart: always
+    
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - ${NETWORK_DOCKER}
+    restart: always
+    deploy:
+      mode: global
+
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /:/host:ro,rslave
+    command:
+      - '--path.rootfs=/host'
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    ports:
+      - 9110:9100
+    networks:
+      - ${NETWORK_DOCKER}
+    restart: always
+    deploy:
+      mode: global
+
+
+volumes: # persistance of the data locally 
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+    
+
+networks: # network definition
+  siren_network:
+    external: true
