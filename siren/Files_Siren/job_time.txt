@@ -1,1 +1,12 @@
-Thu Mar  6 23:22:31 UTC 2025 01 Stock Etabl. ZIP
+Sat Mar  8 18:58:02 UTC 2025 01 Stock Etabl. ZIP
+Sat Mar  8 19:01:33 UTC 2025 02 Stock Etabl. ZIP to CSV
+Sat Mar  8 19:05:49 UTC 2025 03 Stock Etabl. CSV to PostgreSQL
+Sat Mar  8 19:35:07 UTC 2025 04 Stock Unite Legale ZIP
+Sat Mar  8 19:35:46 UTC 2025 05 Stock Unite Legale ZIP to CSV
+Sat Mar  8 19:36:41 UTC 2025 06 Stock Unite Legale to PostgreSQL
+Sat Mar  8 19:59:39 UTC 2025 07 categorie juridique PostgreSQL
+Sat Mar  8 20:00:05 UTC 2025 08 code NAF V2 PostgreSQL
+Sat Mar  8 20:00:32 UTC 2025 09 Stock Etablissement Geo Zip
+Sat Mar  8 20:02:12 UTC 2025 10 Stock Etablissement Geo Zip to CSV
+Sat Mar  8 20:03:30 UTC 2025 10 Stock Etablissement Geo PostgreSQL
+Sat Mar  8 20:26:53 UTC 2025 End of Bash

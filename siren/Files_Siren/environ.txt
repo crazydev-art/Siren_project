@@ -1,5 +1,5 @@
 FILESIREN=/home/uniserv/DataEng2024Cont/siren/Files_Siren
-HOSTNAME=5102b2d4ccbb
+HOSTNAME=31fc4dd158a4
 NETWORK_DOCKER=siren_network
 PWD=/home/uniserv/DataEng2024Cont/siren/Redpanda
 MYDIR=/home/uniserv/DataEng2024Cont/siren
