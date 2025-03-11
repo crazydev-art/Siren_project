@@ -1,12 +1,12 @@
-Sat Dec 14 11:19:18 UTC 2024 01 Stock Etabl. ZIP
-Sat Dec 14 11:21:39 UTC 2024 02 Stock Etabl. ZIP to CSV
-Sat Dec 14 11:23:40 UTC 2024 03 Stock Etabl. CSV to PostgreSQL
-Sat Dec 14 11:50:43 UTC 2024 04 Stock Unite Legale ZIP
-Sat Dec 14 11:51:31 UTC 2024 05 Stock Unite Legale ZIP to CSV
-Sat Dec 14 11:52:28 UTC 2024 06 Stock Unite Legale to PostgreSQL
-Sat Dec 14 12:10:00 UTC 2024 07 categorie juridique PostgreSQL
-Sat Dec 14 12:10:27 UTC 2024 08 code NAF V2 PostgreSQL
-Sat Dec 14 12:10:53 UTC 2024 09 Stock Etablissement Geo Zip
-Sat Dec 14 12:12:05 UTC 2024 10 Stock Etablissement Geo Zip to CSV
-Sat Dec 14 12:13:02 UTC 2024 10 Stock Etablissement Geo PostgreSQL
-Sat Dec 14 12:36:50 UTC 2024 End of Bash
+Sat Mar  8 18:58:02 UTC 2025 01 Stock Etabl. ZIP
+Sat Mar  8 19:01:33 UTC 2025 02 Stock Etabl. ZIP to CSV
+Sat Mar  8 19:05:49 UTC 2025 03 Stock Etabl. CSV to PostgreSQL
+Sat Mar  8 19:35:07 UTC 2025 04 Stock Unite Legale ZIP
+Sat Mar  8 19:35:46 UTC 2025 05 Stock Unite Legale ZIP to CSV
+Sat Mar  8 19:36:41 UTC 2025 06 Stock Unite Legale to PostgreSQL
+Sat Mar  8 19:59:39 UTC 2025 07 categorie juridique PostgreSQL
+Sat Mar  8 20:00:05 UTC 2025 08 code NAF V2 PostgreSQL
+Sat Mar  8 20:00:32 UTC 2025 09 Stock Etablissement Geo Zip
+Sat Mar  8 20:02:12 UTC 2025 10 Stock Etablissement Geo Zip to CSV
+Sat Mar  8 20:03:30 UTC 2025 10 Stock Etablissement Geo PostgreSQL
+Sat Mar  8 20:26:53 UTC 2025 End of Bash
