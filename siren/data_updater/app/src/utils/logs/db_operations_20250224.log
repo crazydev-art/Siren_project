@@ -1,0 +1,23 @@
+2025-02-24 17:07:38 | INFO | MAIN | SERVICE | Lignes affectées: 0
+2025-02-24 17:07:39 | INFO | STAGING | INSERT | Lignes affectées: 0
+2025-02-24 17:07:39 | INFO | MAIN | UPDATE | Lignes affectées: 13
+2025-02-24 17:07:39 | INFO | MAIN | INSERT | Lignes affectées: 2813
+2025-02-24 17:59:11 | INFO | STAGING | INSERT | Lignes affectées: 1000
+2025-02-24 17:59:11 | INFO | MAIN | UPDATE | Lignes affectées: 0
+2025-02-24 17:59:11 | INFO | MAIN | INSERT | Lignes affectées: 1000
+2025-02-24 17:59:12 | ERROR | ERREUR | SERVICE | Erreur : type object 'InseeApiClient' has no attribute 'reset_initial_date'
+2025-02-24 18:02:24 | INFO | STAGING | INSERT | Lignes affectées: 999
+2025-02-24 18:02:24 | INFO | MAIN | UPDATE | Lignes affectées: 0
+2025-02-24 18:02:24 | INFO | MAIN | INSERT | Lignes affectées: 999
+2025-02-24 18:02:24 | ERROR | ERREUR | SERVICE | Erreur : type object 'InseeApiClient' has no attribute 'reset_initial_date'
+2025-02-24 18:02:44 | INFO | STAGING | INSERT | Lignes affectées: 827
+2025-02-24 18:02:44 | INFO | MAIN | UPDATE | Lignes affectées: 0
+2025-02-24 18:02:44 | INFO | MAIN | INSERT | Lignes affectées: 827
+2025-02-24 18:02:44 | ERROR | ERREUR | SERVICE | Erreur : type object 'InseeApiClient' has no attribute 'reset_initial_date'
+2025-02-24 23:59:47 | ERROR | ERREUR | STAGING_INSERT_ETABLISSEMENT | extra data after last expected column
+CONTEXT:  COPY temp_staging, line 2: "000325175,00016,00032517500016,O,2000-09-26,,,3212ZZ,2024-03-22T15:40:57.001,false,3,A,O,,2000-09-26..."
+
+2025-02-24 23:59:49 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+

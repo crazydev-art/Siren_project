@@ -1,0 +1,62 @@
+2025-03-08 22:19:27 | ERROR | ERREUR | SERVICE | Erreur : La clé API est manquante
+2025-03-08 22:20:24 | ERROR | ERREUR | SERVICE | Erreur : could not translate host name "postgres" to address: Temporary failure in name resolution
+
+2025-03-08 22:20:24 | ERROR | ERREUR | SERVICE | Erreur critique: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+2025-03-08 22:26:28 | ERROR | ERREUR | SERVICE | Erreur : could not translate host name "postgres" to address: Temporary failure in name resolution
+
+2025-03-08 22:26:28 | ERROR | ERREUR | SERVICE | Erreur critique: could not translate host name "postgres" to address: Temporary failure in name resolution
+
+2025-03-08 22:27:59 | ERROR | ERREUR | SERVICE | Erreur : La clé API est manquante
+2025-03-08 22:29:15 | ERROR | ERREUR | STAGING_INSERT_ETABLISSEMENT | relation "staging_etablissement" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_et...
+                                                             ^
+
+2025-03-08 22:29:15 | ERROR | ERREUR | STAGING_INSERT_ADRESSE | relation "staging_adresse" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_ad...
+                                                             ^
+
+2025-03-08 22:29:22 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:29:31 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:29:41 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:29:50 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:29:59 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:08 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:17 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:26 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:35 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:45 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+
+2025-03-08 22:30:54 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | relation "staging_unite_legale" does not exist
+LINE 2: ...             CREATE TEMP TABLE temp_staging (LIKE staging_un...
+                                                             ^
+

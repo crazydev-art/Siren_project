@@ -17,15 +17,15 @@ export GF_SECURITY_ADMIN_USER="admin"
 export GF_SECURITY_ADMIN_PASSWORD="adminpwd"
 export VOLUME="dataengsiren"
 export IPHOST="192.168.1.59"
+export POSTGRES_HOST="192.168.1.59"
 export POSTGRES_PORT="5432"
 export MONGO_INITDB_ROOT_USERNAME="root"
 export MONGO_INITDB_ROOT_PASSWORD="root2024"
 export ME_CONFIG_MONGODB_ADMINUSERNAME="root"
 export ME_CONFIG_MONGODB_ADMINPASSWORD="root2024"
 # création des variables pour la mise à jour quotidienne des données SIREN
-export API_KEY="1e82a3c5-03d1-4e96-82a3-c503d12e963d"
+export api_key="1e82a3c5-03d1-4e96-82a3-c503d12e963d"
 # Yassin export API_KEY = "06871a5f-3654-469d-871a-5f3654869d10"
-export POSTGRES_HOST="postgres"
 # POSTGRES_PORT="5432", Already in line 20
 # POSTGRES_DB="siren", already in line 11
 # POSTGRES_USER="admin", already in line 9
@@ -57,7 +57,7 @@ echo "MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}" >> .env
 echo "ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}" >> .env
 echo "ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}" >> .env
 # création des variables pour la mise à jour quotidienne des données SIREN
-echo "API_KEY=${API_KEY}" >> .env
+echo "api_key=${api_key}" >> .env
 # Yassin export API_KEY = "06871a5f-3654-469d-871a-5f3654869d10"
 echo "POSTGRES_HOST=${POSTGRES_HOST}" >> .env
 # POSTGRES_PORT="5432", Already in line 20
@@ -65,7 +65,8 @@ echo "POSTGRES_HOST=${POSTGRES_HOST}" >> .env
 # POSTGRES_USER="admin", already in line 9
 # POSTGRES_PASSWORD="team@2024" already in line 10
 # PYTHONPATH=/Desktop/DATASCIENTEST/Project_Siren_Siret_data/Siren_project_yass/app
-cp .env ../data_updater_2/app/
+cp .env ./data_updater
+cp .env ./data_updater/app
 cp .env ./Redpanda_connect
 cp .env ./Redpanda
 cp .env ./UserTable_Join
