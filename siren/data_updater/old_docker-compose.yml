@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  data-updater:
+    image: yoxyfoxy/data-updater:latest
+    container_name: data_updater_container
+    networks:
+      - siren_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  postgres:
+    image: postgres:17
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: team@2024
+      POSTGRES_DB: siren
+    volumes:
+      - siren_data:/var/lib/postgresql/data
+    networks:
+      - siren_network
+    ports:
+      - "15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d siren"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dataeng@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: team2024
+    ports:
+      - "8060:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - siren_network
+    restart: always
+
+networks:
+  siren_network:
+    driver: bridge
+
+volumes:
+  siren_data:
+    external: true
+
