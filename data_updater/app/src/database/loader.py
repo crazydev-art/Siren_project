@@ -240,6 +240,11 @@ def update_from_staging(table_type):
     try:
         with db_pool.get_connection() as conn:
             with conn.cursor() as cursor:
+                # Initialiser les compteurs
+                deleted_rows = 0
+                updated_rows = 0
+                inserted_rows = 0
+                
                 if table_type == 'etablissement':
                     # Identifier et supprimer les établissements qui passent à l'état 'F'
                     cursor.execute("""
@@ -256,46 +261,130 @@ def update_from_staging(table_type):
                         FROM to_delete;
                     """)
                     deleted_rows = cursor.rowcount
-                else:
-                    deleted_rows = 0
-
-                # Mise à jour uniquement pour les établissements actifs
-                cursor.execute(f"""
-                    WITH updated AS (
-                        UPDATE {config['main_table']} e
-                        SET {config['update_champs']}
-                        FROM {config['staging_table']} s
-                        WHERE e.{config['key_field']} = s.{config['key_field']}
-                        {" AND s.etatadministratifetablissement = 'A'" if table_type == 'etablissement' else ""}
-                        RETURNING e.{config['key_field']}
-                    )
-                    INSERT INTO updates_log (entity_type, entity_id, update_type)
-                    SELECT '{table_type}', {config['key_field']}, 'UPDATE' 
-                    FROM updated;
-                """)
-                
-                updated_rows = cursor.rowcount
-                
-                # Insertion uniquement pour les nouveaux établissements actifs
-                cursor.execute(f"""
-                    WITH inserted AS (
-                        INSERT INTO {config['main_table']}
-                        SELECT s.*
-                        FROM {config['staging_table']} s
-                        WHERE NOT EXISTS (
-                            SELECT 1 
-                            FROM {config['main_table']} e 
-                            WHERE e.{config['key_field']} = s.{config['key_field']}
+                elif table_type == 'unitelegale':
+                    # Mise à jour uniquement pour les unités légales liées à des établissements existants
+                    cursor.execute(f"""
+                        WITH updated AS (
+                            UPDATE {config['main_table']} u
+                            SET {config['update_champs']}
+                            FROM {config['staging_table']} s
+                            WHERE u.{config['key_field']} = s.{config['key_field']}
+                            AND EXISTS (
+                                SELECT 1 FROM etablissement e 
+                                WHERE e.siren = s.siren
+                            )
+                            RETURNING u.{config['key_field']}
                         )
-                        {" AND s.etatadministratifetablissement = 'A'" if table_type == 'etablissement' else ""}
-                        RETURNING {config['key_field']}
-                    )
-                    INSERT INTO updates_log (entity_type, entity_id, update_type)
-                    SELECT '{table_type}', {config['key_field']}, 'INSERT' 
-                    FROM inserted;
-                """)
-                
-                inserted_rows = cursor.rowcount
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'UPDATE' 
+                        FROM updated;
+                    """)
+                    
+                    updated_rows = cursor.rowcount
+                    
+                    # Insertion uniquement pour les nouvelles unités légales liées à des établissements existants
+                    cursor.execute(f"""
+                        WITH inserted AS (
+                            INSERT INTO {config['main_table']}
+                            SELECT s.*
+                            FROM {config['staging_table']} s
+                            WHERE NOT EXISTS (
+                                SELECT 1 
+                                FROM {config['main_table']} u 
+                                WHERE u.{config['key_field']} = s.{config['key_field']}
+                            )
+                            AND EXISTS (
+                                SELECT 1 FROM etablissement e 
+                                WHERE e.siren = s.siren
+                            )
+                            RETURNING {config['key_field']}
+                        )
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'INSERT' 
+                        FROM inserted;
+                    """)
+                    
+                    inserted_rows = cursor.rowcount
+                elif table_type == 'adresse':
+                    # Pour les adresses, on ne traite que les établissements non fermés
+                    cursor.execute(f"""
+                        WITH updated AS (
+                            UPDATE {config['main_table']} e
+                            SET {config['update_champs']}
+                            FROM {config['staging_table']} s
+                            WHERE e.{config['key_field']} = s.{config['key_field']}
+                            AND EXISTS (
+                                SELECT 1 FROM etablissement et
+                                WHERE et.siret = s.siret
+                                AND et.etatadministratifetablissement != 'F'
+                            )
+                            RETURNING e.{config['key_field']}
+                        )
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'UPDATE' 
+                        FROM updated;
+                    """)
+                    
+                    updated_rows = cursor.rowcount
+                    
+                    cursor.execute(f"""
+                        WITH inserted AS (
+                            INSERT INTO {config['main_table']}
+                            SELECT s.*
+                            FROM {config['staging_table']} s
+                            WHERE NOT EXISTS (
+                                SELECT 1 
+                                FROM {config['main_table']} e 
+                                WHERE e.{config['key_field']} = s.{config['key_field']}
+                            )
+                            AND EXISTS (
+                                SELECT 1 FROM etablissement et
+                                WHERE et.siret = s.siret
+                                AND et.etatadministratifetablissement != 'F'
+                            )
+                            RETURNING {config['key_field']}
+                        )
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'INSERT' 
+                        FROM inserted;
+                    """)
+                    
+                    inserted_rows = cursor.rowcount
+                else:
+                    # Pour les autres types (comme adresse)
+                    cursor.execute(f"""
+                        WITH updated AS (
+                            UPDATE {config['main_table']} e
+                            SET {config['update_champs']}
+                            FROM {config['staging_table']} s
+                            WHERE e.{config['key_field']} = s.{config['key_field']}
+                            RETURNING e.{config['key_field']}
+                        )
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'UPDATE' 
+                        FROM updated;
+                    """)
+                    
+                    updated_rows = cursor.rowcount
+                    
+                    cursor.execute(f"""
+                        WITH inserted AS (
+                            INSERT INTO {config['main_table']}
+                            SELECT s.*
+                            FROM {config['staging_table']} s
+                            WHERE NOT EXISTS (
+                                SELECT 1 
+                                FROM {config['main_table']} e 
+                                WHERE e.{config['key_field']} = s.{config['key_field']}
+                            )
+                            RETURNING {config['key_field']}
+                        )
+                        INSERT INTO updates_log (entity_type, entity_id, update_type)
+                        SELECT '{table_type}', {config['key_field']}, 'INSERT' 
+                        FROM inserted;
+                    """)
+                    
+                    inserted_rows = cursor.rowcount
                 
             conn.commit()
             if table_type == 'etablissement':

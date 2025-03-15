@@ -15,6 +15,7 @@ class BaseInseeClient:
     
     def __init__(self, table_name, api_route):
         load_dotenv()
+        
         self.api_key = os.getenv("api_key")
         self.table_name = table_name
         self.api_route = api_route
