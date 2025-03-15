@@ -63,7 +63,7 @@ def load_data_to_staging(csv_data, table_type):
             'etat_administratif': 'etatAdministratifUniteLegale',
             'columns': """(
                 siren, datecreationunitelegale, trancheeffectifsunitelegale,
-                anneeffectifsunitelegale, datederniertraitementunitelegale,
+                anneeeffectifsunitelegale, datederniertraitementunitelegale,
                 categorieentreprise, anneecategorieentreprise,
                 etatadministratifunitelegale, nomunitelegale,
                 nomusageunitelegale, denominationunitelegale,
@@ -203,7 +203,7 @@ def update_from_staging(table_type):
             'update_champs': """
                 datecreationunitelegale = s.datecreationunitelegale,
                 trancheeffectifsunitelegale = s.trancheeffectifsunitelegale,
-                anneeffectifsunitelegale = s.anneeffectifsunitelegale,
+                anneeeffectifsunitelegale = s.anneeeffectifsunitelegale,
                 datederniertraitementunitelegale = s.datederniertraitementunitelegale,
                 categorieentreprise = s.categorieentreprise,
                 anneecategorieentreprise = s.anneecategorieentreprise,

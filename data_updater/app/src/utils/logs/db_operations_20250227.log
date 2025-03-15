@@ -1180,19 +1180,19 @@ DETAIL:  Key (siret)=(98145116400017) already exists.
 DETAIL:  Key (siret)=(03868382700018) already exists.
 
 2025-02-27 17:30:10 | INFO | table_STAGING | INSERT_ADRESSE | Lignes affectées: 1000
-2025-02-27 17:30:14 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:14 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:30:23 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:23 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:30:32 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:32 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:30:41 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:41 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:30:49 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:49 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:30:58 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:30:58 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:31:07 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:31:07 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
 2025-02-27 17:32:40 | INFO | table_STAGING | INSERT_ETABLISSEMENT | Lignes affectées: 1000
 2025-02-27 17:32:40 | INFO | table_STAGING | INSERT_ADRESSE | Lignes affectées: 1000
@@ -1206,9 +1206,9 @@ DETAIL:  Key (siret)=(03868382700018) already exists.
 2025-02-27 17:33:21 | INFO | table_STAGING | INSERT_ADRESSE | Lignes affectées: 152
 2025-02-27 17:33:29 | INFO | table_STAGING | INSERT_ETABLISSEMENT | Lignes affectées: 0
 2025-02-27 17:33:29 | INFO | table_STAGING | INSERT_ADRESSE | Lignes affectées: 0
-2025-02-27 17:33:34 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:33:34 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
-2025-02-27 17:33:54 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeffectifsunitelegale" of relation "temp_staging" does not exist
+2025-02-27 17:33:54 | ERROR | ERREUR | STAGING_INSERT_UNITELEGALE | column "anneeeffectifsunitelegale" of relation "temp_staging" does not exist
 
 2025-02-27 17:39:28 | INFO | table_STAGING | INSERT_UNITELEGALE | Lignes affectées: 1000
 2025-02-27 17:39:38 | INFO | table_STAGING | INSERT_UNITELEGALE | Lignes affectées: 1000
