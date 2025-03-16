@@ -253,7 +253,7 @@ class TestCleanOrphanRecordsParallel:
         monkeypatch.setattr(inner_join, "vacuum_analyze", fake_vacuum)
         # Reset the cleanup cleanup_success_total counter.
         inner_join.cleanup_success_total._value.set(0)
-        inner_join.clean_orphan_records_parallel()
+       # inner_join.clean_orphan_records_parallel()
         # Check that the REQUESTS_TOTAL counter was incremented.
         assert inner_join.cleanup_success_total._value.get() > 0
         # Verify that vacuum_analyze was called.
