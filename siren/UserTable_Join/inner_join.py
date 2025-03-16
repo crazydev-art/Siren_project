@@ -113,7 +113,7 @@ def delete_orphaned_records_unitelegale(batch_size=10000):
     
     return total_deleted
 
-def delete_orphaned_geolocalisation(batch_size=10000):
+def delete_orphaned_records_geolocalisation(batch_size=10000):
     """Deletes orphaned records from the geolocalisation table in batches."""
     conn = get_db_connection()
     total_deleted = 0  # Track total deleted records

@@ -197,6 +197,9 @@ class TestVacuumAnalyze:
 
             def close(self):
                 self.closed = True
+            
+            def set_isolation_level(self, level):  # 👈 Add this function
+                pass  # No real implementation needed for a fake DB
 
         fake_conn = FakeConnectionVacuum()
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
@@ -214,7 +217,7 @@ class TestProcessCleanupTask:
             return fake_conn
         original_get_db_connection = inner_join.get_db_connection
         monkeypatch.setattr(inner_join, "get_db_connection", fake_get_db_connection)
-        inner_join.process_cleanup_task()
+        inner_join.main()
         # Verify that the fake connection was closed after task execution.
         assert fake_conn.closed
         # Restore the original get_db_connection function.
