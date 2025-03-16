@@ -182,7 +182,7 @@ def main():
     logger.info("Starting cleanup process...")
     
     deleted_unitelegale = delete_orphaned_records_unitelegale()
-    deleted_geolocalisation = delete_orphaned_geolocalisation()
+    deleted_geolocalisation = delete_orphaned_records_geolocalisation()
     
     create_staging_tables()
 

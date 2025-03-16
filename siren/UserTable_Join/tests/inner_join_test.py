@@ -18,6 +18,7 @@ class DatabaseFake:
         self.deletion_rows = deletion_rows
         self.call_count = 0
         self.queries = []
+        self.rowcount = 0
 
     def __enter__(self):
         return self
@@ -28,14 +29,19 @@ class DatabaseFake:
     def execute(self, query, params=None):
         self.queries.append(query)
         self.call_count += 1
-
-    def fetchall(self):
+        # Simulate deletion rows on first call, then 0
         if self.call_count == 1:
-            # Simulate deletion: return a list with deletion_rows items
-            return [('dummy',)] * self.deletion_rows
+            self.rowcount = self.deletion_rows
         else:
-            # No more rows to delete
-            return []
+            self.rowcount = 0
+
+    # def fetchall(self):
+    #     if self.call_count == 1:
+    #         # Simulate deletion: return a list with deletion_rows items
+    #         return [('dummy',)] * self.deletion_rows
+    #     else:
+    #         # No more rows to delete
+    #         return []
 
     def close(self):
         pass
