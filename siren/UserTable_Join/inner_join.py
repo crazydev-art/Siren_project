@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 # BATCH_SIZE = 10000  # Batch size for deletions
 
 # Prometheus Metrics
+DB_CONNECTION_ERRORS = Counter("db_connection_errors", "Total number of database connection errors")
 deleted_unitelegale_total = Counter("deleted_unitelegale_total", "Total orphaned records deleted from unitelegale")
 deleted_geolocalisation_total = Counter("deleted_geolocalisation_total", "Total orphaned records deleted from geolocalisation")
 vacuum_duration_seconds = Gauge("vacuum_duration_seconds", "Time taken to run VACUUM ANALYZE")
@@ -69,7 +70,7 @@ def create_staging_tables():
         conn.close()
 
 # Function to delete orphaned records in batches - unitelegale
-def delete_orphaned_records(batch_size=10000):
+def delete_orphaned_records_unitelegale(batch_size=10000):
     """Deletes orphaned records from the unitelegale table in batches."""
     conn = get_db_connection()
     total_deleted = 0  # Track total deleted records
@@ -180,7 +181,7 @@ def main():
     """Runs the orphaned record deletion followed by database optimization."""
     logger.info("Starting cleanup process...")
     
-    deleted_unitelegale = delete_orphaned_records()
+    deleted_unitelegale = delete_orphaned_records_unitelegale()
     deleted_geolocalisation = delete_orphaned_geolocalisation()
     
     create_staging_tables()
