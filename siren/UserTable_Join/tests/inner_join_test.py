@@ -62,7 +62,7 @@ class FakeConnection:
         self.closed = False
         self._cursor = DatabaseFake(deletion_rows=self.deletion_rows)
 
-     def set_isolation_level(self, level):  # Required for vacuum
+    def set_isolation_level(self, level):  
         pass
 
     def cursor(self):
