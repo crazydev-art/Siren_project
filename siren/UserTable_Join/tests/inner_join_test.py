@@ -35,7 +35,7 @@ class DatabaseFake:
         else:
             self.rowcount = 0
 
-    ef fetchall(self):
+    def fetchall(self):
         if "SELECT" in self.queries[-1][0].upper():
             if self._fetch_state == 0:
                 self._fetch_state = 1
