@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # BATCH_SIZE = 10000  # Batch size for deletions
 
 # Prometheus Metrics
-DB_CONNECTION_ERRORS = Counter("db_connection_errors", "Total number of database connection errors")
+db_connection_errors = Counter("db_connection_errors", "Total number of database connection errors")
 deleted_unitelegale_total = Counter("deleted_unitelegale_total", "Total orphaned records deleted from unitelegale")
 deleted_geolocalisation_total = Counter("deleted_geolocalisation_total", "Total orphaned records deleted from geolocalisation")
 vacuum_duration_seconds = Gauge("vacuum_duration_seconds", "Time taken to run VACUUM ANALYZE")
@@ -44,7 +44,7 @@ def get_db_connection():
         )
         return conn
     except psycopg2.Error as e:
-        DB_CONNECTION_ERRORS.inc()
+        db_connection_errors.inc()
         logger.error(f"Database connection error: {e}")
         raise
 
@@ -180,7 +180,7 @@ def clean_orphan_records_parallel():
         future = executor.submit(main)
         future.result()
         REQUESTS_TOTAL.inc()
-        CLEANUP_SUCCESS_TOTAL.inc()  # Increment success count
+        cleanup_success_total.inc()  # Increment success count
 
 # Main function to execute the cleanup process
 def main():

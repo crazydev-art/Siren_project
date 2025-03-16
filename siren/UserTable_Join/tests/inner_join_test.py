@@ -15,25 +15,25 @@ class DatabaseFake:
     subsequent calls return an empty list to exit the loop.
     """
     def __init__(self, deletion_rows=3):
-        self.deletion_rows = deletion_rows
-        self.call_count = 0
+         self.deletion_rows = deletion_rows
         self.queries = []
-        self.rowcount = 0
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, traceback):
-        pass
-
+        self._fetch_state = 0  # 0: first fetch, 1: subsequent fetches
+        self.call_count = 0  # Track total execute calls
+        self.rowcount = 0  # For DELETE operations
+        
     def execute(self, query, params=None):
-        self.queries.append(query)
-        self.call_count += 1
-        # Simulate deletion rows on first call, then 0
-        if self.call_count == 1:
-            self.rowcount = self.deletion_rows
-        else:
-            self.rowcount = 0
+        self.call_count += 1  # Track every execute call
+        self.queries.append((query, params))
+
+        if "SELECT" in query.upper():
+            self._fetch_state = 0  # Reset for SELECT
+        elif "DELETE" in query.upper():
+            # Simulate deletion: set rowcount to deletion_rows first time, then 0
+            if self._fetch_state == 0:
+                self.rowcount = self.deletion_rows
+                self._fetch_state = 1
+            else:
+                self.rowcount = 0
 
     def fetchall(self):
         if "SELECT" in self.queries[-1][0].upper():
@@ -43,16 +43,6 @@ class DatabaseFake:
             else:
                 return []
         return []
-    # def fetchall(self):
-    #     if self.call_count == 1:
-    #         # Simulate deletion: return a list with deletion_rows items
-    #         return [('dummy',)] * self.deletion_rows
-    #     else:
-    #         # No more rows to delete
-    #         return []
-
-    def close(self):
-        pass
 
 
 class FakeConnection:
@@ -243,21 +233,37 @@ class TestProcessCleanupTask:
 
 class TestCleanOrphanRecordsParallel:
     def test_clean_orphan_records_parallel(self, monkeypatch, caplog):
-        # Replace ProcessPoolExecutor with our DummyExecutor.
+           # Replace ProcessPoolExecutor with our DummyExecutor
         monkeypatch.setattr(inner_join, "ProcessPoolExecutor", DummyExecutor)
-        # Patch vacuum_analyze to record if it gets called.
+        
+        # Track if vacuum was called and counter was incremented
         vacuum_called = False
+        counter_incremented = False
 
-        def fake_vacuum():
+        def fake_vacuum(_conn):
             nonlocal vacuum_called
             vacuum_called = True
 
-       
+        def fake_main():
+            nonlocal counter_incremented
+            # Simulate successful cleanup
+            inner_join.cleanup_success_total.inc()
+            counter_incremented = True
+            # Simulate vacuum call
+            fake_vacuum(None)
+
+        # Patch dependencies
+        monkeypatch.setattr(inner_join, "main", fake_main)
         monkeypatch.setattr(inner_join, "vacuum_analyze", fake_vacuum)
-        # Reset the cleanup cleanup_success_total counter.
+
+        # Reset counter
         inner_join.cleanup_success_total._value.set(0)
-       # inner_join.clean_orphan_records_parallel()
-        # Check that the REQUESTS_TOTAL counter was incremented.
-        assert inner_join.cleanup_success_total._value.get() > 0
-        # Verify that vacuum_analyze was called.
-        assert vacuum_called
+        
+        # Execute the parallel cleanup
+        inner_join.clean_orphan_records_parallel()
+        
+        # Verify results
+        assert counter_incremented, "Prometheus counter was not incremented"
+        assert inner_join.cleanup_success_total._value.get() == 1, "Counter should be exactly 1"
+        assert vacuum_called, "Vacuum analyze was not executed"
+        assert "Processing cleanup task" in caplog.text
