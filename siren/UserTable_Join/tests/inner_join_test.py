@@ -15,7 +15,7 @@ class DatabaseFake:
     subsequent calls return an empty list to exit the loop.
     """
     def __init__(self, deletion_rows=3):
-         self.deletion_rows = deletion_rows
+        self.deletion_rows = deletion_rows
         self.queries = []
         self._fetch_state = 0  # 0: first fetch, 1: subsequent fetches
         self.call_count = 0  # Track total execute calls
