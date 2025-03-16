@@ -14,7 +14,7 @@ class DatabaseFake:
     On the first call to fetchall, it returns a non-empty list;
     subsequent calls return an empty list to exit the loop.
     """
-    def __init__(self, deletion_rows=3):
+    def __init__(self, deletion_rows=2):
         self.deletion_rows = deletion_rows
         self.queries = []
         self.call_count = 0
@@ -38,7 +38,7 @@ class DatabaseFake:
 
 class FakeConnection:
     """Simulate a DB connection for deletion and vacuum functions."""
-    def __init__(self, deletion_rows=3):
+    def __init__(self, deletion_rows=2):
         self.deletion_rows = deletion_rows
         self.closed = False
         self._cursor = DatabaseFake(deletion_rows)
@@ -92,7 +92,7 @@ def set_env(monkeypatch):
 @pytest.fixture(autouse=True)
 def patch_psycopg2_connect(monkeypatch):
     # Override psycopg2.connect to return a FakeConnection.
-    monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: FakeConnection(deletion_rows=3))
+    monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: FakeConnection(deletion_rows=2))
 
 
 @pytest.fixture(autouse=True)
@@ -144,17 +144,17 @@ class TestCreateStagingTables:
 class TestDeletionFunctions:
     def test_delete_orphaned_records_unitelegale(self, caplog):
         caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
-        fake_conn = FakeConnection(deletion_rows=5)
+        fake_conn = FakeConnection(deletion_rows=2)
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
         # The DatabaseFake should have been used at least twice (one with rows, one empty).
         assert fake_conn._cursor.call_count >= 2
-        assert fake_conn.cursor().rowcount == 5
+        assert fake_conn.cursor().rowcount == 2
         # Check that a log message indicates deletion from unitelegale.
         assert "orphaned records deleted from unitelegale" in caplog.text.lower()
 
     def test_delete_orphaned_records_geolocalisation(self, caplog):
         caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
-        fake_conn = FakeConnection(deletion_rows=4)
+        fake_conn = FakeConnection(deletion_rows=2)
         inner_join.delete_orphaned_records_geolocalisation(fake_conn)
         assert fake_conn._cursor.call_count >= 2
         assert "orphaned records deleted from geolocalisation" in caplog.text.lower()
@@ -207,7 +207,7 @@ class TestVacuumAnalyze:
 
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, monkeypatch, caplog):
-        fake_conn = FakeConnection(deletion_rows=3)
+        fake_conn = FakeConnection(deletion_rows=2)
         # Override get_db_connection to always return our fake connection.
         def fake_get_db_connection():
             return fake_conn
