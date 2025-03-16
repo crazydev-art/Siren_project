@@ -11,7 +11,14 @@ services: # definition of the services
     ports: # definition of the postgreSQL ports oustide/inside from the container
       - "5432:5432"
     volumes: # declaration of a named volume for postgres data
-      - postgres_data:/var/lib/postgresql/data    
+      - postgres_data:/var/lib/postgresql/data
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U admin -d siren"]
+    #   interval: 10s
+    #   retries: 5
+    #   start_period: 30s
+    #   timeout: 10s  
+    restart: always  
         
   pgadmin: # pgadmin section for definition of the config
       image: dpage/pgadmin4:latest # which pgadmin image will be downloaded
@@ -28,8 +35,9 @@ services: # definition of the services
         - postgres
       volumes: # declaration of a named volume for pgadmin data. Needed when backup the database.
         - pgadmin_data:/var/lib/pgadmin
+      restart: always
          
-  redpdandascript: # Redpanda section for definition of the config
+  redpandascript: # Redpanda section for definition of the config
       build: # build container based on the Dockerfile configuration
         context: ./Redpanda # Folder where to execute the Docker file
         dockerfile: Dockerfile
@@ -39,7 +47,7 @@ services: # definition of the services
           FILESIREN: ${FILESIREN}
           IPHOST: ${IPHOST}
           NETWORK_DOCKER: ${NETWORK_DOCKER}
-      container_name: redpanda_script # name of the container
+      container_name: redpanda-script # name of the container
       networks: # definition of the network 
         - ${NETWORK_DOCKER}
       depends_on: # start when postgres are available
@@ -48,6 +56,7 @@ services: # definition of the services
         - "4195:4195"
       volumes: # mapping of the volume out-/in-side the container for data exchange
         - /var/run/docker.sock:/var/run/docker.sock 
+        #- /usr/bin/docker:/usr/bin/docker
         - ${MYDIR}:${MYDIR} 
         - ${MYDIR}/Redpanda:${MYDIR}/Redpanda
         - ${MYDIR}/Files_Siren:${MYDIR}/Files_Siren
@@ -59,6 +68,38 @@ services: # definition of the services
       privileged: true # grant permission to write on the local drive
       tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
       restart: "no"
+      
+  redpanda-connect-custom: # Redpanda section for definition of the config
+      build: # build container based on the Dockerfile configuration
+        context: ./Redpanda_connect # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+        args: # definition of the environnement variable for the creation of the container
+          MYDIR: ${MYDIR}
+          REDPANDA: ${REDPANDA}
+          FILESIREN: ${FILESIREN}
+          IPHOST: ${IPHOST}
+          NETWORK_DOCKER: ${NETWORK_DOCKER}
+      container_name: redpanda-connect-custom # name of the container
+      networks: # definition of the network 
+        - ${NETWORK_DOCKER}
+      # depends_on: # start when postgres are available
+      #   - postgres
+      # ports: # definition of the Redpanda ports outside/inside from the container
+      #   - "4196:4195"
+      # volumes: # mapping of the volume out-/in-side the container for data exchange
+      #   - /var/run/docker.sock:/var/run/docker.sock 
+      #   #- /usr/bin/docker:/usr/bin/docker
+      #   - ${MYDIR}:${MYDIR} 
+      #   - ${MYDIR}/Redpanda:${MYDIR}/Redpanda
+      #   - ${MYDIR}/Files_Siren:${MYDIR}/Files_Siren
+      # environment: # definition for the environnement parameter execution of the container
+      #   - MYDIR=${MYDIR}
+      #   - REDPANDA=${MYDIR}/Redpanda
+      #   - FILESIREN=${MYDIR}/Files_Siren
+      privileged: true # grant permission to write on the local drive
+      tty: true # allow to run the container with interactive mode needed for Redpanda. “Docker logs redpanda_script” to see the execution and status
+      restart: "no"
+      # profiles: ["sleep", "infinity"]
 
   scriptpython: # Python section for definition of the config
       build: # build container based on the Dockerfile configuration
@@ -81,7 +122,7 @@ services: # definition of the services
       ports:
       - "8000:8000"
       depends_on: # Wait for `redpdandascript` to complete successfully
-        redpdandascript:
+        redpandascript:
           condition: service_completed_successfully
 
   postgres_exporter:
@@ -95,6 +136,7 @@ services: # definition of the services
         - ${NETWORK_DOCKER}
       depends_on:
         - postgres
+      restart: always
       
   prometheus:
       image: prom/prometheus:latest
@@ -160,7 +202,6 @@ services: # definition of the services
       - ${NETWORK_DOCKER}
     restart: always
     
-
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     volumes:
@@ -171,10 +212,7 @@ services: # definition of the services
     networks:
       - ${NETWORK_DOCKER}
     restart: always
-    deploy:
-      mode: global
-
-
+   
   node-exporter:
     image: prom/node-exporter:latest
     volumes:
@@ -193,9 +231,18 @@ services: # definition of the services
     networks:
       - ${NETWORK_DOCKER}
     restart: always
-    deploy:
-      mode: global
 
+  data-updater:
+    build: # build container based on the Dockerfile configuration
+        context: ./data_updater # Folder where to execute the Docker file
+        dockerfile: Dockerfile
+    container_name: data_updater_container
+    networks:
+      - ${NETWORK_DOCKER}
+    depends_on:
+      - postgres
+      # postgres:
+      #   condition: service_healthy
 
 volumes: # persistance of the data locally 
   postgres_data:

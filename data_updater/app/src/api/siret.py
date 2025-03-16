@@ -119,6 +119,7 @@ def fetch_etablissement_data(cursor_value, client=None, db_date=None):
                 periode.get('denominationUsuelleEtablissement', '')
             ]
             
+            
             # Données adresse
             adresse_row = [
                 etab.get('siret', ''),

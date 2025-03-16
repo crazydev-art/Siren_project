@@ -22,11 +22,11 @@ pipeline:
         root.nic = this.nic
         root.siret = this.siret
         root.statutDiffusionEtablissement = this.statutDiffusionEtablissement
-        root.dateCreationEtablissement = this.dateCreationEtablissement
+        root.dateCreationEtablissement = this.dateCreationEtablissement.ts_parse("2006-01-02").catch(null)
         root.trancheEffectifsEtablissement = this.trancheEffectifsEtablissement
         root.anneeEffectifsEtablissement = this.anneeEffectifsEtablissement
         root.activitePrincipaleRegistreMetiersEtablissement = this.activitePrincipaleRegistreMetiersEtablissement
-        root.dateDernierTraitementEtablissement = this.dateDernierTraitementEtablissement.ts_parse("2006-01-02T15:04:05")
+        root.dateDernierTraitementEtablissement = this.dateDernierTraitementEtablissement.ts_parse("2006-01-02T15:04:05").catch(null)
         root.etablissementSiege = this.etablissementSiege
         root.nombrePeriodesEtablissement = this.nombrePeriodesEtablissement
         root.complementAdresseEtablissement = this.complementAdresseEtablissement
