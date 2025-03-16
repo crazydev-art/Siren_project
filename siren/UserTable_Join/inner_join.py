@@ -20,8 +20,7 @@ vacuum_duration_seconds = Gauge("vacuum_duration_seconds", "Time taken to run VA
 cleanup_errors_total = Counter("cleanup_errors_total", "Total number of cleanup errors")
 cleanup_success_total = Counter("cleanup_success_total", "Total number of successful cleanups")
 cleanup_step_total = Counter("cleanup_step_total", "Total number of cleanup steps executed", labelnames=["step"])
-DB_CONNECTION_ERRORS = Counter('db_connection_errors_total_count', 'Total DB connection errors')
-REQUESTS_TOTAL = Counter('cleanup_requests_total', 'Total cleanup requests processed')
+# REQUESTS_TOTAL = Counter('cleanup_requests_total', 'Total cleanup requests processed')
 
 # Start Prometheus HTTP server on port 9090
 start_http_server(9090)
