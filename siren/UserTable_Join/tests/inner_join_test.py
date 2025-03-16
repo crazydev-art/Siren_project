@@ -17,32 +17,23 @@ class DatabaseFake:
     def __init__(self, deletion_rows=3):
         self.deletion_rows = deletion_rows
         self.queries = []
-        self._fetch_state = 0  # 0: first fetch, 1: subsequent fetches
-        self.call_count = 0  # Track total execute calls
-        self.rowcount = 0  # For DELETE operations
+        self.call_count = 0
+        self.rowcount = 0
         
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, *args):
+        pass
+    
     def execute(self, query, params=None):
-        self.call_count += 1  # Track every execute call
+        self.call_count += 1
         self.queries.append((query, params))
-
-        if "SELECT" in query.upper():
-            self._fetch_state = 0  # Reset for SELECT
-        elif "DELETE" in query.upper():
-            # Simulate deletion: set rowcount to deletion_rows first time, then 0
-            if self._fetch_state == 0:
-                self.rowcount = self.deletion_rows
-                self._fetch_state = 1
-            else:
-                self.rowcount = 0
+        if "DELETE" in query.upper():
+            self.rowcount = self.deletion_rows
 
     def fetchall(self):
-        if "SELECT" in self.queries[-1][0].upper():
-            if self._fetch_state == 0:
-                self._fetch_state = 1
-                return [('dummy',)] * self.deletion_rows
-            else:
-                return []
-        return []
+        return [("dummy",)] * self.deletion_rows
 
 
 class FakeConnection:
@@ -50,17 +41,22 @@ class FakeConnection:
     def __init__(self, deletion_rows=3):
         self.deletion_rows = deletion_rows
         self.closed = False
-        self._cursor = DatabaseFake(deletion_rows=self.deletion_rows)
-
-    def set_isolation_level(self, level):  
+        
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, *args):
         pass
-
+    
     def cursor(self):
-        return self._cursor
-
+        return DatabaseFake(self.deletion_rows)
+    
+    def set_isolation_level(self, level):
+        pass
+    
     def commit(self):
         pass
-
+    
     def close(self):
         self.closed = True
 

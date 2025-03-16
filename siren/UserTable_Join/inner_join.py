@@ -20,7 +20,7 @@ vacuum_duration_seconds = Gauge("vacuum_duration_seconds", "Time taken to run VA
 cleanup_errors_total = Counter("cleanup_errors_total", "Total number of cleanup errors")
 cleanup_success_total = Counter("cleanup_success_total", "Total number of successful cleanups")
 cleanup_step_total = Counter("cleanup_step_total", "Total number of cleanup steps executed", labelnames=["step"])
-
+requests_total = Counter("cleanup_requests_total", "Total cleanup runs")
 
 # Start Prometheus HTTP server on port 9090
 start_http_server(9090)
@@ -176,10 +176,10 @@ def vacuum_analyze():
         conn.close()
 
 def clean_orphan_records_parallel():
-    with ProcessPoolExecutor() as executor:
+    with ProcessPoolExecutor(max_workers=1) as executor:
         future = executor.submit(main)
         future.result()
-        REQUESTS_TOTAL.inc()
+        requests_total.inc()
         cleanup_success_total.inc()  # Increment success count
 
 # Main function to execute the cleanup process
