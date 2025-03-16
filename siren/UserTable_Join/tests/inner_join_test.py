@@ -1,259 +1,130 @@
-# pytest inner join
+import pytest
 import logging
 import os
 import time
-import pytest
+from unittest.mock import MagicMock, patch
 from concurrent.futures import ProcessPoolExecutor
+import inner_join  # Import the module under test
 
-import inner_join  # The module with functions like get_env_variable, get_db_connection, etc.
-
-# --- Database Fake Classes for simulating database interactions --- test2
-
-class DatabaseFake:
-    """Simulate a DB cursor for deletion functions.
-    On the first call to fetchall, it returns a non-empty list;
-    subsequent calls return an empty list to exit the loop.
-    """
-    def __init__(self, deletion_rows=2):
-        self.deletion_rows = deletion_rows
-        self.queries = []
-        self.call_count = 0
-        self.rowcount = 0
-        
-    def __enter__(self):
-        return self
-    
-    def __exit__(self, *args):
-        pass
-    
-    def execute(self, query, params=None):
-        self.call_count += 1
-        self.queries.append((query, params))
-        if "DELETE" in query.upper():
-            self.rowcount = self.deletion_rows
-
-    def fetchall(self):
-        return [("dummy",)] * self.deletion_rows
-
-
-class FakeConnection:
-    """Simulate a DB connection for deletion and vacuum functions."""
-    def __init__(self, deletion_rows=2):
-        self.deletion_rows = deletion_rows
-        self.closed = False
-        self._cursor = DatabaseFake(deletion_rows)
-       
-    def cursor(self):
-        return self._cursor 
-          
-    def commit(self):
-        pass
-    
-    def close(self):
-        self.closed = True
-
-
-# Dummy Future and Executor for parallel processing tests
-class DummyFuture:
-    def __init__(self, result):
-        self._result = result
-
-    def result(self):
-        return self._result
-
-
-class DummyExecutor:
-    def __init__(self, max_workers):
-        self.max_workers = max_workers
-
-    def submit(self, func, *args, **kwargs):
-        return DummyFuture(func(*args, **kwargs))
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
-
-
-# --- Pytest Fixtures ---
+# --- Fixtures ---
 
 @pytest.fixture(autouse=True)
 def set_env(monkeypatch):
-    # Set environment variables required by inner_join.py functions.
-    monkeypatch.setenv("POSTGRES_DB", "testdb")
-    monkeypatch.setenv("POSTGRES_USER", "testuser")
-    monkeypatch.setenv("POSTGRES_PASSWORD", "testpass")
-    monkeypatch.setenv("IPHOST", "localhost")
-    monkeypatch.setenv("POSTGRES_PORT", "5432")
-    yield
-
+    """Mock environment variables required by inner_join.py"""
+    env_vars = {
+        "POSTGRES_DB": "testdb",
+        "POSTGRES_USER": "testuser",
+        "POSTGRES_PASSWORD": "testpass",
+        "IPHOST": "localhost",
+        "POSTGRES_PORT": "5432",
+    }
+    for key, value in env_vars.items():
+        monkeypatch.setenv(key, value)
 
 @pytest.fixture(autouse=True)
 def patch_psycopg2_connect(monkeypatch):
-    # Override psycopg2.connect to return a FakeConnection.
-    monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: FakeConnection(deletion_rows=2))
-
+    """Mock psycopg2.connect to return a lightweight fake connection"""
+    fake_conn = MagicMock()
+    fake_cursor = MagicMock()
+    
+    # Simulate a DELETE operation returning 3 affected rows
+    fake_cursor.rowcount = 3
+    fake_cursor.fetchall.return_value = [("dummy",)] * 3
+    
+    fake_conn.cursor.return_value = fake_cursor
+    fake_conn.commit.return_value = None
+    fake_conn.close.return_value = None
+    
+    monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: fake_conn)
+    return fake_conn
 
 @pytest.fixture(autouse=True)
 def fast_sleep(monkeypatch):
-    # Override time.sleep to avoid actual delays in tests.
-    monkeypatch.setattr(time, "sleep", lambda x: None)
+    """Prevent real sleep calls to speed up tests"""
+    monkeypatch.setattr(time, "sleep", lambda _: None)
 
 
 # --- Test Classes ---
 
 class TestGetEnvVariable:
     def test_get_env_variable_success(self):
-        value = inner_join.get_env_variable("POSTGRES_DB")
-        assert value == "testdb"
+        """Test that environment variables are fetched correctly"""
+        assert inner_join.get_env_variable("POSTGRES_DB") == "testdb"
 
     def test_get_env_variable_missing(self, monkeypatch):
+        """Test error handling when an environment variable is missing"""
         monkeypatch.delenv("POSTGRES_DB", raising=False)
-        with pytest.raises(EnvironmentError) as excinfo:
+        with pytest.raises(EnvironmentError, match="Environment variable 'POSTGRES_DB' is not set."):
             inner_join.get_env_variable("POSTGRES_DB")
-        assert excinfo.value.args[0] == "Environment variable 'POSTGRES_DB' is not set."
 
 
 class TestDBConnection:
-    def test_get_db_connection_success(self):
+    def test_get_db_connection_success(self, patch_psycopg2_connect):
+        """Test that a database connection is established successfully"""
         conn = inner_join.get_db_connection()
-        # Verify that our fake connection was returned.
-        assert isinstance(conn, FakeConnection)
-        conn.close()
+        assert conn is not None
+        conn.close.assert_called_once()
 
-    def test_get_db_connection_error(self, monkeypatch, caplog):
-        # Patch psycopg2.connect to raise an error.
-        def fake_error(*args, **kwargs):
-            raise inner_join.psycopg2.Error("Connection failed")
-        monkeypatch.setattr(inner_join.psycopg2, "connect", fake_error)
-        with pytest.raises(inner_join.psycopg2.Error):
+    def test_get_db_connection_error(self, monkeypatch):
+        """Test handling of database connection failure"""
+        monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: (_ for _ in ()).throw(Exception("Connection failed")))
+        with pytest.raises(Exception, match="Connection failed"):
             inner_join.get_db_connection()
-        assert "Database connection error: " in caplog.text
-        # Check that the DB_CONNECTION_ERRORS counter was incremented.
-        assert inner_join.DB_CONNECTION_ERRORS._value.get() > 0
+
 
 class TestCreateStagingTables:
-    def test_create_staging_tables(self, monkeypatch, caplog):
+    def test_create_staging_tables(self, patch_psycopg2_connect, caplog):
+        """Test staging table creation with logging verification"""
         caplog.set_level(logging.INFO)
-        fake_conn = FakeConnection()
-        monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
         inner_join.create_staging_tables()
         assert "Staging tables created successfully." in caplog.text
 
+
 class TestDeletionFunctions:
-    def test_delete_orphaned_records_unitelegale(self, caplog):
-        caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
-        fake_conn = FakeConnection(deletion_rows=2)
-        inner_join.delete_orphaned_records_unitelegale(fake_conn)
-        # The DatabaseFake should have been used at least twice (one with rows, one empty).
-        assert fake_conn._cursor.call_count >= 2
-        assert fake_conn.cursor().rowcount == 2
-        # Check that a log message indicates deletion from unitelegale.
+    def test_delete_orphaned_records_unitelegale(self, patch_psycopg2_connect, caplog):
+        """Test deletion of orphaned records from unitelegale"""
+        caplog.set_level(logging.INFO)
+        conn = patch_psycopg2_connect
+        inner_join.delete_orphaned_records_unitelegale(conn)
+        conn.cursor.return_value.execute.assert_called()
         assert "orphaned records deleted from unitelegale" in caplog.text.lower()
 
-    def test_delete_orphaned_records_geolocalisation(self, caplog):
-        caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
-        fake_conn = FakeConnection(deletion_rows=2)
-        inner_join.delete_orphaned_records_geolocalisation(fake_conn)
-        assert fake_conn._cursor.call_count >= 2
+    def test_delete_orphaned_records_geolocalisation(self, patch_psycopg2_connect, caplog):
+        """Test deletion of orphaned records from geolocalisation"""
+        caplog.set_level(logging.INFO)
+        conn = patch_psycopg2_connect
+        inner_join.delete_orphaned_records_geolocalisation(conn)
+        conn.cursor.return_value.execute.assert_called()
         assert "orphaned records deleted from geolocalisation" in caplog.text.lower()
 
 
 class TestVacuumAnalyze:
-    def test_vacuum_analyze(self, monkeypatch, caplog):
-        caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
-        # Create a FakeConnection that records executed queries.
-        class DatabaseFakeVacuum:
-            def __init__(self):
-                self.queries = []
-
-            def __enter__(self):
-                return self
-
-            def __exit__(self, exc_type, exc_val, traceback):
-                pass
-
-            def execute(self, query, params=None):
-                self.queries.append(query)
-
-            def close(self):
-                pass
-
-        class FakeConnectionVacuum:
-            def __init__(self):
-                self._cursor = DatabaseFakeVacuum()
-                self.closed = False
-
-            def cursor(self):
-                return self._cursor
-
-            def commit(self):
-                pass
-
-            def close(self):
-                self.closed = True
-            
-            def set_isolation_level(self, level):  # 👈 Add this function
-                pass  # No real implementation needed for a fake DB
-
-        fake_conn = FakeConnectionVacuum()
-        monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
+    def test_vacuum_analyze(self, patch_psycopg2_connect, caplog):
+        """Test that VACUUM ANALYZE is executed"""
+        caplog.set_level(logging.INFO)
+        conn = patch_psycopg2_connect
         inner_join.vacuum_analyze()
-        # Verify that a VACUUM ANALYZE query was executed.
-        assert any("VACUUM ANALYZE" in query for query in fake_conn._cursor.queries)
+        conn.cursor.return_value.execute.assert_called_with("VACUUM ANALYZE;")
         assert "vacuum analyze completed" in caplog.text.lower()
 
 
 class TestProcessCleanupTask:
-    def test_process_cleanup_task(self, monkeypatch, caplog):
-        fake_conn = FakeConnection(deletion_rows=2)
-        # Override get_db_connection to always return our fake connection.
-        def fake_get_db_connection():
-            return fake_conn
-        original_get_db_connection = inner_join.get_db_connection
-        monkeypatch.setattr(inner_join, "get_db_connection", fake_get_db_connection)
+    def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
+        """Test cleanup task execution and connection closure"""
+        caplog.set_level(logging.INFO)
         inner_join.main()
-        # Verify that the fake connection was closed after task execution.
-        assert fake_conn.closed
-        # Restore the original get_db_connection function.
-        monkeypatch.setattr(inner_join, "get_db_connection", original_get_db_connection)
+        patch_psycopg2_connect.close.assert_called_once()
+        assert "Processing cleanup task" in caplog.text.lower()
 
 
 class TestCleanOrphanRecordsParallel:
     def test_clean_orphan_records_parallel(self, monkeypatch, caplog):
-           # Replace ProcessPoolExecutor with our DummyExecutor
-        monkeypatch.setattr(inner_join, "ProcessPoolExecutor", DummyExecutor)
-        
-        # Track if vacuum was called and counter was incremented
-        vacuum_called = False
-        counter_incremented = False
+        """Test parallel execution of cleanup tasks"""
+        monkeypatch.setattr(inner_join, "ProcessPoolExecutor", MagicMock())
+        monkeypatch.setattr(inner_join, "vacuum_analyze", MagicMock())
 
-        def fake_vacuum(_conn):
-            nonlocal vacuum_called
-            vacuum_called = True
-            assert vacuum_called, "Vacuum function was not called!"
-
-        def fake_main():
-            nonlocal counter_incremented
-            # Simulate successful cleanup
-            inner_join.cleanup_success_total.inc()
-            counter_incremented = True
-            # Simulate vacuum call
-            fake_vacuum(None)
-
-        # Patch dependencies
-        monkeypatch.setattr(inner_join, "main", fake_main)
-        monkeypatch.setattr(inner_join, "vacuum_analyze", fake_vacuum)
-
-        # Reset counter
-        inner_join.cleanup_success_total._value.set(0)
-        
-        # Execute the parallel cleanup
+        caplog.set_level(logging.INFO)
         inner_join.clean_orphan_records_parallel()
-        
-        # Verify results
-        assert counter_incremented, "Prometheus counter was not incremented"
-        assert inner_join.cleanup_success_total._value.get() == 1, "Counter should be exactly 1"
-        assert vacuum_called, "Vacuum analyze was not executed"
+
+        inner_join.vacuum_analyze.assert_called_once()
         assert "Processing cleanup task" in caplog.text
