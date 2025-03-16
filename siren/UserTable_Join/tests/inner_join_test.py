@@ -35,6 +35,14 @@ class DatabaseFake:
         else:
             self.rowcount = 0
 
+    ef fetchall(self):
+        if "SELECT" in self.queries[-1][0].upper():
+            if self._fetch_state == 0:
+                self._fetch_state = 1
+                return [('dummy',)] * self.deletion_rows
+            else:
+                return []
+        return []
     # def fetchall(self):
     #     if self.call_count == 1:
     #         # Simulate deletion: return a list with deletion_rows items
