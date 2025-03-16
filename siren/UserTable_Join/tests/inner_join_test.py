@@ -119,7 +119,6 @@ class TestVacuumAnalyze:
 
         fake_conn = MagicMock()
         fake_cursor = fake_conn.cursor.return_value
-        
         # Ensure the cursor.execute() method is called
         fake_cursor.execute = MagicMock()
 
@@ -127,8 +126,11 @@ class TestVacuumAnalyze:
 
         inner_join.vacuum_analyze()
 
-        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
+        # Debug: Print all execute calls
+        print(fake_cursor.execute.call_args_list)
 
+        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
+        #assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list)
 
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
