@@ -82,7 +82,7 @@ class TestCreateStagingTables:
 
 
 class TestDeletionFunctions:
-    def test_delete_orphaned_records_unitelegale(monkeypatch):
+    def test_delete_orphaned_records_unitelegale(self, monkeypatch):
         """Ensure orphaned records are deleted in unitelegale"""
     
         # Create a fake connection and cursor
@@ -96,10 +96,10 @@ class TestDeletionFunctions:
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
 
         # Verify `execute` was called
-        assert fake_cursor.execute.called, "Expected 'execute' to have been called"
-        print(fake_cursor.execute.call_args_list)  # Debugging output
+        fake_cursor.execute.assert_called(), "Expected 'execute' to have been called"
+        
 
-    def test_delete_orphaned_records_geolocalisation(monkeypatch):
+    def test_delete_orphaned_records_geolocalisation(self, monkeypatch):
         """Ensure orphaned records are deleted in geolocalisation"""
 
         fake_conn = MagicMock()
@@ -108,12 +108,12 @@ class TestDeletionFunctions:
 
         inner_join.delete_orphaned_records_geolocalisation(fake_conn)
 
-        assert fake_cursor.execute.called, "Expected 'execute' to have been called"
-        print(fake_cursor.execute.call_args_list)  # Debugging output
+        fake_cursor.execute.assert_called(), "Expected 'execute' to have been called"
+        
 
 
 class TestVacuumAnalyze:
-    def test_vacuum_analyze(monkeypatch, caplog):
+    def test_vacuum_analyze(self, monkeypatch, caplog):
         """Test that VACUUM ANALYZE is executed"""
         caplog.set_level(logging.INFO)
 
@@ -124,7 +124,6 @@ class TestVacuumAnalyze:
         inner_join.vacuum_analyze()
 
         fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
-        print(fake_cursor.execute.call_args_list)  # Debugging output 
 
 
 class TestProcessCleanupTask:
