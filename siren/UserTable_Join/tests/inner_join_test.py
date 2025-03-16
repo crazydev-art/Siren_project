@@ -41,19 +41,11 @@ class FakeConnection:
     def __init__(self, deletion_rows=3):
         self.deletion_rows = deletion_rows
         self.closed = False
-        
-    def __enter__(self):
-        return self
-    
-    def __exit__(self, *args):
-        pass
-    
+        self._cursor = DatabaseFake(deletion_rows)
+       
     def cursor(self):
-        return DatabaseFake(self.deletion_rows)
-    
-    def set_isolation_level(self, level):
-        pass
-    
+        return self._cursor 
+          
     def commit(self):
         pass
     
@@ -120,7 +112,7 @@ class TestGetEnvVariable:
         monkeypatch.delenv("POSTGRES_DB", raising=False)
         with pytest.raises(EnvironmentError) as excinfo:
             inner_join.get_env_variable("POSTGRES_DB")
-        assert "Environment variable 'POSTGRES_DB' is not set." in str(excinfo.value)
+        assert excinfo.value.args[0] == "Environment variable 'POSTGRES_DB' is not set."
 
 
 class TestDBConnection:
@@ -156,6 +148,7 @@ class TestDeletionFunctions:
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
         # The DatabaseFake should have been used at least twice (one with rows, one empty).
         assert fake_conn._cursor.call_count >= 2
+        assert fake_conn.cursor().rowcount == 5
         # Check that a log message indicates deletion from unitelegale.
         assert "orphaned records deleted from unitelegale" in caplog.text.lower()
 
@@ -239,6 +232,7 @@ class TestCleanOrphanRecordsParallel:
         def fake_vacuum(_conn):
             nonlocal vacuum_called
             vacuum_called = True
+            assert vacuum_called, "Vacuum function was not called!"
 
         def fake_main():
             nonlocal counter_incremented
