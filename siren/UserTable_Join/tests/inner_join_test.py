@@ -82,38 +82,49 @@ class TestCreateStagingTables:
 
 
 class TestDeletionFunctions:
-    def test_delete_orphaned_records_unitelegale(self, monkeypatch):
-        """Test deletion of orphaned records from unitelegale"""
+    def test_delete_orphaned_records_unitelegale(monkeypatch):
+        """Ensure orphaned records are deleted in unitelegale"""
+    
+        # Create a fake connection and cursor
+        fake_conn = MagicMock()
+        fake_cursor = fake_conn.cursor.return_value
+
+        # Patch get_db_connection to return our fake connection
+        monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
+
+        # Run the function
+        inner_join.delete_orphaned_records_unitelegale(fake_conn)
+
+        # Verify `execute` was called
+        assert fake_cursor.execute.called, "Expected 'execute' to have been called"
+        print(fake_cursor.execute.call_args_list)  # Debugging output
+
+    def test_delete_orphaned_records_geolocalisation(monkeypatch):
+        """Ensure orphaned records are deleted in geolocalisation"""
+
         fake_conn = MagicMock()
         fake_cursor = fake_conn.cursor.return_value
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
 
-        inner_join.delete_orphaned_records_unitelegale(fake_conn)
+        inner_join.delete_orphaned_records_geolocalisation(fake_conn)
 
-        fake_cursor.execute.assert_called()
-
-    def test_delete_orphaned_records_geolocalisation(self, patch_psycopg2_connect, caplog):
-        """Test deletion of orphaned records from geolocalisation"""
-        caplog.set_level(logging.INFO)
-        conn = patch_psycopg2_connect
-        cursor = conn.cursor.return_value
-        inner_join.delete_orphaned_records_geolocalisation(conn)
-        cursor.execute.assert_called()
+        assert fake_cursor.execute.called, "Expected 'execute' to have been called"
+        print(fake_cursor.execute.call_args_list)  # Debugging output
 
 
 class TestVacuumAnalyze:
-    def test_vacuum_analyze(self, patch_psycopg2_connect, caplog):
+    def test_vacuum_analyze(monkeypatch, caplog):
         """Test that VACUUM ANALYZE is executed"""
         caplog.set_level(logging.INFO)
-    
+
         fake_conn = MagicMock()
         fake_cursor = fake_conn.cursor.return_value
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
 
         inner_join.vacuum_analyze()
 
-        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")
-        print(fake_cursor.execute.call_args_list) 
+        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
+        print(fake_cursor.execute.call_args_list)  # Debugging output 
 
 
 class TestProcessCleanupTask:
