@@ -138,6 +138,13 @@ class TestDBConnection:
         # Check that the DB_CONNECTION_ERRORS counter was incremented.
         assert inner_join.DB_CONNECTION_ERRORS._value.get() > 0
 
+class TestCreateStagingTables:
+    def test_create_staging_tables(self, monkeypatch, caplog):
+        caplog.set_level(logging.INFO)
+        fake_conn = FakeConnection()
+        monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
+        inner_join.create_staging_tables()
+        assert "Staging tables created successfully." in caplog.text
 
 class TestDeletionFunctions:
     def test_delete_orphaned_records_unitelegale(self, caplog):
@@ -225,8 +232,8 @@ class TestCleanOrphanRecordsParallel:
             nonlocal vacuum_called
             vacuum_called = True
 
-        monkeyatch = monkeypatch  # alias for clarity
-        monkeyatch.setattr(inner_join, "vacuum_analyze", fake_vacuum)
+       
+        monkeypatch.setattr(inner_join, "vacuum_analyze", fake_vacuum)
         # Reset the cleanup REQUESTS_TOTAL counter.
         inner_join.REQUESTS_TOTAL._value.set(0)
         inner_join.clean_orphan_records_parallel()

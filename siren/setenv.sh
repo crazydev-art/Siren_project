@@ -17,7 +17,7 @@ export ADMIN_PASSWORD="dataeng24"
 export GF_SECURITY_ADMIN_USER="admin"
 export GF_SECURITY_ADMIN_PASSWORD="adminpwd"
 export VOLUME="dataengsiren"
-export POSTGRES_HOST="10.1.2.72"
+export POSTGRES_HOST="192.168.1.59"
 export IPHOST="192.168.1.59"
 # création des variables pour la mise à jour quotidienne des données SIREN
 export api_key="1e82a3c5-03d1-4e96-82a3-c503d12e963d"
