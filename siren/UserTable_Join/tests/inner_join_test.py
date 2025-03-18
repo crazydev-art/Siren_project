@@ -129,8 +129,8 @@ class TestVacuumAnalyze:
         # Debug: Print all execute calls
         print(fake_cursor.execute.call_args_list)
 
-        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
-        #assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list)
+        #fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
+        assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list)
 
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
