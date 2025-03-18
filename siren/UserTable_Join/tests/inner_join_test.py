@@ -90,19 +90,6 @@ class TestDeletionFunctions:
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
         fake_cursor.execute.assert_called()
-        # # Create a fake connection and cursor
-        # fake_conn = MagicMock()
-        # fake_cursor = fake_conn.cursor.return_value
-
-        # # Patch get_db_connection to return our fake connection
-        # monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
-
-        # # Run the function
-        # inner_join.delete_orphaned_records_unitelegale(fake_conn)
-
-        # # Verify `execute` was called
-        # fake_cursor.execute.assert_called(), "Expected 'execute' to have been called"
-        
 
     def test_delete_orphaned_records_geolocalisation(self, monkeypatch):
         """Ensure orphaned records are deleted in geolocalisation"""
@@ -113,16 +100,7 @@ class TestDeletionFunctions:
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
         inner_join.delete_orphaned_records_geolocalisation(fake_conn)
         fake_cursor.execute.assert_called()
-        # fake_conn = MagicMock()
-        # fake_cursor = fake_conn.cursor.return_value
-        # monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
-
-        # inner_join.delete_orphaned_records_geolocalisation(fake_conn)
-
-        # fake_cursor.execute.assert_called(), "Expected 'execute' to have been called"
-        
-
-
+   
 class TestVacuumAnalyze:
     def test_vacuum_analyze(self, monkeypatch, caplog):
         """Test that VACUUM ANALYZE is executed"""
@@ -132,25 +110,7 @@ class TestVacuumAnalyze:
         monkeypatch.setattr("inner_join.get_db_connection", lambda: fake_conn)
         inner_join.vacuum_analyze(fake_conn)
         fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")
-        # caplog.set_level(logging.INFO)
-
-        # fake_conn = MagicMock()
-        # fake_cursor = fake_conn.cursor.return_value
-        # # Ensure the cursor.execute() method is called
-        # fake_cursor.execute = MagicMock()
-
-        # monkeypatch.setattr("inner_join.get_db_connection", lambda: fake_conn)
-
-        # # Run the function
-        # inner_join.vacuum_analyze(fake_conn)
-
-        # # Debugging: Ensure mock was used
-        # print("Mock Connection Used?", inner_join.get_db_connection() is fake_conn)
-        # print("Execute Calls:", fake_cursor.execute.call_args_list)
-
-        # # Assertion: Ensure VACUUM ANALYZE was executed
-        # fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")
-
+        
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
         """Test cleanup task execution and connection closure"""
