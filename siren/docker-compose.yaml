@@ -18,6 +18,7 @@ services: # definition of the services
       retries: 5
       start_period: 30s
       timeout: 10s  
+
     restart: always  
         
   pgadmin: # pgadmin section for definition of the config
@@ -236,6 +237,7 @@ services: # definition of the services
     build: # build container based on the Dockerfile configuration
       context: ./data_updater # Folder where to execute the Docker file
       dockerfile: Dockerfile
+
     container_name: data_updater_container
     networks:
       - ${NETWORK_DOCKER}
@@ -246,6 +248,7 @@ services: # definition of the services
         condition: service_completed_successfully
       postgres:
         condition: service_healthy
+
 
 volumes: # persistance of the data locally 
   postgres_data:

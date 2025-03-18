@@ -91,8 +91,11 @@ class TestDeletionFunctions:
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
         fake_cursor.execute.assert_called()
 
+        
+
     def test_delete_orphaned_records_geolocalisation(self, monkeypatch):
         """Ensure orphaned records are deleted in geolocalisation"""
+
 
         fake_conn = MagicMock()
         fake_cursor = fake_conn.cursor.return_value
@@ -100,7 +103,7 @@ class TestDeletionFunctions:
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
         inner_join.delete_orphaned_records_geolocalisation(fake_conn)
         fake_cursor.execute.assert_called()
-   
+
 class TestVacuumAnalyze:
     def test_vacuum_analyze(self, monkeypatch, caplog):
         """Test that VACUUM ANALYZE is executed"""
@@ -110,7 +113,7 @@ class TestVacuumAnalyze:
         monkeypatch.setattr("inner_join.get_db_connection", lambda: fake_conn)
         inner_join.vacuum_analyze(fake_conn)
         fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")
-        
+
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
         """Test cleanup task execution and connection closure"""
