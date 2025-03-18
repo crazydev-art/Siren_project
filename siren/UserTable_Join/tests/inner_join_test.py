@@ -7,7 +7,6 @@ from concurrent.futures import ProcessPoolExecutor
 import inner_join  # Import the module under test
 
 # --- Fixtures ---
-
 @pytest.fixture(autouse=True)
 def set_env(monkeypatch):
     """Mock environment variables required by inner_join.py"""
@@ -41,7 +40,6 @@ def fast_sleep(monkeypatch):
     monkeypatch.setattr(time, "sleep", lambda _: None)
 
 # --- Test Classes ---
-
 class TestGetEnvVariable:
     def test_get_env_variable_success(self):
         """Test that environment variables are fetched correctly"""
