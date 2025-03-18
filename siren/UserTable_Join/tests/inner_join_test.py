@@ -126,11 +126,12 @@ class TestVacuumAnalyze:
 
         inner_join.vacuum_analyze()
 
-        # Debug: Print all execute calls
-        print(fake_cursor.execute.call_args_list)
+        # Debugging: Print all execute calls
+        print("Execute calls:", fake_cursor.execute.call_args_list)
 
-        #fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")  # Ensure the correct query is executed
-        assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list)
+        # Check if any call to execute contains "VACUUM ANALYZE"
+        assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list), \
+            f"Expected 'VACUUM ANALYZE' call, but got {fake_cursor.execute.call_args_list}"
 
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):
