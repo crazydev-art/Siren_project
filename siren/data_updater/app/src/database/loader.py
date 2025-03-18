@@ -50,7 +50,7 @@ def load_data_to_staging(csv_data, table_type):
             'etat_administratif': 'etatAdministratifEtablissement',
             'columns': """(
                 siret, nic, siren, datecreationetablissement,
-                trancheeffectifsetablissement, anneeffectifsetablissement,
+                trancheeffectifsetablissement, anneeeffectifsetablissement,
                 activiteprincipaleetablissement, datederniertraitementetablissement,
                 etatadministratifetablissement, etablissementsiege,
                 enseigne1etablissement, enseigne2etablissement, enseigne3etablissement,
