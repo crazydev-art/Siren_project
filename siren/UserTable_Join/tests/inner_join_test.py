@@ -122,10 +122,10 @@ class TestVacuumAnalyze:
         # Ensure the cursor.execute() method is called
         fake_cursor.execute = MagicMock()
 
-        monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
+        monkeypatch.setattr("inner_join.get_db_connection", lambda: fake_conn)
 
         # Run the function
-        inner_join.vacuum_analyze()
+        inner_join.vacuum_analyze(fake_conn)
 
         # Debugging: Ensure mock was used
         print("Mock Connection Used?", inner_join.get_db_connection() is fake_conn)

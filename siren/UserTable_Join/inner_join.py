@@ -157,15 +157,16 @@ def delete_orphaned_records_geolocalisation(batch_size=10000):
 
 
 # Function to run VACUUM ANALYZE safely
-def vacuum_analyze():
+def vacuum_analyze(conn=None):
     """Performs VACUUM ANALYZE on the database to optimize performance."""
-    conn = get_db_connection()
+    if conn is None:
+        conn = get_db_connection()  
+        # conn = get_db_connection()
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # Ensure VACUUM runs outside a transaction
     start_time = time.time()  # Start timing
     try:
         with conn.cursor() as cursor:
             logger.info("Running VACUUM ANALYZE...")
-            print("Debug: Running execute('VACUUM ANALYZE;')")
             cursor.execute("VACUUM ANALYZE;")
             duration = time.time() - start_time  # Calculate duration
             vacuum_duration_seconds.set(duration)  # Update Prometheus metric
