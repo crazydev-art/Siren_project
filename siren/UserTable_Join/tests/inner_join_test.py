@@ -124,14 +124,15 @@ class TestVacuumAnalyze:
 
         monkeypatch.setattr(inner_join, "get_db_connection", lambda: fake_conn)
 
+        # Run the function
         inner_join.vacuum_analyze()
 
-        # Debugging: Print all execute calls
-        print("Execute calls:", fake_cursor.execute.call_args_list)
+        # Debugging: Ensure mock was used
+        print("Mock Connection Used?", inner_join.get_db_connection() is fake_conn)
+        print("Execute Calls:", fake_cursor.execute.call_args_list)
 
-        # Check if any call to execute contains "VACUUM ANALYZE"
-        assert any("VACUUM ANALYZE" in call[0][0] for call in fake_cursor.execute.call_args_list), \
-            f"Expected 'VACUUM ANALYZE' call, but got {fake_cursor.execute.call_args_list}"
+        # Assertion: Ensure VACUUM ANALYZE was executed
+        fake_cursor.execute.assert_any_call("VACUUM ANALYZE;")
 
 class TestProcessCleanupTask:
     def test_process_cleanup_task(self, patch_psycopg2_connect, caplog):

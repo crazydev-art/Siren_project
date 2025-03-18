@@ -165,6 +165,7 @@ def vacuum_analyze():
     try:
         with conn.cursor() as cursor:
             logger.info("Running VACUUM ANALYZE...")
+            print("Debug: Running execute('VACUUM ANALYZE;')")
             cursor.execute("VACUUM ANALYZE;")
             duration = time.time() - start_time  # Calculate duration
             vacuum_duration_seconds.set(duration)  # Update Prometheus metric
