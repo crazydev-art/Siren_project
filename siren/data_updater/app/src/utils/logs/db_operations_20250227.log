@@ -703,7 +703,7 @@ DETAIL:  Key (siret)=(03934989900029) already exists.
 2025-02-27 16:08:55 | INFO | table_STAGING | INSERT_ADRESSE | Lignes affectées: 1000
 2025-02-27 16:08:55 | ERROR | ERREUR | MAIN_UPDATE_ETABLISSEMENT | column "anneeeffectifsetablissement" of relation "etablissement" does not exist
 LINE 7:                 anneeeffectifsetablissement = s.anneeffectifs...
-                        ^
+
 
 2025-02-27 16:09:33 | ERROR | ERREUR | STAGING_INSERT_ETABLISSEMENT | duplicate key value violates unique constraint "staging_siret"
 DETAIL:  Key (siret)=(00552024200040) already exists.
