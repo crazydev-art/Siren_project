@@ -26,15 +26,12 @@ def patch_psycopg2_connect(monkeypatch):
     """Mock psycopg2.connect to return a lightweight fake connection"""
     fake_conn = MagicMock()
     fake_cursor = MagicMock()
-    
     # Simulate a DELETE operation returning 3 affected rows
     fake_cursor.rowcount = 3
     fake_cursor.fetchall.return_value = [("dummy",)] * 3
-    
     fake_conn.cursor.return_value = fake_cursor
     fake_conn.commit.return_value = None
     fake_conn.close.return_value = None
-    
     monkeypatch.setattr(inner_join.psycopg2, "connect", lambda *args, **kwargs: fake_conn)
     return fake_conn
 
@@ -42,7 +39,6 @@ def patch_psycopg2_connect(monkeypatch):
 def fast_sleep(monkeypatch):
     """Prevent real sleep calls to speed up tests"""
     monkeypatch.setattr(time, "sleep", lambda _: None)
-
 
 # --- Test Classes ---
 
@@ -56,7 +52,6 @@ class TestGetEnvVariable:
         monkeypatch.delenv("POSTGRES_DB", raising=False)
         with pytest.raises(EnvironmentError, match="Environment variable 'POSTGRES_DB' is not set."):
             inner_join.get_env_variable("POSTGRES_DB")
-
 
 class TestDBConnection:
     def test_get_db_connection_success(self, patch_psycopg2_connect):
@@ -72,14 +67,12 @@ class TestDBConnection:
         with pytest.raises(Exception, match="Connection failed"):
             inner_join.get_db_connection()
 
-
 class TestCreateStagingTables:
     def test_create_staging_tables(self, patch_psycopg2_connect, caplog):
         """Test staging table creation with logging verification"""
         caplog.set_level(logging.INFO)
         inner_join.create_staging_tables()
         assert "Staging tables created successfully." in caplog.text
-
 
 class TestDeletionFunctions:
     def test_delete_orphaned_records_unitelegale(self, monkeypatch):
@@ -91,12 +84,8 @@ class TestDeletionFunctions:
         inner_join.delete_orphaned_records_unitelegale(fake_conn)
         fake_cursor.execute.assert_called()
 
-        
-
     def test_delete_orphaned_records_geolocalisation(self, monkeypatch):
         """Ensure orphaned records are deleted in geolocalisation"""
-
-
         fake_conn = MagicMock()
         fake_cursor = fake_conn.cursor.return_value
         fake_cursor.__enter__.return_value = fake_cursor  # Fix context manager
@@ -121,7 +110,6 @@ class TestProcessCleanupTask:
         inner_join.main()
         print(patch_psycopg2_connect.close.call_args_list)
         patch_psycopg2_connect.close.assert_called()
-
 
 class TestCleanOrphanRecordsParallel:
     def test_clean_orphan_records_parallel(self, monkeypatch, caplog):
