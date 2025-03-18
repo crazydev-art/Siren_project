@@ -37,7 +37,7 @@ class UpdateService:
             self.init_clients()
             api_calls = 0
 
-            # 1. Mise à jour des établissements et adresses
+            # 2. Mise à jour des établissements et adresses
             print("\n📦 Traitement des établissements et adresses")
             cursor_value = "*"
             cursor_suivant = ""
@@ -82,8 +82,8 @@ class UpdateService:
 
                 cursor_value = next_cursor
                 time.sleep(4)
-
-            # 2. Mise à jour des unités légales
+                
+            # 1. Mise à jour des unités légales
             print("\n📦 Traitement des unités légales")
             cursor_value = "*"
             cursor_suivant = ""
@@ -116,6 +116,8 @@ class UpdateService:
 
                 cursor_value = next_cursor
                 time.sleep(4)
+
+            
 
             print(f"\n📊 Nombre total d'appels API : {api_calls}")
                 
