@@ -50,7 +50,7 @@ def load_data_to_staging(csv_data, table_type):
             'etat_administratif': 'etatAdministratifEtablissement',
             'columns': """(
                 siret, nic, siren, datecreationetablissement,
-                trancheeffectifsetablissement, anneeffectifsetablissement,
+                trancheeffectifsetablissement, anneeeffectifsetablissement,
                 activiteprincipaleetablissement, datederniertraitementetablissement,
                 etatadministratifetablissement, etablissementsiege,
                 enseigne1etablissement, enseigne2etablissement, enseigne3etablissement,
@@ -185,7 +185,7 @@ def update_from_staging(table_type):
             'update_champs': """
                 datecreationetablissement = s.datecreationetablissement,
                 trancheeffectifsetablissement = s.trancheeffectifsetablissement,
-                anneeffectifsetablissement = s.anneeffectifsetablissement,
+                anneeeffectifsetablissement = s.anneeeffectifsetablissement,
                 datederniertraitementetablissement = s.datederniertraitementetablissement,
                 etablissementsiege = s.etablissementsiege,
                 etatadministratifetablissement = s.etatadministratifetablissement,
