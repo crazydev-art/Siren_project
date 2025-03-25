@@ -101,7 +101,7 @@ class TestUsersTable:
         caplog.set_level(logging.INFO)  # Ensure INFO level logs are captured
         # Verify that create_users_table logs a success message.
         user_table.create_users_table()
-        assert "Table 'users' created successfully" in caplog.text
+        assert "Table 'admin_users' created successfully" in caplog.text
 
 class TestAdminUser:
     def test_create_admin_user_logs_success(self, caplog):
