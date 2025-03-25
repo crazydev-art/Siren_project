@@ -237,7 +237,6 @@ services: # definition of the services
     build: # build container based on the Dockerfile configuration
       context: ./data_updater # Folder where to execute the Docker file
       dockerfile: Dockerfile
-
     container_name: data_updater_container
     networks:
       - ${NETWORK_DOCKER}
