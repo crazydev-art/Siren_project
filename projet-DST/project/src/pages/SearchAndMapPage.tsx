@@ -4,6 +4,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { GeocodedAddress, Activity, SearchFilters } from '../types/company';
 import { searchCompanies } from '../api/company';
+import.meta.env;
+
+
+const FAST_API_BASE_URL = import.meta.env.VITE_FAST_API_URL || 'http://0.0.0.0:8000';
 
 const SearchAndMapPage: React.FC = () => {
   const [address, setAddress] = useState('');
@@ -25,7 +29,10 @@ const SearchAndMapPage: React.FC = () => {
       }
       try {
         console.log('Fetching activity suggestions for query:', query);
-        const response = await fetch(`http://141.145.207.10:8000/activities/suggest?q=${encodeURIComponent(query)}`);
+
+        const url = `${FAST_API_BASE_URL}/activities/suggest?q=${encodeURIComponent(query)}`;
+        
+        const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
         const data = await response.json();
         console.log('Activity suggestions received:', data);
@@ -43,7 +50,8 @@ const SearchAndMapPage: React.FC = () => {
   const fetchNafCode = async (activity: Activity): Promise<string | null> => {
     try {
       console.log('Fetching NAF code for activity:', activity.nafvfinale);
-      const response = await fetch(`http://141.145.207.10:8000/activities/get-naf?activity=${encodeURIComponent(activity.nafvfinale)}`);
+      const url = `${FAST_API_BASE_URL}/activities/get-naf?activity=${encodeURIComponent(activity.nafvfinale)}`
+      const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
       const data = await response.json();
       console.log('NAF code received:', data.codenaf);

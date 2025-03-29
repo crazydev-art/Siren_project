@@ -1,7 +1,12 @@
-// src/api/auth.tsx
+import.meta.env;
+
+
+const FAST_API_BASE_URL = import.meta.env.VITE_FAST_API_URL || 'http://0.0.0.0:8000';
 export const loginUser = async (email: string, password: string) => {
   try {
-      const response = await fetch("http://141.145.207.10:8000/auth/login", {
+    const url = `${FAST_API_BASE_URL}/auth/login`;
+    
+      const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json", },
           body: JSON.stringify({ email, password }),
@@ -22,7 +27,9 @@ export const loginUser = async (email: string, password: string) => {
 
 export async function registerUser(username: string, email: string, password: string) {
   try {
-      const response = await fetch("http://141.145.207.10:8000/auth/register", {
+    const url = `${FAST_API_BASE_URL}/auth/register`;
+    
+      const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json", },
           body: JSON.stringify({ username, email, password }),
