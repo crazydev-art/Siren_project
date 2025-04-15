@@ -98,10 +98,10 @@ export default function SearchPage() {
                 value={filters.type}
                 onChange={(e) => setFilters({ ...filters, type: e.target.value as 'siren' | 'name' | 'activity' | 'siret' })}
               >
-                <option value="name">Nom d'entreprise</option>
+                {/*<option value="name">Nom d'entreprise</option>*/}
                 <option value="siren">Siren</option>
                 <option value="siret">Siret</option>
-                <option value="activity">Code APE(activité principale exercée)</option>
+                {/*<option value="activity">Code APE(activité principale exercée)</option>*/}
               </select>
             </div>
             <div>

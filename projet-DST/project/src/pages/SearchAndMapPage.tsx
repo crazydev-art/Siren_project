@@ -6,36 +6,33 @@ import { GeocodedAddress, Activity, SearchFilters } from '../types/company';
 import { searchCompanies } from '../api/company';
 import.meta.env;
 
-
 const FAST_API_BASE_URL = import.meta.env.VITE_FAST_API_URL || 'http://0.0.0.0:8000';
 
 const SearchAndMapPage: React.FC = () => {
-  const [address, setAddress] = useState('');
+  const [addressQuery, setAddressQuery] = useState('');
+  const [selectedAddress, setSelectedAddress] = useState<GeocodedAddress | null>(null);
+  const [addressSuggestions, setAddressSuggestions] = useState<any[]>([]);
   const [radius, setRadius] = useState(5);
   const [establishments, setEstablishments] = useState<GeocodedAddress[]>([]);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
-  const [query, setQuery] = useState('');
+  const [activityQuery, setActivityQuery] = useState('');
   const [suggestedActivities, setSuggestedActivities] = useState<Activity[]>([]);
   const [mapCenter, setMapCenter] = useState<[number, number]>([48.8584, 2.2945]);
   const [searchedAddress, setSearchedAddress] = useState<GeocodedAddress | null>(null);
   const [loading, setLoading] = useState(false);
 
+  // Fetch activity suggestions
   useEffect(() => {
     const fetchActivitySuggestions = async () => {
-      if (!query.trim()) {
-        console.log('Query empty, clearing suggestions');
+      if (!activityQuery.trim()) {
         setSuggestedActivities([]);
         return;
       }
       try {
-        console.log('Fetching activity suggestions for query:', query);
-
-        const url = `${FAST_API_BASE_URL}/activities/suggest?q=${encodeURIComponent(query)}`;
-        
+        const url = `${FAST_API_BASE_URL}/activities/suggest?q=${encodeURIComponent(activityQuery)}`;
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
         const data = await response.json();
-        console.log('Activity suggestions received:', data);
         setSuggestedActivities(data);
       } catch (error) {
         console.error('Failed to fetch activity suggestions:', error);
@@ -45,16 +42,38 @@ const SearchAndMapPage: React.FC = () => {
 
     const timeoutId = setTimeout(fetchActivitySuggestions, 300);
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [activityQuery]);
+
+  // Fetch address suggestions
+  useEffect(() => {
+    const fetchAddressSuggestions = async () => {
+      if (!addressQuery.trim()) {
+        setAddressSuggestions([]);
+        return;
+      }
+      try {
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addressQuery)}&format=json&limit=5`
+        );
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        const data = await response.json();
+        setAddressSuggestions(data);
+      } catch (error) {
+        console.error('Failed to fetch address suggestions:', error);
+        setAddressSuggestions([]);
+      }
+    };
+
+    const timeoutId = setTimeout(fetchAddressSuggestions, 300);
+    return () => clearTimeout(timeoutId);
+  }, [addressQuery]);
 
   const fetchNafCode = async (activity: Activity): Promise<string | null> => {
     try {
-      console.log('Fetching NAF code for activity:', activity.nafvfinale);
-      const url = `${FAST_API_BASE_URL}/activities/get-naf?activity=${encodeURIComponent(activity.nafvfinale)}`
+      const url = `${FAST_API_BASE_URL}/activities/get-naf?activity=${encodeURIComponent(activity.nafvfinale)}`;
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
       const data = await response.json();
-      console.log('NAF code received:', data.codenaf);
       return data.codenaf || null;
     } catch (error) {
       console.error('Failed to fetch NAF code:', error);
@@ -64,18 +83,13 @@ const SearchAndMapPage: React.FC = () => {
 
   const geocodeAddress = async (address: string): Promise<{ latitude: number; longitude: number; display_name: string } | null> => {
     try {
-      console.log('Geocoding address:', address);
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`
       );
       if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
       const data = await response.json();
-      if (data.length === 0) {
-        console.log('Address not found');
-        return null;
-      }
+      if (data.length === 0) return null;
       const { lat, lon, display_name } = data[0];
-      console.log('Geocoded address:', { latitude: parseFloat(lat), longitude: parseFloat(lon), display_name });
       return { latitude: parseFloat(lat), longitude: parseFloat(lon), display_name };
     } catch (error) {
       console.error('Failed to geocode address:', error);
@@ -84,8 +98,7 @@ const SearchAndMapPage: React.FC = () => {
   };
 
   const handleSearch = async () => {
-    if (!address.trim() || !selectedActivity || !radius) {
-      console.log('Validation failed: missing address, activity, or radius');
+    if (!selectedAddress || !selectedActivity || !radius) {
       alert('Please provide an address, activity, and radius.');
       return;
     }
@@ -94,27 +107,16 @@ const SearchAndMapPage: React.FC = () => {
     try {
       const nafCode = await fetchNafCode(selectedActivity);
       if (!nafCode) {
-        console.log('No NAF code found for activity:', selectedActivity.nafvfinale);
         alert('No NAF code found for this activity.');
         return;
       }
 
-      const geocoded = await geocodeAddress(address);
-      if (!geocoded) {
-        alert('Address not found.');
-        return;
-      }
-
-      const { latitude, longitude, display_name } = geocoded;
+      const { latitude, longitude, siret } = selectedAddress;
       setMapCenter([latitude, longitude]);
-      setSearchedAddress({ latitude, longitude, siret: display_name });
+      setSearchedAddress({ latitude, longitude, siret: siret });
 
       const searchFilters: SearchFilters = { activityCode: nafCode, latitude, longitude, radius };
-      console.log('Searching companies with filters:', searchFilters);
-
       const companies = await searchCompanies(searchFilters);
-      console.log('Companies received:', companies);
-
       setEstablishments(
         companies.map(c => ({
           siret: c.siret,
@@ -127,7 +129,6 @@ const SearchAndMapPage: React.FC = () => {
       alert('An error occurred while searching. Please try again.');
     } finally {
       setLoading(false);
-      console.log('Search completed, loading:', false);
     }
   };
 
@@ -136,13 +137,42 @@ const SearchAndMapPage: React.FC = () => {
       <div className="w-1/3 p-6 bg-gray-100 border-r border-gray-200">
         <h2 className="text-lg font-semibold mb-4">Recherche d'établissements</h2>
         <div className="mb-4">
-          <input
-            type="text"
-            className="p-2 w-full border rounded-md"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            placeholder="Entrez une adresse"
-          />
+          <Combobox
+            value={selectedAddress}
+            onChange={(addr) => {
+              if (addr) {
+                setSelectedAddress({
+                  latitude: parseFloat(addr.lat),
+                  longitude: parseFloat(addr.lon),
+                  siret: addr.display_name, // Using display_name as a placeholder for siret
+                });
+              }
+            }}
+          >
+            <div className="relative">
+              <Combobox.Input
+                className="w-full p-2 border rounded-md"
+                displayValue={(addr: GeocodedAddress) => addr?.siret || ''}
+                onChange={(e) => setAddressQuery(e.target.value)}
+                placeholder="Entrez une adresse"
+              />
+              <Combobox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-md max-h-60 overflow-auto z-10">
+                {addressSuggestions.length === 0 && addressQuery !== '' ? (
+                  <div className="p-2 text-gray-500">No addresses found</div>
+                ) : (
+                  addressSuggestions.map((addr) => (
+                    <Combobox.Option
+                      key={addr.place_id}
+                      value={addr}
+                      className={({ active }) => `p-2 cursor-pointer ${active ? 'bg-gray-200' : ''}`}
+                    >
+                      {addr.display_name}
+                    </Combobox.Option>
+                  ))
+                )}
+              </Combobox.Options>
+            </div>
+          </Combobox>
         </div>
         <div className="mb-4">
           <Combobox value={selectedActivity} onChange={setSelectedActivity}>
@@ -150,11 +180,11 @@ const SearchAndMapPage: React.FC = () => {
               <Combobox.Input
                 className="w-full p-2 border rounded-md"
                 displayValue={(activity: Activity) => activity?.nafvfinale || ''}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => setActivityQuery(e.target.value)}
                 placeholder="Entrez une activité"
               />
               <Combobox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-md max-h-60 overflow-auto z-10">
-                {suggestedActivities.length === 0 && query !== '' ? (
+                {suggestedActivities.length === 0 && activityQuery !== '' ? (
                   <div className="p-2 text-gray-500">No activities found</div>
                 ) : (
                   suggestedActivities.map((activity) => (

@@ -71,10 +71,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
               value={filters.type}
               onChange={handleSearchTypeChange}
             >
-              <option value="name">Nom d'entreprise</option>
+              {/*<option value="name">Nom d'entreprise</option>*/}
               <option value="siren">Siren</option>
               <option value="siret">Siret</option>
-              <option value="activity">Code APE</option>
+              {/*<option value="activity">Code APE</option>*/}
             </select>
           </div>
           {/* Region */}
