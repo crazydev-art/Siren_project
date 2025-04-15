@@ -1,0 +1,14 @@
+FILESIREN=/home/uniserv/DataEng2024Cont/siren/Files_Siren
+HOSTNAME=f1a8a05e0a59
+NETWORK_DOCKER=siren_network
+PWD=/home/uniserv/DataEng2024Cont/siren/Redpanda
+MYDIR=/home/uniserv/DataEng2024Cont/siren
+U=
+G=
+HOME=/root
+TERM=xterm
+REDPANDA=/home/uniserv/DataEng2024Cont/siren/Redpanda
+SHLVL=1
+IPHOST=192.168.1.59
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+_=/usr/bin/env

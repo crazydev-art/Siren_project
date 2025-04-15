@@ -1,0 +1,23 @@
+Exécution query en chunks ...
+Morceau chargé : 500000 lignes. Total actuel : 500000 lignes.
+Morceau chargé : 500000 lignes. Total actuel : 1000000 lignes.
+Morceau chargé : 500000 lignes. Total actuel : 1500000 lignes.
+Morceau chargé : 500000 lignes. Total actuel : 2000000 lignes.
+Morceau chargé : 500000 lignes. Total actuel : 2500000 lignes.
+Morceau chargé : 500000 lignes. Total actuel : 3000000 lignes.
+Morceau chargé : 20276 lignes. Total actuel : 3020276 lignes.
+Lecture terminée : 3020276 lignes chargées.
+                  siret    nic      siren  ... qualite_xy y_latitude x_longitude
+0        03888123100013  00013  038881231  ...         11  48.971387    2.305639
+1        03893759500015  00015  038937595  ...         11  48.921377    2.185917
+2        03898473800013  00013  038984738  ...         11  48.851520    2.354774
+3        03902879000010  00010  039028790  ...         11  48.844517    2.405080
+4        03906934900015  00015  039069349  ...         11  48.883619    2.293066
+...                 ...    ...        ...  ...        ...        ...         ...
+3020271  98528987500017  00017  985289875  ...         11  48.847017    2.327157
+3020272  03877722300017  00017  038777223  ...         11  48.430680    2.147661
+3020273  03884914700012  00012  038849147  ...         11  48.729603    2.447124
+3020274  03886965700015  00015  038869657  ...         11  48.876610    2.322102
+3020275  03887678500015  00015  038876785  ...         12  48.796636    2.382636
+
+[3020276 rows x 34 columns]

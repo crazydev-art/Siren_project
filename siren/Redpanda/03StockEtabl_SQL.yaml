@@ -1,0 +1,173 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: true
+  cert_file: ""
+  key_file: ""
+
+input:
+  csv:
+    paths: [${FILESIREN}/StockEtablissement_utf8.csv]
+    parse_header_row: true
+    delimiter: ','
+
+pipeline:
+  threads: 8
+  processors: 
+    #- log: 
+    #    message: "Processing row: ${!this.index(0)}" 
+    - mapping: |
+        root.siren = this.siren
+        root.nic = this.nic
+        root.siret = this.siret
+        root.statutDiffusionEtablissement = this.statutDiffusionEtablissement
+        root.dateCreationEtablissement = this.dateCreationEtablissement.ts_parse("2006-01-02").catch(null)
+        root.trancheEffectifsEtablissement = this.trancheEffectifsEtablissement
+        root.anneeEffectifsEtablissement = this.anneeEffectifsEtablissement
+        root.activitePrincipaleRegistreMetiersEtablissement = this.activitePrincipaleRegistreMetiersEtablissement
+        root.dateDernierTraitementEtablissement = this.dateDernierTraitementEtablissement.ts_parse("2006-01-02T15:04:05").catch(null)
+        root.etablissementSiege = this.etablissementSiege
+        root.nombrePeriodesEtablissement = this.nombrePeriodesEtablissement
+        root.complementAdresseEtablissement = this.complementAdresseEtablissement
+        root.numeroVoieEtablissement = this.numeroVoieEtablissement
+        root.indiceRepetitionEtablissement = this.indiceRepetitionEtablissement
+        root.dernierNumeroVoieEtablissement = this.dernierNumeroVoieEtablissement
+        root.indiceRepetitionDernierNumeroVoieEtablissement = this.indiceRepetitionDernierNumeroVoieEtablissement
+        root.typeVoieEtablissement = this.typeVoieEtablissement
+        root.libelleVoieEtablissement = this.libelleVoieEtablissement
+        root.codePostalEtablissement = this.codePostalEtablissement
+        root.libelleCommuneEtablissement = this.libelleCommuneEtablissement
+        root.libelleCommuneEtrangerEtablissement = this.libelleCommuneEtrangerEtablissement
+        root.distributionSpecialeEtablissement = this.distributionSpecialeEtablissement
+        root.codeCommuneEtablissement = this.codeCommuneEtablissement
+        root.codeCedexEtablissement = this.codeCedexEtablissement
+        root.libelleCedexEtablissement = this.libelleCedexEtablissement
+        root.codePaysEtrangerEtablissement = this.codePaysEtrangerEtablissement
+        root.libellePaysEtrangerEtablissement = this.libellePaysEtrangerEtablissement
+        root.identifiantAdresseEtablissement = this.identifiantAdresseEtablissement
+        root.coordonneeLambertAbscisseEtablissement = this.coordonneeLambertAbscisseEtablissement
+        root.coordonneeLambertOrdonneeEtablissement = this.coordonneeLambertOrdonneeEtablissement
+        root.complementAdresse2Etablissement = this.complementAdresse2Etablissement
+        root.numeroVoie2Etablissement = this.numeroVoie2Etablissement
+        root.indiceRepetition2Etablissement = this.indiceRepetition2Etablissement
+        root.typeVoie2Etablissement = this.typeVoie2Etablissement
+        root.libelleVoie2Etablissement = this.libelleVoie2Etablissement
+        root.codePostal2Etablissement = this.codePostal2Etablissement
+        root.libelleCommune2Etablissement = this.libelleCommune2Etablissement
+        root.libelleCommuneEtranger2Etablissement = this.libelleCommuneEtranger2Etablissement
+        root.distributionSpeciale2Etablissement = this.distributionSpeciale2Etablissement
+        root.codeCommune2Etablissement = this.codeCommune2Etablissement
+        root.codeCedex2Etablissement = this.codeCedex2Etablissement
+        root.libelleCedex2Etablissement = this.libelleCedex2Etablissement
+        root.codePaysEtranger2Etablissement = this.codePaysEtranger2Etablissement
+        root.libellePaysEtranger2Etablissement = this.libellePaysEtranger2Etablissement
+        root.dateDebut = this.dateDebut
+        root.etatAdministratifEtablissement = this.etatAdministratifEtablissement
+        root.enseigne1Etablissement = this.enseigne1Etablissement
+        root.enseigne2Etablissement = this.enseigne2Etablissement
+        root.enseigne3Etablissement = this.enseigne3Etablissement
+        root.denominationUsuelleEtablissement = this.denominationUsuelleEtablissement
+        root.activitePrincipaleEtablissement = this.activitePrincipaleEtablissement
+        root.nomenclatureActivitePrincipaleEtablissement = this.nomenclatureActivitePrincipaleEtablissement
+        root.caractereEmployeurEtablissement = this.caractereEmployeurEtablissement
+        root.adresse_id = uuid_v4()
+      
+      # Branch processor to filter rows based on postal code prefixes
+    - mutation: |
+        root.prefix = this.codePostalEtablissement.string().slice(0, 2)
+        # Manually check if the postal code starts with desired prefixes
+        root.match = (this.prefix == "75" || this.prefix == "77" || this.prefix == "78" || this.prefix == "91" || this.prefix == "92" || this.prefix == "93" || this.prefix == "94" || this.prefix == "95" ) && 
+                    (this.statutDiffusionEtablissement == "O" )  && 
+                    (this.etatAdministratifEtablissement == "A" )
+          
+        root = if this.match { this } else { deleted() }
+   
+        
+    #- catch:
+    #    - log:
+    #        message: "catch: ${!this}"
+    #    - mapping: |
+    #        root = deleted()
+
+output:
+  switch:
+    cases:
+      - check: "this.match == true"
+        output:
+          broker:
+            batching:  # Adding batch processor to collect the rows in batches
+              count: 4500
+              period: 45s
+            outputs:
+              - retry:
+                  max_retries: 5
+                  backoff:
+                    initial_interval: 1s
+                    max_interval: 30s
+                  output:
+                    sql_insert:  # Ensure this line is correctly indented
+                      driver: postgres
+                      dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+                      table: etablissement
+                      columns: [siret,nic,siren,datecreationetablissement,trancheeffectifsetablissement,anneeeffectifsetablissement,activiteprincipaleetablissement,datederniertraitementetablissement,etatadministratifetablissement,etablissementsiege,enseigne1etablissement,enseigne2etablissement,enseigne3etablissement,denominationusuelleetablissement]
+                      args_mapping: root = [siret,nic,siren,dateCreationEtablissement,trancheEffectifsEtablissement,anneeEffectifsEtablissement,activitePrincipaleEtablissement,dateDernierTraitementEtablissement,etatAdministratifEtablissement,etablissementSiege,enseigne1Etablissement,enseigne2Etablissement,enseigne3Etablissement,denominationUsuelleEtablissement]
+                      init_statement: |
+                          CREATE TABLE IF NOT EXISTS etablissement (
+                            siret VARCHAR(14) NOT NULL,  
+                            nic VARCHAR(5) NOT NULL,
+                            siren VARCHAR(9) NOT NULL,
+                            dateCreationEtablissement DATE,
+                            trancheEffectifsEtablissement VARCHAR(10), 
+                            anneeEffectifsEtablissement VARCHAR (10),
+                            activitePrincipaleEtablissement VARCHAR(12),
+                            dateDernierTraitementEtablissement TIMESTAMP,
+                            etatAdministratifEtablissement VARCHAR (1),
+                            etablissementSiege BOOLEAN,
+                            enseigne1Etablissement VARCHAR (50),
+                            enseigne2Etablissement VARCHAR (50),
+                            enseigne3Etablissement VARCHAR (50),
+                            denominationUsuelleEtablissement VARCHAR (100),
+                            primary key (siret)
+                          );
+                          CREATE INDEX IF NOT EXISTS etabl_siren_idx ON etablissement (siren);
+                          CREATE INDEX IF NOT EXISTS etabl_nic_idx ON etablissement (nic);
+                          CREATE INDEX IF NOT EXISTS etabl_siret_idx ON etablissement (siret);
+                          CREATE INDEX IF NOT EXISTS etabl_etablissementSiege_idx ON etablissement (etablissementSiege);
+                          CREATE INDEX IF NOT EXISTS etabl_dateDernierTraitementEtablissement_idx ON etablissement (dateDernierTraitementEtablissement);
+                      
+              # Output 2: Insert into second table based on a different condition (e.g., siren starts with '2')
+              - retry:
+                  max_retries: 5
+                  backoff:
+                    initial_interval: 1s
+                    max_interval: 30s
+                  output:
+                    sql_insert:  # Ensure this line is correctly indented
+                      driver: postgres
+                      dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+                      table: adresse
+                      columns: [siret,complementadresseetablissement,numerovoieetablissement,indicerepetitionetablissement,typevoieetablissement,libellevoieetablissement,codepostaletablissement,libellecommuneetablissement,codecommuneetablissement]
+                      args_mapping: root = [siret,complementAdresseEtablissement,numeroVoieEtablissement,indiceRepetitionEtablissement,typeVoieEtablissement,libelleVoieEtablissement,codePostalEtablissement,libelleCommuneEtablissement,codeCommuneEtablissement]
+                      init_statement: |
+                          CREATE TABLE IF NOT EXISTS adresse (
+                            siret VARCHAR(14) NOT NULL,
+                            complementAdresseEtablissement VARCHAR(255),
+                            numeroVoieEtablissement VARCHAR(50),
+                            indiceRepetitionEtablissement VARCHAR(10),
+                            typeVoieEtablissement VARCHAR(50),
+                            libelleVoieEtablissement VARCHAR(255),
+                            codePostalEtablissement VARCHAR(10),
+                            libelleCommuneEtablissement VARCHAR(100),
+                            codeCommuneEtablissement VARCHAR(50)
+                          );
+                          CREATE INDEX IF NOT EXISTS adr_codePostalEtablissement_idx ON adresse (codePostalEtablissement);
+                          CREATE INDEX IF NOT EXISTS adr_siret_idx ON adresse (siret);
+                          CREATE INDEX IF NOT EXISTS adr_libelleCommuneEtablissement_idx ON adresse (libelleCommuneEtablissement);
+                    
+      - check: "false"
+        output:
+          drop: {}
+
+logger:
+  level: DEBUG

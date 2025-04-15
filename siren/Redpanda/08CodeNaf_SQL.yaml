@@ -1,0 +1,50 @@
+http:
+  enabled: true
+  address: 0.0.0.0:4195
+  root_path: /benthos
+  debug_endpoints: false
+
+input:
+  csv:
+    paths: [${FILESIREN}/naf_rev_2.csv]
+    parse_header_row: true
+    delimiter: ';'
+
+pipeline:
+  threads: 8
+  processors:
+    - mapping: |
+        root.codenaf = this.codenaf
+        root.nafvfinale = this.nafvfinale
+        root.naf65caract = this.naf65caract
+        root.naf40caract = this.naf40caract
+                
+output:
+  broker:
+    batching:
+      count: 4500
+      period: 25s
+    outputs:
+      - retry:
+          max_retries: 5
+          backoff:
+            initial_interval: 1s
+            max_interval: 30s
+          output:
+            sql_insert:
+              driver: postgres
+              dsn: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${IPHOST}:5432/${POSTGRES_DB}?sslmode=disable
+              table: nafv2
+              columns: [codenaf,nafvfinale]
+              args_mapping: root = [codenaf,nafvfinale]
+              init_statement: |
+                CREATE TABLE IF NOT EXISTS nafv2 (
+                  codenaf VARCHAR(9),
+                  nafvfinale VARCHAR(255),
+                  primary key (codenaf)
+                );
+                CREATE INDEX IF NOT EXISTS codenaf_idx ON nafv2 (codenaf);
+
+
+logger:
+  level: DEBUG
