@@ -48,6 +48,7 @@ Siren_project/
 │   ├── docker-compose.yaml         # Docker Compose for service orchestration
 │   ├── setenv.sh                   # Environment setup script
 │   └── setenvV2.sh                 # Alternative environment setup script
+
 ## Prerequisites
 
 - **Docker** and **Docker Compose**: For running services.
@@ -67,7 +68,9 @@ Siren_project/
 
 
 Set up environment variables:
+
 Copy the example environment files and configure them:
+
 cp siren/Redpanda/.env.example siren/Redpanda/.env
 cp siren/Redpanda_connect/.env.example siren/Redpanda_connect/.env
 cp siren/UserTable_Join/.env.example siren/UserTable_Join/.env
@@ -82,7 +85,9 @@ docker-compose -f siren/docker-compose.yaml up -d
 
 
 Install frontend dependencies:
+
 Navigate to the frontend directory and install dependencies:
+
 cd Frontend/Frontend
 npm install
 
