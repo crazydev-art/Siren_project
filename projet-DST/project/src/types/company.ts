@@ -35,10 +35,16 @@ export interface Etablissement {
 export type Company = UniteLegale | Etablissement;
 
 export interface SearchFilters {
-  activityCode: string;
-  latitude: number;
-  longitude: number;
-  radius: number;
+  query: string; // Add the query property
+  type: 'siren' | 'name' | 'activity' | 'siret'; // Add the type property with its possible values
+
+  // Keep these if they are used elsewhere or for other types of searches
+  // If they are completely unused for this search form, you might consider removing them
+  // or creating a separate type for geo-based searches.
+  activityCode?: string; // Made optional if not always present
+  latitude?: number;   // Made optional
+  longitude?: number;  // Made optional
+  radius?: number;     // Made optional
 }
 export interface GeocodedAddress {
   siret: string;
