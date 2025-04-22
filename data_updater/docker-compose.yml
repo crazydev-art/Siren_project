@@ -1,16 +1,4 @@
-version: '3.8'
-
 services:
-  data-updater:
-    image: yoxyfoxy/data-updater:latest
-    container_name: data_updater_container
-    networks:
-      - siren_network
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-
   postgres:
     image: postgres:17
     container_name: postgres_container
@@ -30,7 +18,8 @@ services:
       retries: 5
       start_period: 30s
       timeout: 10s
-    restart: always
+    stop_signal: SIGTERM
+    restart: unless-stopped
 
   pgadmin:
     image: dpage/pgadmin4
@@ -45,13 +34,25 @@ services:
         condition: service_healthy
     networks:
       - siren_network
-    restart: always
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    stop_signal: SIGTERM
+    restart: unless-stopped
+
+  data-updater:
+    image: yoxyfoxy/data-updater:latest
+    container_name: data_updater_container
+    networks:
+      - siren_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  siren_data:
+    external: true  # <--- IMPORTANT : on dit à Docker que ce volume existe déjà
+  pgadmin_data:
 
 networks:
   siren_network:
     driver: bridge
-
-volumes:
-  siren_data:
-    external: true
-

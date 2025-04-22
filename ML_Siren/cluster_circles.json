@@ -1,0 +1,4496 @@
+[
+  {
+    "cluster_label": -1,
+    "centroid_lat": 48.718775937159116,
+    "centroid_lon": 2.452539478690082,
+    "radius": 57510.203164287144,
+    "point_count": 87867
+  },
+  {
+    "cluster_label": 0,
+    "centroid_lat": 48.85711606319635,
+    "centroid_lon": 2.3434412808787806,
+    "radius": 10817.51088269458,
+    "point_count": 2072450
+  },
+  {
+    "cluster_label": 1,
+    "centroid_lat": 48.85629403290647,
+    "centroid_lon": 2.340257403780411,
+    "radius": 12260.927691772316,
+    "point_count": 340637
+  },
+  {
+    "cluster_label": 2,
+    "centroid_lat": 48.84618544578694,
+    "centroid_lon": 2.3390703926894916,
+    "radius": 13735.476977501816,
+    "point_count": 93007
+  },
+  {
+    "cluster_label": 3,
+    "centroid_lat": 48.84664231405046,
+    "centroid_lon": 2.2404290114644985,
+    "radius": 30846.23359995043,
+    "point_count": 7892
+  },
+  {
+    "cluster_label": 4,
+    "centroid_lat": 48.89021826816624,
+    "centroid_lon": 2.2439580142390487,
+    "radius": 38320.766176907906,
+    "point_count": 7691
+  },
+  {
+    "cluster_label": 5,
+    "centroid_lat": 48.887083954385474,
+    "centroid_lon": 2.2434412612559353,
+    "radius": 42326.500743159384,
+    "point_count": 6602
+  },
+  {
+    "cluster_label": 6,
+    "centroid_lat": 48.80119102033951,
+    "centroid_lon": 2.3177654265790766,
+    "radius": 45864.46993483183,
+    "point_count": 4398
+  },
+  {
+    "cluster_label": 7,
+    "centroid_lat": 48.810975695947704,
+    "centroid_lon": 2.304555209915421,
+    "radius": 40508.326000440844,
+    "point_count": 5601
+  },
+  {
+    "cluster_label": 8,
+    "centroid_lat": 48.856325234826016,
+    "centroid_lon": 2.1825031153298977,
+    "radius": 39073.983958176854,
+    "point_count": 5601
+  },
+  {
+    "cluster_label": 9,
+    "centroid_lat": 48.924461391854265,
+    "centroid_lon": 2.344640350892304,
+    "radius": 41882.768852639274,
+    "point_count": 5457
+  },
+  {
+    "cluster_label": 10,
+    "centroid_lat": 48.77422316428239,
+    "centroid_lon": 2.2313381518058235,
+    "radius": 43771.945555066144,
+    "point_count": 3736
+  },
+  {
+    "cluster_label": 11,
+    "centroid_lat": 48.93390473499826,
+    "centroid_lon": 2.2526870795052445,
+    "radius": 37517.48148114555,
+    "point_count": 7498
+  },
+  {
+    "cluster_label": 12,
+    "centroid_lat": 48.86601196344965,
+    "centroid_lon": 2.344976590404549,
+    "radius": 41192.43578287859,
+    "point_count": 4377
+  },
+  {
+    "cluster_label": 13,
+    "centroid_lat": 48.88115728903639,
+    "centroid_lon": 2.3017626160990847,
+    "radius": 39045.042633489,
+    "point_count": 6830
+  },
+  {
+    "cluster_label": 14,
+    "centroid_lat": 48.809240070700305,
+    "centroid_lon": 2.2682865201268707,
+    "radius": 38250.28190009996,
+    "point_count": 5275
+  },
+  {
+    "cluster_label": 15,
+    "centroid_lat": 48.85441754437311,
+    "centroid_lon": 2.120403529217636,
+    "radius": 31552.70568264703,
+    "point_count": 5856
+  },
+  {
+    "cluster_label": 16,
+    "centroid_lat": 48.8327333527734,
+    "centroid_lon": 2.15754008468122,
+    "radius": 38887.6886641946,
+    "point_count": 5792
+  },
+  {
+    "cluster_label": 17,
+    "centroid_lat": 48.75075943226493,
+    "centroid_lon": 2.297585629786689,
+    "radius": 44007.67927386213,
+    "point_count": 3846
+  },
+  {
+    "cluster_label": 18,
+    "centroid_lat": 48.88585654121864,
+    "centroid_lon": 2.0827765103694578,
+    "radius": 33513.28816479319,
+    "point_count": 4839
+  },
+  {
+    "cluster_label": 19,
+    "centroid_lat": 48.872413868015315,
+    "centroid_lon": 2.3047970901655677,
+    "radius": 32049.40519601199,
+    "point_count": 1814
+  },
+  {
+    "cluster_label": 20,
+    "centroid_lat": 48.81890071247653,
+    "centroid_lon": 2.28785111788246,
+    "radius": 34953.31269781403,
+    "point_count": 5020
+  },
+  {
+    "cluster_label": 21,
+    "centroid_lat": 48.894879858123744,
+    "centroid_lon": 2.28254438512725,
+    "radius": 44896.76547809832,
+    "point_count": 4562
+  },
+  {
+    "cluster_label": 22,
+    "centroid_lat": 48.823719813340794,
+    "centroid_lon": 2.377038721076189,
+    "radius": 36504.68039276244,
+    "point_count": 2804
+  },
+  {
+    "cluster_label": 23,
+    "centroid_lat": 48.78113979355185,
+    "centroid_lon": 2.292288753774087,
+    "radius": 37841.60259198387,
+    "point_count": 4614
+  },
+  {
+    "cluster_label": 24,
+    "centroid_lat": 48.764460002170615,
+    "centroid_lon": 2.238478698567064,
+    "radius": 45443.72522412529,
+    "point_count": 4064
+  },
+  {
+    "cluster_label": 25,
+    "centroid_lat": 48.81947135730538,
+    "centroid_lon": 2.341782167173626,
+    "radius": 47073.24629836352,
+    "point_count": 3994
+  },
+  {
+    "cluster_label": 26,
+    "centroid_lat": 48.69080045550218,
+    "centroid_lon": 2.3037490346844143,
+    "radius": 42024.06900919112,
+    "point_count": 2882
+  },
+  {
+    "cluster_label": 27,
+    "centroid_lat": 48.922948615022754,
+    "centroid_lon": 2.199277880770312,
+    "radius": 30576.134364490885,
+    "point_count": 4285
+  },
+  {
+    "cluster_label": 28,
+    "centroid_lat": 48.87375964871404,
+    "centroid_lon": 2.3664589592542065,
+    "radius": 46881.17236891237,
+    "point_count": 2612
+  },
+  {
+    "cluster_label": 29,
+    "centroid_lat": 48.803586753781985,
+    "centroid_lon": 2.4455444305693894,
+    "radius": 38730.50269992099,
+    "point_count": 2710
+  },
+  {
+    "cluster_label": 30,
+    "centroid_lat": 48.744791491705776,
+    "centroid_lon": 2.419392319177485,
+    "radius": 40514.25840092857,
+    "point_count": 2412
+  },
+  {
+    "cluster_label": 31,
+    "centroid_lat": 48.76225688816019,
+    "centroid_lon": 2.4988766032807566,
+    "radius": 36606.587537067375,
+    "point_count": 2237
+  },
+  {
+    "cluster_label": 32,
+    "centroid_lat": 48.850087854004805,
+    "centroid_lon": 2.5355875930022926,
+    "radius": 31166.041225863115,
+    "point_count": 1822
+  },
+  {
+    "cluster_label": 33,
+    "centroid_lat": 48.699911393366946,
+    "centroid_lon": 2.318776805658348,
+    "radius": 39278.1830008868,
+    "point_count": 2139
+  },
+  {
+    "cluster_label": 34,
+    "centroid_lat": 48.79624309833258,
+    "centroid_lon": 2.451711132719923,
+    "radius": 43860.48532465404,
+    "point_count": 2605
+  },
+  {
+    "cluster_label": 35,
+    "centroid_lat": 48.863497844367636,
+    "centroid_lon": 2.3875826614617033,
+    "radius": 33535.74870294836,
+    "point_count": 1689
+  },
+  {
+    "cluster_label": 36,
+    "centroid_lat": 48.803737051296324,
+    "centroid_lon": 2.504751953789844,
+    "radius": 36880.298829609026,
+    "point_count": 2888
+  },
+  {
+    "cluster_label": 37,
+    "centroid_lat": 48.80777991210825,
+    "centroid_lon": 2.2510995587496456,
+    "radius": 34145.86932594955,
+    "point_count": 2606
+  },
+  {
+    "cluster_label": 38,
+    "centroid_lat": 48.891296721320714,
+    "centroid_lon": 2.2211536079771856,
+    "radius": 29353.74077660023,
+    "point_count": 2171
+  },
+  {
+    "cluster_label": 39,
+    "centroid_lat": 48.955677546789886,
+    "centroid_lon": 2.1991132866261003,
+    "radius": 29140.883088543425,
+    "point_count": 1463
+  },
+  {
+    "cluster_label": 40,
+    "centroid_lat": 48.875185999729275,
+    "centroid_lon": 2.297006072312227,
+    "radius": 44911.03146981196,
+    "point_count": 3462
+  },
+  {
+    "cluster_label": 41,
+    "centroid_lat": 48.81884176322917,
+    "centroid_lon": 2.5056347886929196,
+    "radius": 39531.98441935578,
+    "point_count": 1952
+  },
+  {
+    "cluster_label": 42,
+    "centroid_lat": 48.75709202865905,
+    "centroid_lon": 2.496404419110954,
+    "radius": 40307.40286235313,
+    "point_count": 1143
+  },
+  {
+    "cluster_label": 43,
+    "centroid_lat": 48.80478026103665,
+    "centroid_lon": 2.4774570075233475,
+    "radius": 34759.42267641419,
+    "point_count": 1389
+  },
+  {
+    "cluster_label": 44,
+    "centroid_lat": 48.818465019603394,
+    "centroid_lon": 2.2781507953610705,
+    "radius": 35707.20432963566,
+    "point_count": 1760
+  },
+  {
+    "cluster_label": 45,
+    "centroid_lat": 48.84253082899305,
+    "centroid_lon": 2.416951519446875,
+    "radius": 49527.76551024976,
+    "point_count": 2200
+  },
+  {
+    "cluster_label": 46,
+    "centroid_lat": 48.81188855191765,
+    "centroid_lon": 2.33244992802909,
+    "radius": 38353.94092754827,
+    "point_count": 1258
+  },
+  {
+    "cluster_label": 47,
+    "centroid_lat": 48.83130811387798,
+    "centroid_lon": 2.3904406924975925,
+    "radius": 40643.84093171102,
+    "point_count": 3118
+  },
+  {
+    "cluster_label": 48,
+    "centroid_lat": 48.73317815349309,
+    "centroid_lon": 2.43718237884529,
+    "radius": 39964.81135662692,
+    "point_count": 1362
+  },
+  {
+    "cluster_label": 49,
+    "centroid_lat": 48.87099506185654,
+    "centroid_lon": 2.147546644753992,
+    "radius": 43608.57736292959,
+    "point_count": 2562
+  },
+  {
+    "cluster_label": 50,
+    "centroid_lat": 48.80263545287106,
+    "centroid_lon": 2.2909749709669067,
+    "radius": 37242.29237239151,
+    "point_count": 3127
+  },
+  {
+    "cluster_label": 51,
+    "centroid_lat": 48.86607556017409,
+    "centroid_lon": 2.234768293537019,
+    "radius": 40642.48130054349,
+    "point_count": 2499
+  },
+  {
+    "cluster_label": 52,
+    "centroid_lat": 48.78871978721116,
+    "centroid_lon": 2.631740359803484,
+    "radius": 35114.04596315274,
+    "point_count": 1217
+  },
+  {
+    "cluster_label": 53,
+    "centroid_lat": 48.835116291485086,
+    "centroid_lon": 2.358136797441967,
+    "radius": 48901.02277607299,
+    "point_count": 2099
+  },
+  {
+    "cluster_label": 54,
+    "centroid_lat": 48.841342951636825,
+    "centroid_lon": 2.3741870919131904,
+    "radius": 56579.973288338675,
+    "point_count": 1849
+  },
+  {
+    "cluster_label": 55,
+    "centroid_lat": 48.89471577516977,
+    "centroid_lon": 2.5246099604625583,
+    "radius": 41374.001256355536,
+    "point_count": 1645
+  },
+  {
+    "cluster_label": 56,
+    "centroid_lat": 48.78498473013136,
+    "centroid_lon": 2.438343840173509,
+    "radius": 37839.41107253999,
+    "point_count": 2627
+  },
+  {
+    "cluster_label": 57,
+    "centroid_lat": 48.82427670591253,
+    "centroid_lon": 2.4029121270574243,
+    "radius": 41364.75489374275,
+    "point_count": 1503
+  },
+  {
+    "cluster_label": 58,
+    "centroid_lat": 48.84948574585438,
+    "centroid_lon": 2.390382246735874,
+    "radius": 45171.982554892595,
+    "point_count": 1876
+  },
+  {
+    "cluster_label": 59,
+    "centroid_lat": 48.76782991204207,
+    "centroid_lon": 2.4060705528427313,
+    "radius": 48310.31094700875,
+    "point_count": 1936
+  },
+  {
+    "cluster_label": 60,
+    "centroid_lat": 48.76265726872057,
+    "centroid_lon": 2.5574526999925906,
+    "radius": 36441.95478329616,
+    "point_count": 1939
+  },
+  {
+    "cluster_label": 61,
+    "centroid_lat": 48.82348701904924,
+    "centroid_lon": 2.1295611585035323,
+    "radius": 31218.623635566288,
+    "point_count": 1353
+  },
+  {
+    "cluster_label": 62,
+    "centroid_lat": 48.70622968454771,
+    "centroid_lon": 2.426936767272162,
+    "radius": 37491.91037322483,
+    "point_count": 1583
+  },
+  {
+    "cluster_label": 63,
+    "centroid_lat": 48.79117460840428,
+    "centroid_lon": 2.332716359375973,
+    "radius": 42332.58178943347,
+    "point_count": 1946
+  },
+  {
+    "cluster_label": 64,
+    "centroid_lat": 48.795686208707814,
+    "centroid_lon": 2.460711075590641,
+    "radius": 41207.514771882874,
+    "point_count": 980
+  },
+  {
+    "cluster_label": 65,
+    "centroid_lat": 48.77038526131305,
+    "centroid_lon": 2.430628511920727,
+    "radius": 38750.30957591309,
+    "point_count": 2149
+  },
+  {
+    "cluster_label": 66,
+    "centroid_lat": 48.78591029322906,
+    "centroid_lon": 2.339324671631745,
+    "radius": 44753.93208940288,
+    "point_count": 1265
+  },
+  {
+    "cluster_label": 67,
+    "centroid_lat": 48.823395514666686,
+    "centroid_lon": 2.1872621507135004,
+    "radius": 34584.12548796445,
+    "point_count": 2453
+  },
+  {
+    "cluster_label": 68,
+    "centroid_lat": 48.766520901256136,
+    "centroid_lon": 2.449910957868946,
+    "radius": 41360.89992365987,
+    "point_count": 883
+  },
+  {
+    "cluster_label": 69,
+    "centroid_lat": 48.73638018579342,
+    "centroid_lon": 2.5483665217760976,
+    "radius": 49082.62560529271,
+    "point_count": 1292
+  },
+  {
+    "cluster_label": 70,
+    "centroid_lat": 48.75635279585618,
+    "centroid_lon": 2.283492689651887,
+    "radius": 44556.088686194744,
+    "point_count": 1392
+  },
+  {
+    "cluster_label": 71,
+    "centroid_lat": 48.86845095982291,
+    "centroid_lon": 2.51608173442129,
+    "radius": 45964.35283898607,
+    "point_count": 1572
+  },
+  {
+    "cluster_label": 72,
+    "centroid_lat": 48.83846540871135,
+    "centroid_lon": 2.4497030188868094,
+    "radius": 34622.95879543223,
+    "point_count": 1432
+  },
+  {
+    "cluster_label": 73,
+    "centroid_lat": 48.730658912120056,
+    "centroid_lon": 2.5361734913230416,
+    "radius": 42100.240153301136,
+    "point_count": 1483
+  },
+  {
+    "cluster_label": 74,
+    "centroid_lat": 48.70922615122191,
+    "centroid_lon": 2.5894608430691495,
+    "radius": 45683.84762285085,
+    "point_count": 1227
+  },
+  {
+    "cluster_label": 75,
+    "centroid_lat": 48.78871129597539,
+    "centroid_lon": 2.4789141056776653,
+    "radius": 33696.405452483166,
+    "point_count": 1707
+  },
+  {
+    "cluster_label": 76,
+    "centroid_lat": 48.770971293629096,
+    "centroid_lon": 2.2719417372137274,
+    "radius": 41707.3152285975,
+    "point_count": 860
+  },
+  {
+    "cluster_label": 77,
+    "centroid_lat": 48.816862865180596,
+    "centroid_lon": 2.3013329980494244,
+    "radius": 38859.53340753904,
+    "point_count": 1417
+  },
+  {
+    "cluster_label": 78,
+    "centroid_lat": 48.716390901563884,
+    "centroid_lon": 2.405898740423284,
+    "radius": 37039.275176687406,
+    "point_count": 1565
+  },
+  {
+    "cluster_label": 79,
+    "centroid_lat": 48.75045443121351,
+    "centroid_lon": 2.5103367681503643,
+    "radius": 41513.85853836877,
+    "point_count": 1623
+  },
+  {
+    "cluster_label": 80,
+    "centroid_lat": 48.76617161546446,
+    "centroid_lon": 2.3135608588420333,
+    "radius": 33886.42120011258,
+    "point_count": 1535
+  },
+  {
+    "cluster_label": 81,
+    "centroid_lat": 48.76574962029797,
+    "centroid_lon": 2.3451305022291344,
+    "radius": 47689.662660813054,
+    "point_count": 2173
+  },
+  {
+    "cluster_label": 82,
+    "centroid_lat": 48.819469857847636,
+    "centroid_lon": 2.246064941000612,
+    "radius": 37050.14775995692,
+    "point_count": 1006
+  },
+  {
+    "cluster_label": 83,
+    "centroid_lat": 48.91864639626119,
+    "centroid_lon": 2.317439412815838,
+    "radius": 46297.876216047116,
+    "point_count": 1043
+  },
+  {
+    "cluster_label": 84,
+    "centroid_lat": 48.86338042763737,
+    "centroid_lon": 2.27967127836925,
+    "radius": 30858.813429838207,
+    "point_count": 1128
+  },
+  {
+    "cluster_label": 85,
+    "centroid_lat": 48.735639137873555,
+    "centroid_lon": 2.348118564549823,
+    "radius": 35357.98252513484,
+    "point_count": 1457
+  },
+  {
+    "cluster_label": 86,
+    "centroid_lat": 48.75819230034308,
+    "centroid_lon": 2.1782981518526334,
+    "radius": 43249.85652320184,
+    "point_count": 983
+  },
+  {
+    "cluster_label": 87,
+    "centroid_lat": 48.81710819050358,
+    "centroid_lon": 2.2316777675683763,
+    "radius": 24551.821849938726,
+    "point_count": 1110
+  },
+  {
+    "cluster_label": 88,
+    "centroid_lat": 48.871647616486264,
+    "centroid_lon": 2.4335467880956996,
+    "radius": 41333.76025898468,
+    "point_count": 1145
+  },
+  {
+    "cluster_label": 89,
+    "centroid_lat": 48.8625860703985,
+    "centroid_lon": 2.1122964805719637,
+    "radius": 35827.04990026414,
+    "point_count": 727
+  },
+  {
+    "cluster_label": 90,
+    "centroid_lat": 48.725338667254015,
+    "centroid_lon": 2.468552032690662,
+    "radius": 40285.683970416896,
+    "point_count": 1044
+  },
+  {
+    "cluster_label": 91,
+    "centroid_lat": 48.774112852603764,
+    "centroid_lon": 2.4150294313604173,
+    "radius": 43108.61990915654,
+    "point_count": 978
+  },
+  {
+    "cluster_label": 92,
+    "centroid_lat": 48.76896425173104,
+    "centroid_lon": 2.4294946457373663,
+    "radius": 53364.52726905733,
+    "point_count": 965
+  },
+  {
+    "cluster_label": 93,
+    "centroid_lat": 48.818686068039995,
+    "centroid_lon": 2.5950936139557483,
+    "radius": 33296.522605264865,
+    "point_count": 1153
+  },
+  {
+    "cluster_label": 94,
+    "centroid_lat": 48.709664067780864,
+    "centroid_lon": 2.500414377156978,
+    "radius": 34590.22725735121,
+    "point_count": 918
+  },
+  {
+    "cluster_label": 95,
+    "centroid_lat": 48.72764346775236,
+    "centroid_lon": 2.4699542655962134,
+    "radius": 41965.93288896592,
+    "point_count": 1156
+  },
+  {
+    "cluster_label": 96,
+    "centroid_lat": 48.672023135601684,
+    "centroid_lon": 2.4263055156947333,
+    "radius": 47538.02304701363,
+    "point_count": 1870
+  },
+  {
+    "cluster_label": 97,
+    "centroid_lat": 48.84759274209534,
+    "centroid_lon": 2.548198716403773,
+    "radius": 45063.45556245166,
+    "point_count": 1291
+  },
+  {
+    "cluster_label": 98,
+    "centroid_lat": 48.71467366432035,
+    "centroid_lon": 2.408479765761581,
+    "radius": 31768.46565693933,
+    "point_count": 789
+  },
+  {
+    "cluster_label": 99,
+    "centroid_lat": 48.802237340313226,
+    "centroid_lon": 2.4541962653984877,
+    "radius": 39537.04714159716,
+    "point_count": 932
+  },
+  {
+    "cluster_label": 100,
+    "centroid_lat": 48.75027012351724,
+    "centroid_lon": 2.6165754240748336,
+    "radius": 44112.88851097282,
+    "point_count": 1404
+  },
+  {
+    "cluster_label": 101,
+    "centroid_lat": 48.81096306961619,
+    "centroid_lon": 2.340459346176532,
+    "radius": 49718.55036266432,
+    "point_count": 962
+  },
+  {
+    "cluster_label": 102,
+    "centroid_lat": 48.76764790261867,
+    "centroid_lon": 2.448587852832579,
+    "radius": 39710.54243239215,
+    "point_count": 1608
+  },
+  {
+    "cluster_label": 103,
+    "centroid_lat": 48.810287665753584,
+    "centroid_lon": 2.442044347575457,
+    "radius": 39320.441415983514,
+    "point_count": 922
+  },
+  {
+    "cluster_label": 104,
+    "centroid_lat": 48.724931711488246,
+    "centroid_lon": 2.500467032384621,
+    "radius": 40429.810491195494,
+    "point_count": 799
+  },
+  {
+    "cluster_label": 105,
+    "centroid_lat": 48.715599283461025,
+    "centroid_lon": 2.6550467329132763,
+    "radius": 47408.21093005976,
+    "point_count": 1072
+  },
+  {
+    "cluster_label": 106,
+    "centroid_lat": 48.83702369656344,
+    "centroid_lon": 2.445023909160394,
+    "radius": 33066.64030771613,
+    "point_count": 792
+  },
+  {
+    "cluster_label": 107,
+    "centroid_lat": 48.69302269476676,
+    "centroid_lon": 2.4095863244112823,
+    "radius": 53978.379936975616,
+    "point_count": 986
+  },
+  {
+    "cluster_label": 108,
+    "centroid_lat": 48.71684699365106,
+    "centroid_lon": 2.4237176047250077,
+    "radius": 42070.21413996274,
+    "point_count": 1158
+  },
+  {
+    "cluster_label": 109,
+    "centroid_lat": 48.771164032960996,
+    "centroid_lon": 2.354360685362046,
+    "radius": 34553.97713138436,
+    "point_count": 718
+  },
+  {
+    "cluster_label": 110,
+    "centroid_lat": 48.83296010183926,
+    "centroid_lon": 2.172829884170188,
+    "radius": 42117.13577039288,
+    "point_count": 1363
+  },
+  {
+    "cluster_label": 111,
+    "centroid_lat": 48.82607746696918,
+    "centroid_lon": 2.205709962866038,
+    "radius": 40388.7307365672,
+    "point_count": 1235
+  },
+  {
+    "cluster_label": 112,
+    "centroid_lat": 48.79672601321635,
+    "centroid_lon": 2.192246046900388,
+    "radius": 40075.81195198264,
+    "point_count": 1918
+  },
+  {
+    "cluster_label": 113,
+    "centroid_lat": 48.84765508716285,
+    "centroid_lon": 2.3704888856910142,
+    "radius": 38855.94714858714,
+    "point_count": 1028
+  },
+  {
+    "cluster_label": 114,
+    "centroid_lat": 48.956499301062294,
+    "centroid_lon": 2.1052249115347585,
+    "radius": 50134.56770461597,
+    "point_count": 1168
+  },
+  {
+    "cluster_label": 115,
+    "centroid_lat": 48.840978256976896,
+    "centroid_lon": 2.4082496467537635,
+    "radius": 43816.27620580744,
+    "point_count": 1254
+  },
+  {
+    "cluster_label": 116,
+    "centroid_lat": 48.667728708592946,
+    "centroid_lon": 2.3544946920535113,
+    "radius": 52956.42981035293,
+    "point_count": 961
+  },
+  {
+    "cluster_label": 117,
+    "centroid_lat": 48.738922342313245,
+    "centroid_lon": 2.2675971667811448,
+    "radius": 45477.01051280185,
+    "point_count": 1083
+  },
+  {
+    "cluster_label": 118,
+    "centroid_lat": 48.76049772256602,
+    "centroid_lon": 2.4355483198533903,
+    "radius": 41502.501797102814,
+    "point_count": 928
+  },
+  {
+    "cluster_label": 119,
+    "centroid_lat": 48.84460596461855,
+    "centroid_lon": 2.316660928606171,
+    "radius": 46929.53802214336,
+    "point_count": 773
+  },
+  {
+    "cluster_label": 120,
+    "centroid_lat": 48.74508350228483,
+    "centroid_lon": 2.3772413018265026,
+    "radius": 43809.60076513736,
+    "point_count": 878
+  },
+  {
+    "cluster_label": 121,
+    "centroid_lat": 48.8098853853207,
+    "centroid_lon": 2.395803108223269,
+    "radius": 46367.3004298179,
+    "point_count": 683
+  },
+  {
+    "cluster_label": 122,
+    "centroid_lat": 48.80924024671235,
+    "centroid_lon": 2.356714387005952,
+    "radius": 43181.4118862951,
+    "point_count": 737
+  },
+  {
+    "cluster_label": 123,
+    "centroid_lat": 48.83413322484296,
+    "centroid_lon": 2.3360765543975104,
+    "radius": 40656.15620511595,
+    "point_count": 743
+  },
+  {
+    "cluster_label": 124,
+    "centroid_lat": 48.78719853118374,
+    "centroid_lon": 2.4225633899363586,
+    "radius": 43676.29870088901,
+    "point_count": 737
+  },
+  {
+    "cluster_label": 125,
+    "centroid_lat": 48.804759353049505,
+    "centroid_lon": 2.391960736573696,
+    "radius": 47403.3191314273,
+    "point_count": 1045
+  },
+  {
+    "cluster_label": 126,
+    "centroid_lat": 48.82068589450472,
+    "centroid_lon": 2.3486942406180322,
+    "radius": 48653.6871232785,
+    "point_count": 996
+  },
+  {
+    "cluster_label": 127,
+    "centroid_lat": 48.692952780856714,
+    "centroid_lon": 2.3839089541098635,
+    "radius": 50734.571265940795,
+    "point_count": 721
+  },
+  {
+    "cluster_label": 128,
+    "centroid_lat": 48.79156608980289,
+    "centroid_lon": 2.2208914376614426,
+    "radius": 37880.52806085484,
+    "point_count": 1150
+  },
+  {
+    "cluster_label": 129,
+    "centroid_lat": 48.77687649499874,
+    "centroid_lon": 2.299099282299685,
+    "radius": 46192.94688877314,
+    "point_count": 703
+  },
+  {
+    "cluster_label": 130,
+    "centroid_lat": 48.807517652551574,
+    "centroid_lon": 2.449608547827002,
+    "radius": 47955.188961190106,
+    "point_count": 1006
+  },
+  {
+    "cluster_label": 131,
+    "centroid_lat": 48.71331500773591,
+    "centroid_lon": 2.401287110170989,
+    "radius": 43419.914540011596,
+    "point_count": 928
+  },
+  {
+    "cluster_label": 132,
+    "centroid_lat": 48.84816639751931,
+    "centroid_lon": 2.394624828430106,
+    "radius": 42388.30881628408,
+    "point_count": 737
+  },
+  {
+    "cluster_label": 133,
+    "centroid_lat": 48.83103110117705,
+    "centroid_lon": 2.1498433560181147,
+    "radius": 43366.94115122071,
+    "point_count": 488
+  },
+  {
+    "cluster_label": 134,
+    "centroid_lat": 48.74471823159437,
+    "centroid_lon": 2.3881716734035265,
+    "radius": 39651.35415589795,
+    "point_count": 725
+  },
+  {
+    "cluster_label": 135,
+    "centroid_lat": 48.748155070895706,
+    "centroid_lon": 2.4716703224947074,
+    "radius": 52797.32557961558,
+    "point_count": 867
+  },
+  {
+    "cluster_label": 136,
+    "centroid_lat": 48.83715527160782,
+    "centroid_lon": 2.528395886644701,
+    "radius": 29742.92810587055,
+    "point_count": 631
+  },
+  {
+    "cluster_label": 137,
+    "centroid_lat": 48.75859238827921,
+    "centroid_lon": 2.4993846190003857,
+    "radius": 41310.299536127466,
+    "point_count": 615
+  },
+  {
+    "cluster_label": 138,
+    "centroid_lat": 48.78367743369169,
+    "centroid_lon": 2.496759069583262,
+    "radius": 49972.86959864288,
+    "point_count": 717
+  },
+  {
+    "cluster_label": 139,
+    "centroid_lat": 48.782049897608324,
+    "centroid_lon": 2.423368269687542,
+    "radius": 44061.741867147255,
+    "point_count": 747
+  },
+  {
+    "cluster_label": 140,
+    "centroid_lat": 48.757428330665704,
+    "centroid_lon": 2.34102070013887,
+    "radius": 38871.2388732342,
+    "point_count": 584
+  },
+  {
+    "cluster_label": 141,
+    "centroid_lat": 48.87014247406047,
+    "centroid_lon": 2.219207571051524,
+    "radius": 37865.976768585766,
+    "point_count": 775
+  },
+  {
+    "cluster_label": 142,
+    "centroid_lat": 48.75176593044626,
+    "centroid_lon": 2.4571316489703636,
+    "radius": 35013.159537000836,
+    "point_count": 654
+  },
+  {
+    "cluster_label": 143,
+    "centroid_lat": 48.67813203428276,
+    "centroid_lon": 2.4932194523135545,
+    "radius": 40553.87889267322,
+    "point_count": 672
+  },
+  {
+    "cluster_label": 144,
+    "centroid_lat": 48.765286340377564,
+    "centroid_lon": 2.3839584023786013,
+    "radius": 49181.33972449881,
+    "point_count": 580
+  },
+  {
+    "cluster_label": 145,
+    "centroid_lat": 48.796829966494734,
+    "centroid_lon": 2.3296920376764896,
+    "radius": 41706.367050331464,
+    "point_count": 644
+  },
+  {
+    "cluster_label": 146,
+    "centroid_lat": 48.835685282937334,
+    "centroid_lon": 2.4488952295806943,
+    "radius": 47793.57343176842,
+    "point_count": 543
+  },
+  {
+    "cluster_label": 147,
+    "centroid_lat": 48.75586079041038,
+    "centroid_lon": 2.451069649277749,
+    "radius": 54741.30577650096,
+    "point_count": 535
+  },
+  {
+    "cluster_label": 148,
+    "centroid_lat": 48.74542986666244,
+    "centroid_lon": 2.328284236533233,
+    "radius": 50500.13786896993,
+    "point_count": 620
+  },
+  {
+    "cluster_label": 149,
+    "centroid_lat": 48.805863037500494,
+    "centroid_lon": 2.402165521552935,
+    "radius": 44159.07390956664,
+    "point_count": 625
+  },
+  {
+    "cluster_label": 150,
+    "centroid_lat": 48.804432775440766,
+    "centroid_lon": 2.4733077127640577,
+    "radius": 40569.97869805699,
+    "point_count": 625
+  },
+  {
+    "cluster_label": 151,
+    "centroid_lat": 48.75750111522826,
+    "centroid_lon": 2.3032588083890797,
+    "radius": 36500.941377613235,
+    "point_count": 610
+  },
+  {
+    "cluster_label": 152,
+    "centroid_lat": 48.85125774171287,
+    "centroid_lon": 2.4467380861120405,
+    "radius": 45660.30376629116,
+    "point_count": 584
+  },
+  {
+    "cluster_label": 153,
+    "centroid_lat": 48.87905258158756,
+    "centroid_lon": 2.4852163808415426,
+    "radius": 43321.79447265123,
+    "point_count": 636
+  },
+  {
+    "cluster_label": 154,
+    "centroid_lat": 48.849593583118974,
+    "centroid_lon": 2.420760935967094,
+    "radius": 42971.67744781905,
+    "point_count": 790
+  },
+  {
+    "cluster_label": 155,
+    "centroid_lat": 48.78925975406857,
+    "centroid_lon": 2.5893995387472803,
+    "radius": 47727.64563490243,
+    "point_count": 524
+  },
+  {
+    "cluster_label": 156,
+    "centroid_lat": 48.72435101139487,
+    "centroid_lon": 2.4718745309357875,
+    "radius": 51087.13102769936,
+    "point_count": 437
+  },
+  {
+    "cluster_label": 157,
+    "centroid_lat": 48.885130712482024,
+    "centroid_lon": 2.3177016085540023,
+    "radius": 34255.78211748101,
+    "point_count": 948
+  },
+  {
+    "cluster_label": 158,
+    "centroid_lat": 48.69165466521801,
+    "centroid_lon": 2.3044887914281564,
+    "radius": 35826.58409964458,
+    "point_count": 513
+  },
+  {
+    "cluster_label": 159,
+    "centroid_lat": 48.759653471755826,
+    "centroid_lon": 2.487458093087068,
+    "radius": 32520.85577600034,
+    "point_count": 649
+  },
+  {
+    "cluster_label": 160,
+    "centroid_lat": 48.8480420632522,
+    "centroid_lon": 2.38964730420819,
+    "radius": 44225.44754506641,
+    "point_count": 411
+  },
+  {
+    "cluster_label": 161,
+    "centroid_lat": 48.76471394148862,
+    "centroid_lon": 2.4509155180166533,
+    "radius": 48936.33864984052,
+    "point_count": 582
+  },
+  {
+    "cluster_label": 162,
+    "centroid_lat": 48.84399908281514,
+    "centroid_lon": 2.3351192198452235,
+    "radius": 48147.32210704558,
+    "point_count": 591
+  },
+  {
+    "cluster_label": 163,
+    "centroid_lat": 48.75749579810042,
+    "centroid_lon": 2.4275341554337606,
+    "radius": 49057.783525034116,
+    "point_count": 553
+  },
+  {
+    "cluster_label": 164,
+    "centroid_lat": 48.799320758267825,
+    "centroid_lon": 2.3861778311164636,
+    "radius": 43656.46932139272,
+    "point_count": 553
+  },
+  {
+    "cluster_label": 165,
+    "centroid_lat": 48.817257423234324,
+    "centroid_lon": 2.3129228278366205,
+    "radius": 44135.467323210745,
+    "point_count": 916
+  },
+  {
+    "cluster_label": 166,
+    "centroid_lat": 48.80901387988093,
+    "centroid_lon": 2.412666494172674,
+    "radius": 36880.93524174294,
+    "point_count": 476
+  },
+  {
+    "cluster_label": 167,
+    "centroid_lat": 48.8172788847774,
+    "centroid_lon": 2.2516193837785585,
+    "radius": 41965.5013587742,
+    "point_count": 685
+  },
+  {
+    "cluster_label": 168,
+    "centroid_lat": 48.86798984524003,
+    "centroid_lon": 2.341468219940689,
+    "radius": 41354.1114818211,
+    "point_count": 363
+  },
+  {
+    "cluster_label": 169,
+    "centroid_lat": 48.77322759850237,
+    "centroid_lon": 2.4966297960071606,
+    "radius": 44569.45384241077,
+    "point_count": 651
+  },
+  {
+    "cluster_label": 170,
+    "centroid_lat": 48.83685961766279,
+    "centroid_lon": 2.2595995035022765,
+    "radius": 50289.08010758692,
+    "point_count": 648
+  },
+  {
+    "cluster_label": 171,
+    "centroid_lat": 48.75098454385853,
+    "centroid_lon": 2.1832576680901448,
+    "radius": 43865.657084030994,
+    "point_count": 538
+  },
+  {
+    "cluster_label": 172,
+    "centroid_lat": 48.67941650394906,
+    "centroid_lon": 2.318389132645372,
+    "radius": 38804.98639378429,
+    "point_count": 502
+  },
+  {
+    "cluster_label": 173,
+    "centroid_lat": 48.80080687176997,
+    "centroid_lon": 2.3845050718567338,
+    "radius": 47356.950441454486,
+    "point_count": 590
+  },
+  {
+    "cluster_label": 174,
+    "centroid_lat": 48.81731887484417,
+    "centroid_lon": 2.3829989372417857,
+    "radius": 42547.034501593844,
+    "point_count": 494
+  },
+  {
+    "cluster_label": 175,
+    "centroid_lat": 48.700788041712244,
+    "centroid_lon": 2.2857736517143548,
+    "radius": 47518.10740685168,
+    "point_count": 478
+  },
+  {
+    "cluster_label": 176,
+    "centroid_lat": 48.85799274116924,
+    "centroid_lon": 2.3037887185057992,
+    "radius": 40488.11827369851,
+    "point_count": 620
+  },
+  {
+    "cluster_label": 177,
+    "centroid_lat": 48.761802391838636,
+    "centroid_lon": 2.4661128719253234,
+    "radius": 44349.860196292735,
+    "point_count": 440
+  },
+  {
+    "cluster_label": 178,
+    "centroid_lat": 48.728203665027685,
+    "centroid_lon": 2.327303845478146,
+    "radius": 33585.25414082338,
+    "point_count": 468
+  },
+  {
+    "cluster_label": 179,
+    "centroid_lat": 48.7502544347414,
+    "centroid_lon": 2.3501626332093895,
+    "radius": 42899.87903702171,
+    "point_count": 505
+  },
+  {
+    "cluster_label": 180,
+    "centroid_lat": 48.845969112740875,
+    "centroid_lon": 2.194196035996243,
+    "radius": 45779.40168125813,
+    "point_count": 614
+  },
+  {
+    "cluster_label": 181,
+    "centroid_lat": 48.76777446467005,
+    "centroid_lon": 2.3357410754002426,
+    "radius": 41526.26864450473,
+    "point_count": 547
+  },
+  {
+    "cluster_label": 182,
+    "centroid_lat": 48.728842964502626,
+    "centroid_lon": 2.255081913612696,
+    "radius": 38428.39920139859,
+    "point_count": 661
+  },
+  {
+    "cluster_label": 183,
+    "centroid_lat": 48.8548763703723,
+    "centroid_lon": 2.428963415481575,
+    "radius": 37913.751421447414,
+    "point_count": 667
+  },
+  {
+    "cluster_label": 184,
+    "centroid_lat": 48.82836458149164,
+    "centroid_lon": 2.2814029855430116,
+    "radius": 50233.84036026671,
+    "point_count": 813
+  },
+  {
+    "cluster_label": 185,
+    "centroid_lat": 48.722403460566305,
+    "centroid_lon": 2.432187400201406,
+    "radius": 43077.95483345669,
+    "point_count": 599
+  },
+  {
+    "cluster_label": 186,
+    "centroid_lat": 48.83941649944043,
+    "centroid_lon": 2.4002117991631824,
+    "radius": 39955.420876044074,
+    "point_count": 450
+  },
+  {
+    "cluster_label": 187,
+    "centroid_lat": 48.79708063841598,
+    "centroid_lon": 2.2952638340059783,
+    "radius": 49863.73783721426,
+    "point_count": 479
+  },
+  {
+    "cluster_label": 188,
+    "centroid_lat": 48.84681578455215,
+    "centroid_lon": 2.315863993414048,
+    "radius": 39089.14839080269,
+    "point_count": 421
+  },
+  {
+    "cluster_label": 189,
+    "centroid_lat": 48.7735269247954,
+    "centroid_lon": 2.385151070926073,
+    "radius": 47363.93786845642,
+    "point_count": 632
+  },
+  {
+    "cluster_label": 190,
+    "centroid_lat": 48.72496730269118,
+    "centroid_lon": 2.445613155507599,
+    "radius": 49622.306257582546,
+    "point_count": 420
+  },
+  {
+    "cluster_label": 191,
+    "centroid_lat": 48.5943312466698,
+    "centroid_lon": 2.514345940673961,
+    "radius": 38862.83966652818,
+    "point_count": 435
+  },
+  {
+    "cluster_label": 192,
+    "centroid_lat": 48.91566617588186,
+    "centroid_lon": 2.409435233684292,
+    "radius": 52797.76600985897,
+    "point_count": 416
+  },
+  {
+    "cluster_label": 193,
+    "centroid_lat": 48.83240878174296,
+    "centroid_lon": 2.4528101731253127,
+    "radius": 50270.58339847743,
+    "point_count": 371
+  },
+  {
+    "cluster_label": 194,
+    "centroid_lat": 48.83487038069941,
+    "centroid_lon": 2.313569686759191,
+    "radius": 48322.086561680335,
+    "point_count": 459
+  },
+  {
+    "cluster_label": 195,
+    "centroid_lat": 48.692490631744775,
+    "centroid_lon": 2.5843283932542955,
+    "radius": 55245.11858570081,
+    "point_count": 323
+  },
+  {
+    "cluster_label": 196,
+    "centroid_lat": 48.72016115628497,
+    "centroid_lon": 2.420046017772309,
+    "radius": 43175.11521210682,
+    "point_count": 340
+  },
+  {
+    "cluster_label": 197,
+    "centroid_lat": 48.71115475453883,
+    "centroid_lon": 2.4599159682880956,
+    "radius": 45804.970171607594,
+    "point_count": 531
+  },
+  {
+    "cluster_label": 198,
+    "centroid_lat": 48.69662004647219,
+    "centroid_lon": 2.3492153778704457,
+    "radius": 44483.65609453627,
+    "point_count": 390
+  },
+  {
+    "cluster_label": 199,
+    "centroid_lat": 48.85350882551006,
+    "centroid_lon": 2.4542950795028,
+    "radius": 45040.68778359159,
+    "point_count": 416
+  },
+  {
+    "cluster_label": 200,
+    "centroid_lat": 48.771319177056775,
+    "centroid_lon": 2.446422667014169,
+    "radius": 45955.8399346606,
+    "point_count": 400
+  },
+  {
+    "cluster_label": 201,
+    "centroid_lat": 48.71485295530878,
+    "centroid_lon": 2.4522040176251374,
+    "radius": 47934.38019344018,
+    "point_count": 513
+  },
+  {
+    "cluster_label": 202,
+    "centroid_lat": 48.90078603784529,
+    "centroid_lon": 2.412464082756168,
+    "radius": 46599.4855232258,
+    "point_count": 563
+  },
+  {
+    "cluster_label": 203,
+    "centroid_lat": 48.70177785868329,
+    "centroid_lon": 2.452708778104074,
+    "radius": 45982.82998434189,
+    "point_count": 442
+  },
+  {
+    "cluster_label": 204,
+    "centroid_lat": 48.64508774813955,
+    "centroid_lon": 2.350190708826995,
+    "radius": 40726.26017050917,
+    "point_count": 556
+  },
+  {
+    "cluster_label": 205,
+    "centroid_lat": 48.64785167451666,
+    "centroid_lon": 2.3743560602127247,
+    "radius": 36995.46001972432,
+    "point_count": 347
+  },
+  {
+    "cluster_label": 206,
+    "centroid_lat": 48.682029964882794,
+    "centroid_lon": 2.338883274430313,
+    "radius": 37419.385575222266,
+    "point_count": 448
+  },
+  {
+    "cluster_label": 207,
+    "centroid_lat": 48.708715668554994,
+    "centroid_lon": 2.45513135730314,
+    "radius": 46914.23480380783,
+    "point_count": 499
+  },
+  {
+    "cluster_label": 208,
+    "centroid_lat": 48.835764328863,
+    "centroid_lon": 2.3931915576308618,
+    "radius": 36811.16772157129,
+    "point_count": 485
+  },
+  {
+    "cluster_label": 209,
+    "centroid_lat": 48.69280614860675,
+    "centroid_lon": 2.3872024398257787,
+    "radius": 47626.90276074155,
+    "point_count": 387
+  },
+  {
+    "cluster_label": 210,
+    "centroid_lat": 48.78194072004797,
+    "centroid_lon": 2.3691354947708807,
+    "radius": 39669.99066707808,
+    "point_count": 579
+  },
+  {
+    "cluster_label": 211,
+    "centroid_lat": 48.724509614090906,
+    "centroid_lon": 2.534528347326599,
+    "radius": 33857.93937438097,
+    "point_count": 444
+  },
+  {
+    "cluster_label": 212,
+    "centroid_lat": 48.77768747203856,
+    "centroid_lon": 2.480418435837176,
+    "radius": 44115.112853892875,
+    "point_count": 372
+  },
+  {
+    "cluster_label": 213,
+    "centroid_lat": 48.69530596977311,
+    "centroid_lon": 2.3486293463887917,
+    "radius": 37635.95131691529,
+    "point_count": 504
+  },
+  {
+    "cluster_label": 214,
+    "centroid_lat": 48.825935558211064,
+    "centroid_lon": 2.2765734069192,
+    "radius": 39798.053299760104,
+    "point_count": 451
+  },
+  {
+    "cluster_label": 215,
+    "centroid_lat": 48.708905026501974,
+    "centroid_lon": 2.325671831344904,
+    "radius": 39950.20138171424,
+    "point_count": 500
+  },
+  {
+    "cluster_label": 216,
+    "centroid_lat": 48.73149878927504,
+    "centroid_lon": 2.387267216756297,
+    "radius": 47658.429450291565,
+    "point_count": 432
+  },
+  {
+    "cluster_label": 217,
+    "centroid_lat": 48.74126324708943,
+    "centroid_lon": 2.2890713177102597,
+    "radius": 48400.77800617282,
+    "point_count": 369
+  },
+  {
+    "cluster_label": 218,
+    "centroid_lat": 48.73655393880141,
+    "centroid_lon": 2.4791953586620594,
+    "radius": 41868.64432439286,
+    "point_count": 490
+  },
+  {
+    "cluster_label": 219,
+    "centroid_lat": 48.75663467947104,
+    "centroid_lon": 2.4350583767499314,
+    "radius": 38509.07185811472,
+    "point_count": 438
+  },
+  {
+    "cluster_label": 220,
+    "centroid_lat": 48.68759487365806,
+    "centroid_lon": 2.5614764863168222,
+    "radius": 30185.587289768384,
+    "point_count": 399
+  },
+  {
+    "cluster_label": 221,
+    "centroid_lat": 48.788128964929186,
+    "centroid_lon": 2.3803926533612865,
+    "radius": 42215.978582833675,
+    "point_count": 447
+  },
+  {
+    "cluster_label": 222,
+    "centroid_lat": 48.80742128199055,
+    "centroid_lon": 2.5854510292223667,
+    "radius": 36312.36267251886,
+    "point_count": 638
+  },
+  {
+    "cluster_label": 223,
+    "centroid_lat": 48.76699485807137,
+    "centroid_lon": 2.35854519210004,
+    "radius": 47636.33738982507,
+    "point_count": 459
+  },
+  {
+    "cluster_label": 224,
+    "centroid_lat": 48.73773335700215,
+    "centroid_lon": 2.4193655643941874,
+    "radius": 40499.136221326444,
+    "point_count": 453
+  },
+  {
+    "cluster_label": 225,
+    "centroid_lat": 48.67488651610657,
+    "centroid_lon": 2.4465996911394496,
+    "radius": 38399.782203652234,
+    "point_count": 397
+  },
+  {
+    "cluster_label": 226,
+    "centroid_lat": 48.71874958641904,
+    "centroid_lon": 2.495302001894708,
+    "radius": 37435.72321013141,
+    "point_count": 526
+  },
+  {
+    "cluster_label": 227,
+    "centroid_lat": 48.751120781399074,
+    "centroid_lon": 2.425694341768375,
+    "radius": 50373.19366013175,
+    "point_count": 377
+  },
+  {
+    "cluster_label": 228,
+    "centroid_lat": 48.794465495931576,
+    "centroid_lon": 2.414567411648907,
+    "radius": 50118.831600205485,
+    "point_count": 334
+  },
+  {
+    "cluster_label": 229,
+    "centroid_lat": 48.72669138067923,
+    "centroid_lon": 2.4725504702671373,
+    "radius": 48626.589553480844,
+    "point_count": 356
+  },
+  {
+    "cluster_label": 230,
+    "centroid_lat": 48.81868229360852,
+    "centroid_lon": 2.392669986389513,
+    "radius": 42110.34523924567,
+    "point_count": 452
+  },
+  {
+    "cluster_label": 231,
+    "centroid_lat": 48.793249801138955,
+    "centroid_lon": 2.36476603782922,
+    "radius": 39951.27347860608,
+    "point_count": 373
+  },
+  {
+    "cluster_label": 232,
+    "centroid_lat": 48.798083036679024,
+    "centroid_lon": 2.389671030656085,
+    "radius": 41346.26440526444,
+    "point_count": 347
+  },
+  {
+    "cluster_label": 233,
+    "centroid_lat": 48.77900267033544,
+    "centroid_lon": 2.475538628185498,
+    "radius": 44513.646997815835,
+    "point_count": 372
+  },
+  {
+    "cluster_label": 234,
+    "centroid_lat": 48.79650919390878,
+    "centroid_lon": 2.3107393760541095,
+    "radius": 45621.989103025524,
+    "point_count": 404
+  },
+  {
+    "cluster_label": 235,
+    "centroid_lat": 48.85948042076915,
+    "centroid_lon": 2.460619256507594,
+    "radius": 47934.46052330812,
+    "point_count": 380
+  },
+  {
+    "cluster_label": 236,
+    "centroid_lat": 48.81762046029231,
+    "centroid_lon": 2.4674911447400416,
+    "radius": 33729.03714990536,
+    "point_count": 463
+  },
+  {
+    "cluster_label": 237,
+    "centroid_lat": 48.75081656028957,
+    "centroid_lon": 2.376533850092901,
+    "radius": 43952.990082240176,
+    "point_count": 418
+  },
+  {
+    "cluster_label": 238,
+    "centroid_lat": 48.838346696098235,
+    "centroid_lon": 2.4723667164798004,
+    "radius": 50605.22521470678,
+    "point_count": 373
+  },
+  {
+    "cluster_label": 239,
+    "centroid_lat": 48.831131184064446,
+    "centroid_lon": 2.4859176560761167,
+    "radius": 41812.188592510196,
+    "point_count": 436
+  },
+  {
+    "cluster_label": 240,
+    "centroid_lat": 48.72800759996887,
+    "centroid_lon": 2.4321637236590243,
+    "radius": 41352.65347488689,
+    "point_count": 384
+  },
+  {
+    "cluster_label": 241,
+    "centroid_lat": 48.76918633902001,
+    "centroid_lon": 2.3052789751639557,
+    "radius": 46755.17063314085,
+    "point_count": 419
+  },
+  {
+    "cluster_label": 242,
+    "centroid_lat": 48.79671384490244,
+    "centroid_lon": 2.451007095224586,
+    "radius": 40011.01117803316,
+    "point_count": 375
+  },
+  {
+    "cluster_label": 243,
+    "centroid_lat": 48.68795635567893,
+    "centroid_lon": 2.3479824249143237,
+    "radius": 44509.3663402847,
+    "point_count": 269
+  },
+  {
+    "cluster_label": 244,
+    "centroid_lat": 48.78837163026579,
+    "centroid_lon": 2.4072443865138116,
+    "radius": 50546.507136851455,
+    "point_count": 423
+  },
+  {
+    "cluster_label": 245,
+    "centroid_lat": 48.83510951631764,
+    "centroid_lon": 2.4778694698957113,
+    "radius": 50730.03327783552,
+    "point_count": 405
+  },
+  {
+    "cluster_label": 246,
+    "centroid_lat": 48.77881803379394,
+    "centroid_lon": 2.565876623374784,
+    "radius": 40890.76440889547,
+    "point_count": 427
+  },
+  {
+    "cluster_label": 247,
+    "centroid_lat": 48.70654700032059,
+    "centroid_lon": 2.408972007576072,
+    "radius": 40739.81763510499,
+    "point_count": 321
+  },
+  {
+    "cluster_label": 248,
+    "centroid_lat": 48.75749887846781,
+    "centroid_lon": 2.508454788720247,
+    "radius": 49623.741465939456,
+    "point_count": 340
+  },
+  {
+    "cluster_label": 249,
+    "centroid_lat": 48.83691163385616,
+    "centroid_lon": 2.336315704050173,
+    "radius": 46792.1261399637,
+    "point_count": 411
+  },
+  {
+    "cluster_label": 250,
+    "centroid_lat": 48.80516009589925,
+    "centroid_lon": 2.416458393374063,
+    "radius": 47764.148029455624,
+    "point_count": 411
+  },
+  {
+    "cluster_label": 251,
+    "centroid_lat": 48.7714782587208,
+    "centroid_lon": 2.2705042210653863,
+    "radius": 46031.38427584599,
+    "point_count": 423
+  },
+  {
+    "cluster_label": 252,
+    "centroid_lat": 48.794848506167654,
+    "centroid_lon": 2.2894621657423286,
+    "radius": 47256.784449731626,
+    "point_count": 380
+  },
+  {
+    "cluster_label": 253,
+    "centroid_lat": 48.85475757372966,
+    "centroid_lon": 2.0929576824275404,
+    "radius": 51889.01247709683,
+    "point_count": 770
+  },
+  {
+    "cluster_label": 254,
+    "centroid_lat": 48.82873934161806,
+    "centroid_lon": 2.4086575033161863,
+    "radius": 47829.781000300696,
+    "point_count": 489
+  },
+  {
+    "cluster_label": 255,
+    "centroid_lat": 48.75833080712803,
+    "centroid_lon": 2.3843667048005406,
+    "radius": 60408.35419619436,
+    "point_count": 384
+  },
+  {
+    "cluster_label": 256,
+    "centroid_lat": 48.74617917094674,
+    "centroid_lon": 2.5511774381667323,
+    "radius": 35996.62281377065,
+    "point_count": 331
+  },
+  {
+    "cluster_label": 257,
+    "centroid_lat": 48.71964464165827,
+    "centroid_lon": 2.259654845795564,
+    "radius": 44240.90412271671,
+    "point_count": 505
+  },
+  {
+    "cluster_label": 258,
+    "centroid_lat": 48.76467805772068,
+    "centroid_lon": 2.476753552373938,
+    "radius": 42397.26878172897,
+    "point_count": 369
+  },
+  {
+    "cluster_label": 259,
+    "centroid_lat": 48.71126313978172,
+    "centroid_lon": 2.469012155965675,
+    "radius": 44027.01908285722,
+    "point_count": 311
+  },
+  {
+    "cluster_label": 260,
+    "centroid_lat": 48.67805029722159,
+    "centroid_lon": 2.4441473387238517,
+    "radius": 44138.91563395715,
+    "point_count": 370
+  },
+  {
+    "cluster_label": 261,
+    "centroid_lat": 48.7453622046945,
+    "centroid_lon": 2.4497356587998738,
+    "radius": 52004.94131347104,
+    "point_count": 392
+  },
+  {
+    "cluster_label": 262,
+    "centroid_lat": 48.71686152329092,
+    "centroid_lon": 2.3748034181020787,
+    "radius": 55465.73234510283,
+    "point_count": 329
+  },
+  {
+    "cluster_label": 263,
+    "centroid_lat": 48.71072880019559,
+    "centroid_lon": 2.455298801511001,
+    "radius": 54754.66965419734,
+    "point_count": 327
+  },
+  {
+    "cluster_label": 264,
+    "centroid_lat": 48.79456533080594,
+    "centroid_lon": 2.415764407359139,
+    "radius": 49783.12707321821,
+    "point_count": 283
+  },
+  {
+    "cluster_label": 265,
+    "centroid_lat": 48.68102656094787,
+    "centroid_lon": 2.44695698718718,
+    "radius": 44970.474020952155,
+    "point_count": 451
+  },
+  {
+    "cluster_label": 266,
+    "centroid_lat": 48.78570513416077,
+    "centroid_lon": 2.4380280674936716,
+    "radius": 46620.54297616129,
+    "point_count": 400
+  },
+  {
+    "cluster_label": 267,
+    "centroid_lat": 48.78311659180044,
+    "centroid_lon": 2.318263381650703,
+    "radius": 40558.85758563122,
+    "point_count": 335
+  },
+  {
+    "cluster_label": 268,
+    "centroid_lat": 48.81196280645281,
+    "centroid_lon": 2.2646753544237828,
+    "radius": 53345.03265842039,
+    "point_count": 298
+  },
+  {
+    "cluster_label": 269,
+    "centroid_lat": 48.79333078652667,
+    "centroid_lon": 2.267427576726313,
+    "radius": 49798.897743812115,
+    "point_count": 318
+  },
+  {
+    "cluster_label": 270,
+    "centroid_lat": 48.82746154159492,
+    "centroid_lon": 2.181653621201047,
+    "radius": 46517.92946916267,
+    "point_count": 434
+  },
+  {
+    "cluster_label": 271,
+    "centroid_lat": 48.86298458719009,
+    "centroid_lon": 2.3932048471226333,
+    "radius": 45352.78944142961,
+    "point_count": 437
+  },
+  {
+    "cluster_label": 272,
+    "centroid_lat": 48.7366884324516,
+    "centroid_lon": 2.3007067705510895,
+    "radius": 40476.3367208169,
+    "point_count": 355
+  },
+  {
+    "cluster_label": 273,
+    "centroid_lat": 48.73923234641053,
+    "centroid_lon": 2.3721606421809858,
+    "radius": 39937.07026598819,
+    "point_count": 293
+  },
+  {
+    "cluster_label": 274,
+    "centroid_lat": 48.7275286229243,
+    "centroid_lon": 2.3044278289970093,
+    "radius": 42621.86063951023,
+    "point_count": 344
+  },
+  {
+    "cluster_label": 275,
+    "centroid_lat": 48.77125440534137,
+    "centroid_lon": 2.429950795379923,
+    "radius": 52808.56378713279,
+    "point_count": 336
+  },
+  {
+    "cluster_label": 276,
+    "centroid_lat": 48.765497047220315,
+    "centroid_lon": 2.4380819352681655,
+    "radius": 46045.99359911524,
+    "point_count": 279
+  },
+  {
+    "cluster_label": 277,
+    "centroid_lat": 48.79571651345134,
+    "centroid_lon": 2.3446519272070563,
+    "radius": 64505.98913391544,
+    "point_count": 363
+  },
+  {
+    "cluster_label": 278,
+    "centroid_lat": 48.77765650340205,
+    "centroid_lon": 2.3601040723470206,
+    "radius": 53117.84898807485,
+    "point_count": 312
+  },
+  {
+    "cluster_label": 279,
+    "centroid_lat": 48.74613563291014,
+    "centroid_lon": 2.3582202240673498,
+    "radius": 42441.97377797323,
+    "point_count": 326
+  },
+  {
+    "cluster_label": 280,
+    "centroid_lat": 48.71755448762175,
+    "centroid_lon": 2.379986055024194,
+    "radius": 43160.698551455935,
+    "point_count": 381
+  },
+  {
+    "cluster_label": 281,
+    "centroid_lat": 48.67716989500844,
+    "centroid_lon": 2.4794295881572403,
+    "radius": 42007.40426597924,
+    "point_count": 313
+  },
+  {
+    "cluster_label": 282,
+    "centroid_lat": 48.745734972574404,
+    "centroid_lon": 2.328876417425023,
+    "radius": 54121.70423552641,
+    "point_count": 285
+  },
+  {
+    "cluster_label": 283,
+    "centroid_lat": 48.76779751901228,
+    "centroid_lon": 2.472651346870132,
+    "radius": 53176.996514682076,
+    "point_count": 257
+  },
+  {
+    "cluster_label": 284,
+    "centroid_lat": 48.789619934560534,
+    "centroid_lon": 2.35861255007725,
+    "radius": 44794.891542574085,
+    "point_count": 345
+  },
+  {
+    "cluster_label": 285,
+    "centroid_lat": 48.815971223613474,
+    "centroid_lon": 2.413160443120245,
+    "radius": 48265.63507836046,
+    "point_count": 292
+  },
+  {
+    "cluster_label": 286,
+    "centroid_lat": 48.74001749034353,
+    "centroid_lon": 2.3952995882107118,
+    "radius": 49401.84243371103,
+    "point_count": 320
+  },
+  {
+    "cluster_label": 287,
+    "centroid_lat": 48.82118140124478,
+    "centroid_lon": 2.2230383094279684,
+    "radius": 44185.90089277711,
+    "point_count": 328
+  },
+  {
+    "cluster_label": 288,
+    "centroid_lat": 48.7012119581482,
+    "centroid_lon": 2.462638019272336,
+    "radius": 50160.424334228366,
+    "point_count": 337
+  },
+  {
+    "cluster_label": 289,
+    "centroid_lat": 48.70658720224934,
+    "centroid_lon": 2.2864187245691916,
+    "radius": 35406.97512559516,
+    "point_count": 283
+  },
+  {
+    "cluster_label": 290,
+    "centroid_lat": 48.86598480896498,
+    "centroid_lon": 2.508457566872251,
+    "radius": 44380.35153246352,
+    "point_count": 301
+  },
+  {
+    "cluster_label": 291,
+    "centroid_lat": 48.775363401941576,
+    "centroid_lon": 2.4514303068997467,
+    "radius": 56773.65829876653,
+    "point_count": 297
+  },
+  {
+    "cluster_label": 292,
+    "centroid_lat": 48.85205311340728,
+    "centroid_lon": 2.4851987493982968,
+    "radius": 46095.69454639214,
+    "point_count": 335
+  },
+  {
+    "cluster_label": 293,
+    "centroid_lat": 48.685579280519654,
+    "centroid_lon": 2.3693774516806005,
+    "radius": 48257.97665815892,
+    "point_count": 285
+  },
+  {
+    "cluster_label": 294,
+    "centroid_lat": 48.5888098843445,
+    "centroid_lon": 2.5154782453861393,
+    "radius": 37995.4089492983,
+    "point_count": 303
+  },
+  {
+    "cluster_label": 295,
+    "centroid_lat": 48.7833500505269,
+    "centroid_lon": 2.4539771072940617,
+    "radius": 45283.71321153534,
+    "point_count": 289
+  },
+  {
+    "cluster_label": 296,
+    "centroid_lat": 48.753860668300305,
+    "centroid_lon": 2.3223591583710217,
+    "radius": 53157.84150076169,
+    "point_count": 339
+  },
+  {
+    "cluster_label": 297,
+    "centroid_lat": 48.816266395305284,
+    "centroid_lon": 2.5959615839102987,
+    "radius": 40846.69150623064,
+    "point_count": 324
+  },
+  {
+    "cluster_label": 298,
+    "centroid_lat": 48.77584673115077,
+    "centroid_lon": 2.4044397552592987,
+    "radius": 41191.737744432336,
+    "point_count": 264
+  },
+  {
+    "cluster_label": 299,
+    "centroid_lat": 48.75438347051718,
+    "centroid_lon": 2.3452366939549676,
+    "radius": 45068.54904944249,
+    "point_count": 327
+  },
+  {
+    "cluster_label": 300,
+    "centroid_lat": 48.80263628972117,
+    "centroid_lon": 2.319707167056384,
+    "radius": 50517.57300613993,
+    "point_count": 291
+  },
+  {
+    "cluster_label": 301,
+    "centroid_lat": 48.7215078358053,
+    "centroid_lon": 2.378704267443432,
+    "radius": 46969.22400425154,
+    "point_count": 320
+  },
+  {
+    "cluster_label": 302,
+    "centroid_lat": 48.72682256382631,
+    "centroid_lon": 2.3192033379912558,
+    "radius": 44362.87698163029,
+    "point_count": 326
+  },
+  {
+    "cluster_label": 303,
+    "centroid_lat": 48.68059328467516,
+    "centroid_lon": 2.2858853174260685,
+    "radius": 47534.52594959578,
+    "point_count": 237
+  },
+  {
+    "cluster_label": 304,
+    "centroid_lat": 48.7579793506723,
+    "centroid_lon": 2.3300702196430114,
+    "radius": 37807.383814666704,
+    "point_count": 301
+  },
+  {
+    "cluster_label": 305,
+    "centroid_lat": 48.8442078678527,
+    "centroid_lon": 2.334719412139824,
+    "radius": 44722.62818202446,
+    "point_count": 295
+  },
+  {
+    "cluster_label": 306,
+    "centroid_lat": 48.778364881999664,
+    "centroid_lon": 2.4773476967015653,
+    "radius": 53367.877162082375,
+    "point_count": 289
+  },
+  {
+    "cluster_label": 307,
+    "centroid_lat": 48.76106785806202,
+    "centroid_lon": 2.3984577167185623,
+    "radius": 50832.99711990371,
+    "point_count": 262
+  },
+  {
+    "cluster_label": 308,
+    "centroid_lat": 48.81975937503114,
+    "centroid_lon": 2.3689760028306024,
+    "radius": 55484.57016511376,
+    "point_count": 327
+  },
+  {
+    "cluster_label": 309,
+    "centroid_lat": 48.76803283791933,
+    "centroid_lon": 2.3110058730210135,
+    "radius": 47044.387638199674,
+    "point_count": 285
+  },
+  {
+    "cluster_label": 310,
+    "centroid_lat": 48.800231344426294,
+    "centroid_lon": 2.3475462087489674,
+    "radius": 48918.98399238751,
+    "point_count": 231
+  },
+  {
+    "cluster_label": 311,
+    "centroid_lat": 48.75808044079038,
+    "centroid_lon": 2.25007844930624,
+    "radius": 46460.99027389471,
+    "point_count": 312
+  },
+  {
+    "cluster_label": 312,
+    "centroid_lat": 48.77026123236473,
+    "centroid_lon": 2.2627136028941717,
+    "radius": 40905.95513809828,
+    "point_count": 384
+  },
+  {
+    "cluster_label": 313,
+    "centroid_lat": 48.744006845921014,
+    "centroid_lon": 2.423667142191434,
+    "radius": 42841.62281469475,
+    "point_count": 279
+  },
+  {
+    "cluster_label": 314,
+    "centroid_lat": 48.73119181196135,
+    "centroid_lon": 2.3986568362857326,
+    "radius": 49355.424713303044,
+    "point_count": 260
+  },
+  {
+    "cluster_label": 315,
+    "centroid_lat": 48.81549470067973,
+    "centroid_lon": 2.2569780282614555,
+    "radius": 43973.204353120665,
+    "point_count": 256
+  },
+  {
+    "cluster_label": 316,
+    "centroid_lat": 48.71573114251309,
+    "centroid_lon": 2.382475609117937,
+    "radius": 43602.80546408206,
+    "point_count": 248
+  },
+  {
+    "cluster_label": 317,
+    "centroid_lat": 48.71664861939223,
+    "centroid_lon": 2.368147978352299,
+    "radius": 41213.80962270967,
+    "point_count": 239
+  },
+  {
+    "cluster_label": 318,
+    "centroid_lat": 48.75083794581471,
+    "centroid_lon": 2.3496448533130496,
+    "radius": 43963.97137123278,
+    "point_count": 274
+  },
+  {
+    "cluster_label": 319,
+    "centroid_lat": 48.782554862994594,
+    "centroid_lon": 2.2304831029591625,
+    "radius": 50214.62830135252,
+    "point_count": 366
+  },
+  {
+    "cluster_label": 320,
+    "centroid_lat": 48.78384362887691,
+    "centroid_lon": 2.195408620071757,
+    "radius": 40380.93323642748,
+    "point_count": 243
+  },
+  {
+    "cluster_label": 321,
+    "centroid_lat": 48.88724515687666,
+    "centroid_lon": 2.3238918186224806,
+    "radius": 52332.11554822153,
+    "point_count": 261
+  },
+  {
+    "cluster_label": 322,
+    "centroid_lat": 48.7857086910278,
+    "centroid_lon": 2.3666110158584144,
+    "radius": 46943.4638188425,
+    "point_count": 300
+  },
+  {
+    "cluster_label": 323,
+    "centroid_lat": 48.74639428905132,
+    "centroid_lon": 2.316200970658071,
+    "radius": 50817.10045194074,
+    "point_count": 284
+  },
+  {
+    "cluster_label": 324,
+    "centroid_lat": 48.79044471338267,
+    "centroid_lon": 2.3387736797518395,
+    "radius": 39091.12282952435,
+    "point_count": 282
+  },
+  {
+    "cluster_label": 325,
+    "centroid_lat": 48.808071159546245,
+    "centroid_lon": 2.3973604316748585,
+    "radius": 54156.62835573025,
+    "point_count": 290
+  },
+  {
+    "cluster_label": 326,
+    "centroid_lat": 48.764440516649955,
+    "centroid_lon": 2.315364606600245,
+    "radius": 45185.381158559685,
+    "point_count": 250
+  },
+  {
+    "cluster_label": 327,
+    "centroid_lat": 48.81569466297528,
+    "centroid_lon": 2.342174749238096,
+    "radius": 52843.08884701004,
+    "point_count": 294
+  },
+  {
+    "cluster_label": 328,
+    "centroid_lat": 48.81011736915761,
+    "centroid_lon": 2.3200745351802006,
+    "radius": 52832.57332665597,
+    "point_count": 221
+  },
+  {
+    "cluster_label": 329,
+    "centroid_lat": 48.72973000343636,
+    "centroid_lon": 2.397048241404254,
+    "radius": 50784.45986584997,
+    "point_count": 236
+  },
+  {
+    "cluster_label": 330,
+    "centroid_lat": 48.81408521997962,
+    "centroid_lon": 2.3677259535286925,
+    "radius": 51264.354390404864,
+    "point_count": 278
+  },
+  {
+    "cluster_label": 331,
+    "centroid_lat": 48.756215103429874,
+    "centroid_lon": 2.205296600711535,
+    "radius": 47887.785387759606,
+    "point_count": 283
+  },
+  {
+    "cluster_label": 332,
+    "centroid_lat": 48.756404820915854,
+    "centroid_lon": 2.2792703067391518,
+    "radius": 47322.20673669791,
+    "point_count": 243
+  },
+  {
+    "cluster_label": 333,
+    "centroid_lat": 48.809682562347334,
+    "centroid_lon": 2.396605683271324,
+    "radius": 48151.99046365756,
+    "point_count": 256
+  },
+  {
+    "cluster_label": 334,
+    "centroid_lat": 48.76050513457376,
+    "centroid_lon": 2.2976362254364657,
+    "radius": 42975.6543665855,
+    "point_count": 275
+  },
+  {
+    "cluster_label": 335,
+    "centroid_lat": 48.72326693979152,
+    "centroid_lon": 2.320468282394462,
+    "radius": 46822.63782230916,
+    "point_count": 269
+  },
+  {
+    "cluster_label": 336,
+    "centroid_lat": 48.77600520498122,
+    "centroid_lon": 2.362072590457933,
+    "radius": 40118.30891956994,
+    "point_count": 325
+  },
+  {
+    "cluster_label": 337,
+    "centroid_lat": 48.74266398902498,
+    "centroid_lon": 2.307393197220718,
+    "radius": 45250.58626357028,
+    "point_count": 246
+  },
+  {
+    "cluster_label": 338,
+    "centroid_lat": 48.78597547503901,
+    "centroid_lon": 2.3042468114769337,
+    "radius": 54265.27281965611,
+    "point_count": 249
+  },
+  {
+    "cluster_label": 339,
+    "centroid_lat": 48.80773276790141,
+    "centroid_lon": 2.1847342293585768,
+    "radius": 52611.27386485504,
+    "point_count": 248
+  },
+  {
+    "cluster_label": 340,
+    "centroid_lat": 48.898583475566014,
+    "centroid_lon": 2.2911655560217965,
+    "radius": 38375.21356128577,
+    "point_count": 267
+  },
+  {
+    "cluster_label": 341,
+    "centroid_lat": 48.79882523904944,
+    "centroid_lon": 2.4331132186735633,
+    "radius": 45116.148657031685,
+    "point_count": 269
+  },
+  {
+    "cluster_label": 342,
+    "centroid_lat": 48.802546560794,
+    "centroid_lon": 2.3128672890496915,
+    "radius": 50673.077401168965,
+    "point_count": 272
+  },
+  {
+    "cluster_label": 343,
+    "centroid_lat": 48.75505525822368,
+    "centroid_lon": 2.3144019555066597,
+    "radius": 47702.93770709123,
+    "point_count": 223
+  },
+  {
+    "cluster_label": 344,
+    "centroid_lat": 48.730982849308276,
+    "centroid_lon": 2.42617523773333,
+    "radius": 41177.23508652583,
+    "point_count": 227
+  },
+  {
+    "cluster_label": 345,
+    "centroid_lat": 48.88554647990667,
+    "centroid_lon": 2.145424685661148,
+    "radius": 43575.27843149041,
+    "point_count": 254
+  },
+  {
+    "cluster_label": 346,
+    "centroid_lat": 48.73764597424684,
+    "centroid_lon": 2.1614950381386016,
+    "radius": 41488.81937165445,
+    "point_count": 230
+  },
+  {
+    "cluster_label": 347,
+    "centroid_lat": 48.735703927844646,
+    "centroid_lon": 2.386789781543539,
+    "radius": 47303.14422715284,
+    "point_count": 234
+  },
+  {
+    "cluster_label": 348,
+    "centroid_lat": 48.66749948496099,
+    "centroid_lon": 2.4395050093628488,
+    "radius": 46561.152948772724,
+    "point_count": 260
+  },
+  {
+    "cluster_label": 349,
+    "centroid_lat": 48.7920184254743,
+    "centroid_lon": 2.4176097981707367,
+    "radius": 44992.17538673631,
+    "point_count": 261
+  },
+  {
+    "cluster_label": 350,
+    "centroid_lat": 48.85183994844002,
+    "centroid_lon": 2.496486210727818,
+    "radius": 42167.397666829405,
+    "point_count": 407
+  },
+  {
+    "cluster_label": 351,
+    "centroid_lat": 48.726543731553676,
+    "centroid_lon": 2.428560370539131,
+    "radius": 61776.5506337047,
+    "point_count": 271
+  },
+  {
+    "cluster_label": 352,
+    "centroid_lat": 48.87452709582678,
+    "centroid_lon": 2.329686034904458,
+    "radius": 56979.12504881921,
+    "point_count": 253
+  },
+  {
+    "cluster_label": 353,
+    "centroid_lat": 48.8232551775415,
+    "centroid_lon": 2.432720287619833,
+    "radius": 48001.70159138022,
+    "point_count": 254
+  },
+  {
+    "cluster_label": 354,
+    "centroid_lat": 48.76413380285546,
+    "centroid_lon": 2.533604450402996,
+    "radius": 46077.47684371927,
+    "point_count": 246
+  },
+  {
+    "cluster_label": 355,
+    "centroid_lat": 48.83726731580916,
+    "centroid_lon": 2.4560265469933285,
+    "radius": 44139.29213359144,
+    "point_count": 214
+  },
+  {
+    "cluster_label": 356,
+    "centroid_lat": 48.7407365595121,
+    "centroid_lon": 2.514950041852464,
+    "radius": 44313.79676339164,
+    "point_count": 247
+  },
+  {
+    "cluster_label": 357,
+    "centroid_lat": 48.71666797678377,
+    "centroid_lon": 2.3842864568027498,
+    "radius": 46201.615089520674,
+    "point_count": 287
+  },
+  {
+    "cluster_label": 358,
+    "centroid_lat": 48.68473369345468,
+    "centroid_lon": 2.351455740349396,
+    "radius": 48065.04471679561,
+    "point_count": 214
+  },
+  {
+    "cluster_label": 359,
+    "centroid_lat": 48.764453474278795,
+    "centroid_lon": 2.3167458599315633,
+    "radius": 58766.86066463478,
+    "point_count": 280
+  },
+  {
+    "cluster_label": 360,
+    "centroid_lat": 48.723688398705,
+    "centroid_lon": 2.381687547413693,
+    "radius": 43996.90633788871,
+    "point_count": 200
+  },
+  {
+    "cluster_label": 361,
+    "centroid_lat": 48.765196720373666,
+    "centroid_lon": 2.2950260471077675,
+    "radius": 50206.89287989951,
+    "point_count": 267
+  },
+  {
+    "cluster_label": 362,
+    "centroid_lat": 48.77127249628037,
+    "centroid_lon": 2.3237770508272644,
+    "radius": 48525.186435127864,
+    "point_count": 225
+  },
+  {
+    "cluster_label": 363,
+    "centroid_lat": 48.69577219840217,
+    "centroid_lon": 2.3227462191926813,
+    "radius": 50126.723555706856,
+    "point_count": 250
+  },
+  {
+    "cluster_label": 364,
+    "centroid_lat": 48.69603264784436,
+    "centroid_lon": 2.5156794972255248,
+    "radius": 42114.28843276682,
+    "point_count": 263
+  },
+  {
+    "cluster_label": 365,
+    "centroid_lat": 48.68475703082822,
+    "centroid_lon": 2.414190806268665,
+    "radius": 41552.924481262155,
+    "point_count": 208
+  },
+  {
+    "cluster_label": 366,
+    "centroid_lat": 48.74504674810293,
+    "centroid_lon": 2.4595778438516556,
+    "radius": 45954.42038894687,
+    "point_count": 232
+  },
+  {
+    "cluster_label": 367,
+    "centroid_lat": 48.75475341020444,
+    "centroid_lon": 2.336572884251803,
+    "radius": 50068.66866991552,
+    "point_count": 233
+  },
+  {
+    "cluster_label": 368,
+    "centroid_lat": 48.740834198180025,
+    "centroid_lon": 2.2579924788132555,
+    "radius": 51858.127835548046,
+    "point_count": 208
+  },
+  {
+    "cluster_label": 369,
+    "centroid_lat": 48.689991234576674,
+    "centroid_lon": 2.4711885365566633,
+    "radius": 47014.91375173503,
+    "point_count": 245
+  },
+  {
+    "cluster_label": 370,
+    "centroid_lat": 48.76013557364345,
+    "centroid_lon": 2.444548918567272,
+    "radius": 53671.18212683856,
+    "point_count": 214
+  },
+  {
+    "cluster_label": 371,
+    "centroid_lat": 48.76521396646171,
+    "centroid_lon": 2.3897675025558156,
+    "radius": 39129.965920244154,
+    "point_count": 243
+  },
+  {
+    "cluster_label": 372,
+    "centroid_lat": 48.75309009238708,
+    "centroid_lon": 2.348246026857397,
+    "radius": 52333.18535712286,
+    "point_count": 208
+  },
+  {
+    "cluster_label": 373,
+    "centroid_lat": 48.76715058317923,
+    "centroid_lon": 2.2462374350792955,
+    "radius": 43657.567011281244,
+    "point_count": 217
+  },
+  {
+    "cluster_label": 374,
+    "centroid_lat": 48.74737369184765,
+    "centroid_lon": 2.3448692221817833,
+    "radius": 52288.641347903555,
+    "point_count": 217
+  },
+  {
+    "cluster_label": 375,
+    "centroid_lat": 48.73799322478514,
+    "centroid_lon": 2.406687093619493,
+    "radius": 45913.23272208058,
+    "point_count": 223
+  },
+  {
+    "cluster_label": 376,
+    "centroid_lat": 48.78726656208439,
+    "centroid_lon": 2.3660616419437646,
+    "radius": 45084.63347982749,
+    "point_count": 215
+  },
+  {
+    "cluster_label": 377,
+    "centroid_lat": 48.75438412962715,
+    "centroid_lon": 2.414189843235849,
+    "radius": 57741.29971238682,
+    "point_count": 249
+  },
+  {
+    "cluster_label": 378,
+    "centroid_lat": 48.76670193128131,
+    "centroid_lon": 2.2810725411525166,
+    "radius": 44957.92028209002,
+    "point_count": 242
+  },
+  {
+    "cluster_label": 379,
+    "centroid_lat": 48.84845087862046,
+    "centroid_lon": 2.160451195460971,
+    "radius": 43833.20140134391,
+    "point_count": 190
+  },
+  {
+    "cluster_label": 380,
+    "centroid_lat": 48.77959292238434,
+    "centroid_lon": 2.3315462215826317,
+    "radius": 45393.17113731879,
+    "point_count": 202
+  },
+  {
+    "cluster_label": 381,
+    "centroid_lat": 48.73662336660927,
+    "centroid_lon": 2.366471735908692,
+    "radius": 39824.07382192211,
+    "point_count": 243
+  },
+  {
+    "cluster_label": 382,
+    "centroid_lat": 48.77407462864561,
+    "centroid_lon": 2.386911404592289,
+    "radius": 48323.61339570167,
+    "point_count": 207
+  },
+  {
+    "cluster_label": 383,
+    "centroid_lat": 48.806852100151715,
+    "centroid_lon": 2.387166041075767,
+    "radius": 49125.61577251969,
+    "point_count": 215
+  },
+  {
+    "cluster_label": 384,
+    "centroid_lat": 48.69227937558417,
+    "centroid_lon": 2.351815233842137,
+    "radius": 45192.97839069662,
+    "point_count": 197
+  },
+  {
+    "cluster_label": 385,
+    "centroid_lat": 48.7683290238957,
+    "centroid_lon": 2.4059953842246764,
+    "radius": 46813.73865832678,
+    "point_count": 213
+  },
+  {
+    "cluster_label": 386,
+    "centroid_lat": 48.73362588291504,
+    "centroid_lon": 2.35581988467475,
+    "radius": 51085.67954375376,
+    "point_count": 214
+  },
+  {
+    "cluster_label": 387,
+    "centroid_lat": 48.757868797790984,
+    "centroid_lon": 2.3845949951564003,
+    "radius": 42127.955226130965,
+    "point_count": 198
+  },
+  {
+    "cluster_label": 388,
+    "centroid_lat": 48.70506887336651,
+    "centroid_lon": 2.4327001639639105,
+    "radius": 44996.12021862437,
+    "point_count": 200
+  },
+  {
+    "cluster_label": 389,
+    "centroid_lat": 48.71335683848107,
+    "centroid_lon": 2.4313078441101497,
+    "radius": 49584.151971603635,
+    "point_count": 181
+  },
+  {
+    "cluster_label": 390,
+    "centroid_lat": 48.72353535272235,
+    "centroid_lon": 2.3822154238192024,
+    "radius": 46925.43783058215,
+    "point_count": 230
+  },
+  {
+    "cluster_label": 391,
+    "centroid_lat": 48.691646282905985,
+    "centroid_lon": 2.327448520288232,
+    "radius": 41275.257708409554,
+    "point_count": 216
+  },
+  {
+    "cluster_label": 392,
+    "centroid_lat": 48.677852588960306,
+    "centroid_lon": 2.2493060078346505,
+    "radius": 43078.41637496579,
+    "point_count": 188
+  },
+  {
+    "cluster_label": 393,
+    "centroid_lat": 48.74565673802525,
+    "centroid_lon": 2.2482447981419953,
+    "radius": 49202.84556353343,
+    "point_count": 180
+  },
+  {
+    "cluster_label": 394,
+    "centroid_lat": 48.72735861184792,
+    "centroid_lon": 2.277757728471982,
+    "radius": 46227.853186498825,
+    "point_count": 226
+  },
+  {
+    "cluster_label": 395,
+    "centroid_lat": 48.69115263769545,
+    "centroid_lon": 2.3369615635567906,
+    "radius": 52657.64189929161,
+    "point_count": 165
+  },
+  {
+    "cluster_label": 396,
+    "centroid_lat": 48.76468936574305,
+    "centroid_lon": 2.406041528992092,
+    "radius": 52747.0741879061,
+    "point_count": 216
+  },
+  {
+    "cluster_label": 397,
+    "centroid_lat": 48.83554399670849,
+    "centroid_lon": 2.3734163437815816,
+    "radius": 50140.04916352918,
+    "point_count": 199
+  },
+  {
+    "cluster_label": 398,
+    "centroid_lat": 48.73249124385135,
+    "centroid_lon": 2.3811726526724173,
+    "radius": 51723.42908962656,
+    "point_count": 206
+  },
+  {
+    "cluster_label": 399,
+    "centroid_lat": 48.720085319177635,
+    "centroid_lon": 2.336178221678055,
+    "radius": 41651.68629260318,
+    "point_count": 195
+  },
+  {
+    "cluster_label": 400,
+    "centroid_lat": 48.715089943892146,
+    "centroid_lon": 2.2720442668817085,
+    "radius": 44114.63336131339,
+    "point_count": 191
+  },
+  {
+    "cluster_label": 401,
+    "centroid_lat": 48.87325198113418,
+    "centroid_lon": 2.3030351099071598,
+    "radius": 46312.00429645228,
+    "point_count": 252
+  },
+  {
+    "cluster_label": 402,
+    "centroid_lat": 48.82335094464381,
+    "centroid_lon": 2.3359602202159047,
+    "radius": 44973.48254151226,
+    "point_count": 185
+  },
+  {
+    "cluster_label": 403,
+    "centroid_lat": 48.804258603717216,
+    "centroid_lon": 2.220425934690086,
+    "radius": 53191.5995592899,
+    "point_count": 171
+  },
+  {
+    "cluster_label": 404,
+    "centroid_lat": 48.747472101524984,
+    "centroid_lon": 2.331601378839641,
+    "radius": 52260.30707187597,
+    "point_count": 199
+  },
+  {
+    "cluster_label": 405,
+    "centroid_lat": 48.652107025668506,
+    "centroid_lon": 2.5335647263447583,
+    "radius": 45189.841015804326,
+    "point_count": 192
+  },
+  {
+    "cluster_label": 406,
+    "centroid_lat": 48.72507803669656,
+    "centroid_lon": 2.3193257739220625,
+    "radius": 40258.174450787934,
+    "point_count": 184
+  },
+  {
+    "cluster_label": 407,
+    "centroid_lat": 48.783810482981224,
+    "centroid_lon": 2.3509155821335637,
+    "radius": 51745.435120524395,
+    "point_count": 187
+  },
+  {
+    "cluster_label": 408,
+    "centroid_lat": 48.6751980502188,
+    "centroid_lon": 2.3760732998287573,
+    "radius": 51443.23195794263,
+    "point_count": 166
+  },
+  {
+    "cluster_label": 409,
+    "centroid_lat": 48.747106304448586,
+    "centroid_lon": 2.4566352150635016,
+    "radius": 42674.59808504769,
+    "point_count": 173
+  },
+  {
+    "cluster_label": 410,
+    "centroid_lat": 48.71157798698408,
+    "centroid_lon": 2.3840956592145472,
+    "radius": 40850.93624744715,
+    "point_count": 179
+  },
+  {
+    "cluster_label": 411,
+    "centroid_lat": 48.71235782263518,
+    "centroid_lon": 2.4428277635742144,
+    "radius": 49237.030783508686,
+    "point_count": 161
+  },
+  {
+    "cluster_label": 412,
+    "centroid_lat": 48.66499804366952,
+    "centroid_lon": 2.323275235440949,
+    "radius": 46869.25164332572,
+    "point_count": 218
+  },
+  {
+    "cluster_label": 413,
+    "centroid_lat": 48.71306440137981,
+    "centroid_lon": 2.404299014476977,
+    "radius": 40056.71896640836,
+    "point_count": 205
+  },
+  {
+    "cluster_label": 414,
+    "centroid_lat": 48.69664874693624,
+    "centroid_lon": 2.5250741228052433,
+    "radius": 42180.91246868156,
+    "point_count": 150
+  },
+  {
+    "cluster_label": 415,
+    "centroid_lat": 48.71714031669939,
+    "centroid_lon": 2.2624565829126433,
+    "radius": 43137.44687750475,
+    "point_count": 191
+  },
+  {
+    "cluster_label": 416,
+    "centroid_lat": 48.76290379569517,
+    "centroid_lon": 2.277295442080102,
+    "radius": 49273.09201654878,
+    "point_count": 159
+  },
+  {
+    "cluster_label": 417,
+    "centroid_lat": 48.831254739478396,
+    "centroid_lon": 2.2002286607106583,
+    "radius": 49890.70526710833,
+    "point_count": 161
+  },
+  {
+    "cluster_label": 418,
+    "centroid_lat": 48.79975862499088,
+    "centroid_lon": 2.415567110062542,
+    "radius": 44954.20472576887,
+    "point_count": 203
+  },
+  {
+    "cluster_label": 419,
+    "centroid_lat": 48.804306631911906,
+    "centroid_lon": 2.4386901321464034,
+    "radius": 50918.15537716157,
+    "point_count": 165
+  },
+  {
+    "cluster_label": 420,
+    "centroid_lat": 48.855901281521135,
+    "centroid_lon": 2.268296489019604,
+    "radius": 45427.56162036827,
+    "point_count": 200
+  },
+  {
+    "cluster_label": 421,
+    "centroid_lat": 48.82210313328501,
+    "centroid_lon": 2.2717265922943075,
+    "radius": 48544.52165185611,
+    "point_count": 158
+  },
+  {
+    "cluster_label": 422,
+    "centroid_lat": 48.72194691345871,
+    "centroid_lon": 2.3213614942501493,
+    "radius": 42001.20661209801,
+    "point_count": 151
+  },
+  {
+    "cluster_label": 423,
+    "centroid_lat": 48.60546381186554,
+    "centroid_lon": 2.4761013193766144,
+    "radius": 46103.49928008687,
+    "point_count": 149
+  },
+  {
+    "cluster_label": 424,
+    "centroid_lat": 48.82021264966922,
+    "centroid_lon": 2.3989812716630174,
+    "radius": 57287.41079007054,
+    "point_count": 135
+  },
+  {
+    "cluster_label": 425,
+    "centroid_lat": 48.7608006461427,
+    "centroid_lon": 2.517512443844266,
+    "radius": 49010.083074701164,
+    "point_count": 152
+  },
+  {
+    "cluster_label": 426,
+    "centroid_lat": 48.78582876040466,
+    "centroid_lon": 2.4542654795529226,
+    "radius": 51584.58380264027,
+    "point_count": 155
+  },
+  {
+    "cluster_label": 427,
+    "centroid_lat": 48.77989580603892,
+    "centroid_lon": 2.375773824958419,
+    "radius": 50995.87970070015,
+    "point_count": 170
+  },
+  {
+    "cluster_label": 428,
+    "centroid_lat": 48.71462677663832,
+    "centroid_lon": 2.3361172576141946,
+    "radius": 52169.732865194834,
+    "point_count": 152
+  },
+  {
+    "cluster_label": 429,
+    "centroid_lat": 48.81801143539172,
+    "centroid_lon": 2.4509412898311473,
+    "radius": 47565.03823240434,
+    "point_count": 140
+  },
+  {
+    "cluster_label": 430,
+    "centroid_lat": 48.72040856185624,
+    "centroid_lon": 2.413614094903194,
+    "radius": 42520.05006149464,
+    "point_count": 163
+  },
+  {
+    "cluster_label": 431,
+    "centroid_lat": 48.76372694402213,
+    "centroid_lon": 2.3540307810257834,
+    "radius": 48063.067572753665,
+    "point_count": 126
+  },
+  {
+    "cluster_label": 432,
+    "centroid_lat": 48.86661857853837,
+    "centroid_lon": 2.5047650887204576,
+    "radius": 45011.56504842288,
+    "point_count": 142
+  },
+  {
+    "cluster_label": 433,
+    "centroid_lat": 48.812146247831144,
+    "centroid_lon": 2.352433775768938,
+    "radius": 49321.41133520569,
+    "point_count": 123
+  },
+  {
+    "cluster_label": 434,
+    "centroid_lat": 48.73840595193147,
+    "centroid_lon": 2.3209469882244327,
+    "radius": 36237.84913613604,
+    "point_count": 123
+  },
+  {
+    "cluster_label": 435,
+    "centroid_lat": 48.76623318402336,
+    "centroid_lon": 2.3316435074231574,
+    "radius": 48976.1812315664,
+    "point_count": 127
+  },
+  {
+    "cluster_label": 436,
+    "centroid_lat": 48.78016297143589,
+    "centroid_lon": 2.3918643281970815,
+    "radius": 51508.46311476725,
+    "point_count": 120
+  },
+  {
+    "cluster_label": 437,
+    "centroid_lat": 48.71256808763783,
+    "centroid_lon": 2.3649223430066626,
+    "radius": 41915.85600400335,
+    "point_count": 116
+  },
+  {
+    "cluster_label": 438,
+    "centroid_lat": 48.76545373778388,
+    "centroid_lon": 2.3913878242449296,
+    "radius": 53206.31289144951,
+    "point_count": 121
+  },
+  {
+    "cluster_label": 439,
+    "centroid_lat": 48.749829362710564,
+    "centroid_lon": 2.2808876151895716,
+    "radius": 43127.71772632595,
+    "point_count": 150
+  },
+  {
+    "cluster_label": 440,
+    "centroid_lat": 48.69325830074824,
+    "centroid_lon": 2.3552462456213434,
+    "radius": 36883.161814594416,
+    "point_count": 126
+  },
+  {
+    "cluster_label": 441,
+    "centroid_lat": 48.70086009156264,
+    "centroid_lon": 2.3615181008485435,
+    "radius": 53712.31174677137,
+    "point_count": 102
+  },
+  {
+    "cluster_label": 442,
+    "centroid_lat": 48.89565042041831,
+    "centroid_lon": 2.504885120892534,
+    "radius": 45586.97139560139,
+    "point_count": 140
+  },
+  {
+    "cluster_label": 443,
+    "centroid_lat": 48.863863757495196,
+    "centroid_lon": 2.5029438684209517,
+    "radius": 41153.0441053012,
+    "point_count": 128
+  },
+  {
+    "cluster_label": 444,
+    "centroid_lat": 48.78508705020857,
+    "centroid_lon": 2.292908284846352,
+    "radius": 49781.697877146245,
+    "point_count": 112
+  },
+  {
+    "cluster_label": 445,
+    "centroid_lat": 48.7940866157656,
+    "centroid_lon": 2.5179771583066803,
+    "radius": 46468.40436895406,
+    "point_count": 107
+  },
+  {
+    "cluster_label": 446,
+    "centroid_lat": 48.86911650392713,
+    "centroid_lon": 2.396247020313537,
+    "radius": 43699.3443593042,
+    "point_count": 140
+  },
+  {
+    "cluster_label": 447,
+    "centroid_lat": 48.68876470328977,
+    "centroid_lon": 2.560760102779565,
+    "radius": 58099.76052624599,
+    "point_count": 109
+  },
+  {
+    "cluster_label": 448,
+    "centroid_lat": 48.8107622513453,
+    "centroid_lon": 2.3135172281978846,
+    "radius": 50815.01108818704,
+    "point_count": 103
+  },
+  {
+    "cluster_label": 449,
+    "centroid_lat": 48.76833868762121,
+    "centroid_lon": 2.4161793821641018,
+    "radius": 32266.945161010113,
+    "point_count": 125
+  },
+  {
+    "cluster_label": 450,
+    "centroid_lat": 48.70058553228191,
+    "centroid_lon": 2.417261608604217,
+    "radius": 42190.29698851844,
+    "point_count": 118
+  },
+  {
+    "cluster_label": 451,
+    "centroid_lat": 48.82487941304783,
+    "centroid_lon": 2.42608625425688,
+    "radius": 51320.20382922729,
+    "point_count": 107
+  },
+  {
+    "cluster_label": 452,
+    "centroid_lat": 48.68503869660011,
+    "centroid_lon": 2.625046206166104,
+    "radius": 48808.73219848599,
+    "point_count": 128
+  },
+  {
+    "cluster_label": 453,
+    "centroid_lat": 48.85257146132042,
+    "centroid_lon": 2.2480337628836806,
+    "radius": 49189.84865192517,
+    "point_count": 100
+  },
+  {
+    "cluster_label": 454,
+    "centroid_lat": 48.7822564075,
+    "centroid_lon": 2.396775719541,
+    "radius": 55217.25324515367,
+    "point_count": 100
+  },
+  {
+    "cluster_label": 455,
+    "centroid_lat": 48.818942869354935,
+    "centroid_lon": 2.1800552817379786,
+    "radius": 44932.2875002233,
+    "point_count": 96
+  },
+  {
+    "cluster_label": 456,
+    "centroid_lat": 48.83848155076938,
+    "centroid_lon": 2.381949275929461,
+    "radius": 44511.500301145745,
+    "point_count": 111
+  },
+  {
+    "cluster_label": 457,
+    "centroid_lat": 48.79288124588251,
+    "centroid_lon": 2.456733340972826,
+    "radius": 40966.297188980134,
+    "point_count": 98
+  },
+  {
+    "cluster_label": 458,
+    "centroid_lat": 48.7938019595238,
+    "centroid_lon": 2.417845012727762,
+    "radius": 44856.55719546173,
+    "point_count": 136
+  },
+  {
+    "cluster_label": 459,
+    "centroid_lat": 48.850565353499746,
+    "centroid_lon": 2.4651228922927335,
+    "radius": 38624.36228504583,
+    "point_count": 114
+  },
+  {
+    "cluster_label": 460,
+    "centroid_lat": 48.799661642589875,
+    "centroid_lon": 2.1805881210674873,
+    "radius": 55371.829209642,
+    "point_count": 91
+  },
+  {
+    "cluster_label": 461,
+    "centroid_lat": 48.79985961012381,
+    "centroid_lon": 2.4032134068514286,
+    "radius": 38003.32786166511,
+    "point_count": 105
+  },
+  {
+    "cluster_label": 462,
+    "centroid_lat": 48.868536792666845,
+    "centroid_lon": 2.347028825451502,
+    "radius": 50741.287907335594,
+    "point_count": 100
+  },
+  {
+    "cluster_label": 463,
+    "centroid_lat": 48.85947678288562,
+    "centroid_lon": 2.1007899270539894,
+    "radius": 32861.5510865584,
+    "point_count": 91
+  },
+  {
+    "cluster_label": 464,
+    "centroid_lat": 48.80801823118322,
+    "centroid_lon": 2.345835238455744,
+    "radius": 53851.56298950014,
+    "point_count": 92
+  },
+  {
+    "cluster_label": 465,
+    "centroid_lat": 48.80700202378519,
+    "centroid_lon": 2.153968867823825,
+    "radius": 44195.57482075704,
+    "point_count": 88
+  },
+  {
+    "cluster_label": 466,
+    "centroid_lat": 48.80430941315102,
+    "centroid_lon": 2.3492608560496384,
+    "radius": 58519.974739678706,
+    "point_count": 82
+  },
+  {
+    "cluster_label": 467,
+    "centroid_lat": 48.886165856173335,
+    "centroid_lon": 2.2744345050306665,
+    "radius": 58265.43137521579,
+    "point_count": 75
+  },
+  {
+    "cluster_label": 468,
+    "centroid_lat": 48.81708586124784,
+    "centroid_lon": 2.3356025388541792,
+    "radius": 62376.146314460755,
+    "point_count": 75
+  },
+  {
+    "cluster_label": 469,
+    "centroid_lat": 48.85568406412764,
+    "centroid_lon": 2.4587267443720418,
+    "radius": 54466.42308929358,
+    "point_count": 66
+  },
+  {
+    "cluster_label": 470,
+    "centroid_lat": 48.7930235686656,
+    "centroid_lon": 2.2127896378082808,
+    "radius": 52636.6177166386,
+    "point_count": 80
+  },
+  {
+    "cluster_label": 471,
+    "centroid_lat": 48.74372918005949,
+    "centroid_lon": 2.3060917202405644,
+    "radius": 51004.02556650466,
+    "point_count": 85
+  },
+  {
+    "cluster_label": 472,
+    "centroid_lat": 48.87277323716804,
+    "centroid_lon": 2.1346248099736935,
+    "radius": 51030.476300612834,
+    "point_count": 74
+  },
+  {
+    "cluster_label": 473,
+    "centroid_lat": 48.82631412290353,
+    "centroid_lon": 2.3874588694352807,
+    "radius": 59158.93463278875,
+    "point_count": 79
+  },
+  {
+    "cluster_label": 474,
+    "centroid_lat": 48.889402612719884,
+    "centroid_lon": 2.1323293560393997,
+    "radius": 42169.598890220324,
+    "point_count": 147
+  },
+  {
+    "cluster_label": 475,
+    "centroid_lat": 48.7939115523456,
+    "centroid_lon": 2.4405262540649773,
+    "radius": 44141.54301414667,
+    "point_count": 71
+  },
+  {
+    "cluster_label": 476,
+    "centroid_lat": 48.70756852695866,
+    "centroid_lon": 2.4676223809088045,
+    "radius": 30986.257966764784,
+    "point_count": 75
+  },
+  {
+    "cluster_label": 477,
+    "centroid_lat": 48.70087442320438,
+    "centroid_lon": 2.394427182027066,
+    "radius": 42335.537889822095,
+    "point_count": 80
+  },
+  {
+    "cluster_label": 478,
+    "centroid_lat": 48.84908384305479,
+    "centroid_lon": 2.427111595060274,
+    "radius": 26244.707224172398,
+    "point_count": 73
+  },
+  {
+    "cluster_label": 479,
+    "centroid_lat": 48.81585618393572,
+    "centroid_lon": 2.227958307936247,
+    "radius": 48610.45230446945,
+    "point_count": 70
+  },
+  {
+    "cluster_label": 480,
+    "centroid_lat": 48.82304739273097,
+    "centroid_lon": 2.222123698305787,
+    "radius": 30775.458261534197,
+    "point_count": 86
+  },
+  {
+    "cluster_label": 481,
+    "centroid_lat": 48.814255284801675,
+    "centroid_lon": 2.436091676824504,
+    "radius": 35189.66880290547,
+    "point_count": 78
+  },
+  {
+    "cluster_label": 482,
+    "centroid_lat": 48.8360257951237,
+    "centroid_lon": 2.303233616838014,
+    "radius": 48634.97725085491,
+    "point_count": 62
+  },
+  {
+    "cluster_label": 483,
+    "centroid_lat": 48.76234173670492,
+    "centroid_lon": 2.2316491303737704,
+    "radius": 56447.425263368525,
+    "point_count": 61
+  },
+  {
+    "cluster_label": 484,
+    "centroid_lat": 48.80919784329627,
+    "centroid_lon": 2.31226067730617,
+    "radius": 50811.59155944405,
+    "point_count": 57
+  },
+  {
+    "cluster_label": 485,
+    "centroid_lat": 48.80783394316071,
+    "centroid_lon": 2.3506068472160715,
+    "radius": 46396.34459595119,
+    "point_count": 56
+  },
+  {
+    "cluster_label": 486,
+    "centroid_lat": 48.92514094671565,
+    "centroid_lon": 2.2961129114117464,
+    "radius": 47491.14723069237,
+    "point_count": 58
+  },
+  {
+    "cluster_label": 487,
+    "centroid_lat": 48.80111701766786,
+    "centroid_lon": 2.4262745570529045,
+    "radius": 53104.23238135342,
+    "point_count": 55
+  },
+  {
+    "cluster_label": 488,
+    "centroid_lat": 48.80272432778026,
+    "centroid_lon": 2.259241704476549,
+    "radius": 44001.464660138816,
+    "point_count": 69
+  },
+  {
+    "cluster_label": 489,
+    "centroid_lat": 48.710456359725086,
+    "centroid_lon": 2.608879011088755,
+    "radius": 77398.1005286777,
+    "point_count": 56
+  },
+  {
+    "cluster_label": 490,
+    "centroid_lat": 48.824608206911584,
+    "centroid_lon": 2.4972888680672303,
+    "radius": 41969.1395676158,
+    "point_count": 53
+  },
+  {
+    "cluster_label": 491,
+    "centroid_lat": 48.67350394809461,
+    "centroid_lon": 2.6401507435746328,
+    "radius": 38369.48272017074,
+    "point_count": 50
+  },
+  {
+    "cluster_label": 492,
+    "centroid_lat": 48.74251795369767,
+    "centroid_lon": 2.3433660119139534,
+    "radius": 43114.055964949024,
+    "point_count": 43
+  },
+  {
+    "cluster_label": 493,
+    "centroid_lat": 48.74354466824426,
+    "centroid_lon": 2.3468761063361736,
+    "radius": 33205.29327761351,
+    "point_count": 47
+  },
+  {
+    "cluster_label": 494,
+    "centroid_lat": 48.81565281967557,
+    "centroid_lon": 2.4916759234245345,
+    "radius": 38060.04354092933,
+    "point_count": 54
+  },
+  {
+    "cluster_label": 495,
+    "centroid_lat": 48.82282026306473,
+    "centroid_lon": 2.3632049329937366,
+    "radius": 37301.637320354006,
+    "point_count": 40
+  },
+  {
+    "cluster_label": 496,
+    "centroid_lat": 48.83705998587234,
+    "centroid_lon": 2.439743670051064,
+    "radius": 46634.305753471264,
+    "point_count": 47
+  },
+  {
+    "cluster_label": 497,
+    "centroid_lat": 48.77460578395602,
+    "centroid_lon": 2.1905199761553846,
+    "radius": 39339.786984218306,
+    "point_count": 41
+  },
+  {
+    "cluster_label": 498,
+    "centroid_lat": 48.80564371076716,
+    "centroid_lon": 2.4853103118701703,
+    "radius": 28668.908212761587,
+    "point_count": 58
+  },
+  {
+    "cluster_label": 499,
+    "centroid_lat": 48.729379464092716,
+    "centroid_lon": 2.242014413652842,
+    "radius": 32981.755650620435,
+    "point_count": 51
+  },
+  {
+    "cluster_label": 500,
+    "centroid_lat": 48.88508928117013,
+    "centroid_lon": 2.219127989919096,
+    "radius": 62543.88171287271,
+    "point_count": 41
+  },
+  {
+    "cluster_label": 501,
+    "centroid_lat": 48.92148555013817,
+    "centroid_lon": 2.5024491948353855,
+    "radius": 49490.057434191054,
+    "point_count": 40
+  },
+  {
+    "cluster_label": 502,
+    "centroid_lat": 48.88838779651167,
+    "centroid_lon": 2.2352711342758282,
+    "radius": 48561.5560964172,
+    "point_count": 42
+  },
+  {
+    "cluster_label": 503,
+    "centroid_lat": 48.81095807357412,
+    "centroid_lon": 2.1336105941820716,
+    "radius": 36144.49890801659,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 504,
+    "centroid_lat": 48.98506763976666,
+    "centroid_lon": 2.2631616419366667,
+    "radius": 40491.45146559219,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 505,
+    "centroid_lat": 48.635071106750004,
+    "centroid_lon": 2.8117692174,
+    "radius": 28103.063019483092,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 506,
+    "centroid_lat": 48.524180201355634,
+    "centroid_lon": 2.5115695077170357,
+    "radius": 34178.03821238967,
+    "point_count": 31
+  },
+  {
+    "cluster_label": 507,
+    "centroid_lat": 48.96742453229075,
+    "centroid_lon": 2.4086235096019717,
+    "radius": 36167.44434315227,
+    "point_count": 32
+  },
+  {
+    "cluster_label": 508,
+    "centroid_lat": 48.84466755056919,
+    "centroid_lon": 2.3604953375330577,
+    "radius": 35478.75525613029,
+    "point_count": 44
+  },
+  {
+    "cluster_label": 509,
+    "centroid_lat": 48.928980705757574,
+    "centroid_lon": 2.479391872406061,
+    "radius": 58929.563943953624,
+    "point_count": 33
+  },
+  {
+    "cluster_label": 510,
+    "centroid_lat": 48.6817927871506,
+    "centroid_lon": 2.47116655333475,
+    "radius": 40512.28326157891,
+    "point_count": 32
+  },
+  {
+    "cluster_label": 511,
+    "centroid_lat": 48.65684849016667,
+    "centroid_lon": 2.46378681455,
+    "radius": 49624.41560969477,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 512,
+    "centroid_lat": 48.78787035738095,
+    "centroid_lon": 2.198356866833333,
+    "radius": 46049.82996811506,
+    "point_count": 42
+  },
+  {
+    "cluster_label": 513,
+    "centroid_lat": 48.72719526194767,
+    "centroid_lon": 2.3802552186923394,
+    "radius": 51833.99227144734,
+    "point_count": 32
+  },
+  {
+    "cluster_label": 514,
+    "centroid_lat": 48.60601285471429,
+    "centroid_lon": 2.2464750664225686,
+    "radius": 35101.894428961496,
+    "point_count": 37
+  },
+  {
+    "cluster_label": 515,
+    "centroid_lat": 48.67318729548508,
+    "centroid_lon": 2.421691928835867,
+    "radius": 36839.351347909505,
+    "point_count": 51
+  },
+  {
+    "cluster_label": 516,
+    "centroid_lat": 48.70637778425862,
+    "centroid_lon": 2.1966310719768756,
+    "radius": 47437.25960554448,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 517,
+    "centroid_lat": 48.89517377601044,
+    "centroid_lon": 2.191539617938148,
+    "radius": 23535.607450112682,
+    "point_count": 24
+  },
+  {
+    "cluster_label": 518,
+    "centroid_lat": 48.92662560632013,
+    "centroid_lon": 2.3920690318104474,
+    "radius": 23240.780312665436,
+    "point_count": 32
+  },
+  {
+    "cluster_label": 519,
+    "centroid_lat": 48.92674624303506,
+    "centroid_lon": 2.1747634627088313,
+    "radius": 55876.75110671066,
+    "point_count": 24
+  },
+  {
+    "cluster_label": 520,
+    "centroid_lat": 48.7653971756,
+    "centroid_lon": 2.616503318325,
+    "radius": 32691.897272154638,
+    "point_count": 40
+  },
+  {
+    "cluster_label": 521,
+    "centroid_lat": 48.68880390802422,
+    "centroid_lon": 2.8860131815990147,
+    "radius": 36678.830186119325,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 522,
+    "centroid_lat": 48.907712045853295,
+    "centroid_lon": 2.4739628435528553,
+    "radius": 38118.158225478546,
+    "point_count": 31
+  },
+  {
+    "cluster_label": 523,
+    "centroid_lat": 48.80232363120189,
+    "centroid_lon": 2.291411862822144,
+    "radius": 59140.26437537653,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 524,
+    "centroid_lat": 48.70014330723876,
+    "centroid_lon": 2.5655688724855237,
+    "radius": 44962.68181568811,
+    "point_count": 33
+  },
+  {
+    "cluster_label": 525,
+    "centroid_lat": 48.78322234908333,
+    "centroid_lon": 2.2737561668222224,
+    "radius": 39882.76194317189,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 526,
+    "centroid_lat": 48.77666531605406,
+    "centroid_lon": 2.279876517410811,
+    "radius": 39505.855305881836,
+    "point_count": 37
+  },
+  {
+    "cluster_label": 527,
+    "centroid_lat": 48.7634533751,
+    "centroid_lon": 2.30364450181,
+    "radius": 31829.981452548058,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 528,
+    "centroid_lat": 48.63468949436291,
+    "centroid_lon": 2.497024598770299,
+    "radius": 42765.284920470935,
+    "point_count": 36
+  },
+  {
+    "cluster_label": 529,
+    "centroid_lat": 48.45621601707641,
+    "centroid_lon": 2.682837749122135,
+    "radius": 34594.74635747413,
+    "point_count": 37
+  },
+  {
+    "cluster_label": 530,
+    "centroid_lat": 48.751720106115386,
+    "centroid_lon": 2.5077575719846155,
+    "radius": 80390.91931384748,
+    "point_count": 26
+  },
+  {
+    "cluster_label": 531,
+    "centroid_lat": 48.721214503145355,
+    "centroid_lon": 2.4453311389330254,
+    "radius": 62558.514568704915,
+    "point_count": 23
+  },
+  {
+    "cluster_label": 532,
+    "centroid_lat": 48.673688524065696,
+    "centroid_lon": 2.773766874865293,
+    "radius": 31578.43119211815,
+    "point_count": 26
+  },
+  {
+    "cluster_label": 533,
+    "centroid_lat": 48.689994402230624,
+    "centroid_lon": 2.278983796601429,
+    "radius": 41408.174148614715,
+    "point_count": 25
+  },
+  {
+    "cluster_label": 534,
+    "centroid_lat": 48.79474923452174,
+    "centroid_lon": 2.5580605597826085,
+    "radius": 27019.65980090428,
+    "point_count": 23
+  },
+  {
+    "cluster_label": 535,
+    "centroid_lat": 48.697545986543,
+    "centroid_lon": 2.6185275687596743,
+    "radius": 35861.05439401429,
+    "point_count": 28
+  },
+  {
+    "cluster_label": 536,
+    "centroid_lat": 48.418549072306256,
+    "centroid_lon": 2.632990046996079,
+    "radius": 43498.247845372294,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 537,
+    "centroid_lat": 48.85485061540967,
+    "centroid_lon": 2.3697090112286747,
+    "radius": 39482.34754663857,
+    "point_count": 29
+  },
+  {
+    "cluster_label": 538,
+    "centroid_lat": 48.959239654789165,
+    "centroid_lon": 2.6075029604227455,
+    "radius": 7356.408841230022,
+    "point_count": 37
+  },
+  {
+    "cluster_label": 539,
+    "centroid_lat": 48.857153316624995,
+    "centroid_lon": 2.386088672370833,
+    "radius": 60924.4477824802,
+    "point_count": 24
+  },
+  {
+    "cluster_label": 540,
+    "centroid_lat": 48.72155390104684,
+    "centroid_lon": 2.791395552628074,
+    "radius": 34841.78444971302,
+    "point_count": 25
+  },
+  {
+    "cluster_label": 541,
+    "centroid_lat": 48.73834477387871,
+    "centroid_lon": 2.2089759144647227,
+    "radius": 48536.82107619641,
+    "point_count": 22
+  },
+  {
+    "cluster_label": 542,
+    "centroid_lat": 48.81453724366149,
+    "centroid_lon": 2.353906880161021,
+    "radius": 35091.704757873216,
+    "point_count": 25
+  },
+  {
+    "cluster_label": 543,
+    "centroid_lat": 48.446917703358686,
+    "centroid_lon": 2.202682678276474,
+    "radius": 32066.047566856174,
+    "point_count": 27
+  },
+  {
+    "cluster_label": 544,
+    "centroid_lat": 48.47213427980323,
+    "centroid_lon": 2.472374763835723,
+    "radius": 27426.7976728879,
+    "point_count": 20
+  },
+  {
+    "cluster_label": 545,
+    "centroid_lat": 48.713277279850004,
+    "centroid_lon": 2.36293687417,
+    "radius": 71979.42598204092,
+    "point_count": 20
+  },
+  {
+    "cluster_label": 546,
+    "centroid_lat": 48.85921469463984,
+    "centroid_lon": 2.22419607598966,
+    "radius": 59873.91800334237,
+    "point_count": 33
+  },
+  {
+    "cluster_label": 547,
+    "centroid_lat": 48.6125348194,
+    "centroid_lon": 2.6322078863342857,
+    "radius": 41751.9714824289,
+    "point_count": 35
+  },
+  {
+    "cluster_label": 548,
+    "centroid_lat": 48.566589196185184,
+    "centroid_lon": 2.594532023140741,
+    "radius": 45459.59153642756,
+    "point_count": 27
+  },
+  {
+    "cluster_label": 549,
+    "centroid_lat": 48.5627905105,
+    "centroid_lon": 2.2562720772681817,
+    "radius": 46641.781222683945,
+    "point_count": 22
+  },
+  {
+    "cluster_label": 550,
+    "centroid_lat": 48.88016151937121,
+    "centroid_lon": 2.0449202373940873,
+    "radius": 32983.49435443225,
+    "point_count": 25
+  },
+  {
+    "cluster_label": 551,
+    "centroid_lat": 48.86607743673913,
+    "centroid_lon": 2.136664020578261,
+    "radius": 50313.50218125257,
+    "point_count": 23
+  },
+  {
+    "cluster_label": 552,
+    "centroid_lat": 48.68138867659259,
+    "centroid_lon": 2.1171874954925927,
+    "radius": 12327.755958820026,
+    "point_count": 27
+  },
+  {
+    "cluster_label": 553,
+    "centroid_lat": 48.81972030039354,
+    "centroid_lon": 2.5131728102920396,
+    "radius": 29182.806095526623,
+    "point_count": 28
+  },
+  {
+    "cluster_label": 554,
+    "centroid_lat": 48.64806333628297,
+    "centroid_lon": 2.499625950131273,
+    "radius": 62019.037322208795,
+    "point_count": 21
+  },
+  {
+    "cluster_label": 555,
+    "centroid_lat": 48.58137324784615,
+    "centroid_lon": 2.3475007194499997,
+    "radius": 52536.202736292566,
+    "point_count": 26
+  },
+  {
+    "cluster_label": 556,
+    "centroid_lat": 48.766598363488455,
+    "centroid_lon": 2.192726594930605,
+    "radius": 58012.025959670784,
+    "point_count": 30
+  },
+  {
+    "cluster_label": 557,
+    "centroid_lat": 48.84515431537037,
+    "centroid_lon": 2.0549587916962966,
+    "radius": 27280.964649849997,
+    "point_count": 27
+  },
+  {
+    "cluster_label": 558,
+    "centroid_lat": 48.785445861872404,
+    "centroid_lon": 2.280023693668575,
+    "radius": 58418.15554244187,
+    "point_count": 24
+  },
+  {
+    "cluster_label": 559,
+    "centroid_lat": 48.62556388928233,
+    "centroid_lon": 2.5457271431360264,
+    "radius": 32315.0439106275,
+    "point_count": 19
+  },
+  {
+    "cluster_label": 560,
+    "centroid_lat": 48.76270739631579,
+    "centroid_lon": 2.4771766470263157,
+    "radius": 23016.24639061408,
+    "point_count": 19
+  },
+  {
+    "cluster_label": 561,
+    "centroid_lat": 48.724894282066664,
+    "centroid_lon": 2.1673383529666665,
+    "radius": 42982.10843006761,
+    "point_count": 15
+  },
+  {
+    "cluster_label": 562,
+    "centroid_lat": 48.49841126320095,
+    "centroid_lon": 2.927039233604189,
+    "radius": 21721.942401641434,
+    "point_count": 21
+  },
+  {
+    "cluster_label": 563,
+    "centroid_lat": 48.708316727115125,
+    "centroid_lon": 2.8336123028980302,
+    "radius": 79330.42034247238,
+    "point_count": 15
+  },
+  {
+    "cluster_label": 564,
+    "centroid_lat": 48.90604525602939,
+    "centroid_lon": 2.2051490672461274,
+    "radius": 32931.753160266504,
+    "point_count": 21
+  },
+  {
+    "cluster_label": 565,
+    "centroid_lat": 48.85464049111908,
+    "centroid_lon": 2.529276174276747,
+    "radius": 44826.21148170727,
+    "point_count": 11
+  },
+  {
+    "cluster_label": 566,
+    "centroid_lat": 49.00738738080011,
+    "centroid_lon": 2.0692856812684957,
+    "radius": 32433.988216121135,
+    "point_count": 9
+  },
+  {
+    "cluster_label": 567,
+    "centroid_lat": 48.750791553199996,
+    "centroid_lon": 2.40729437243,
+    "radius": 69222.81670613571,
+    "point_count": 10
+  },
+  {
+    "cluster_label": 568,
+    "centroid_lat": 48.629754813,
+    "centroid_lon": 2.2430493084416665,
+    "radius": 83573.1109724757,
+    "point_count": 12
+  },
+  {
+    "cluster_label": 569,
+    "centroid_lat": 48.86824553084546,
+    "centroid_lon": 2.6785428598119734,
+    "radius": 17845.021301231776,
+    "point_count": 24
+  },
+  {
+    "cluster_label": 570,
+    "centroid_lat": 48.66211872577778,
+    "centroid_lon": 2.386793915088889,
+    "radius": 57343.77516766727,
+    "point_count": 9
+  },
+  {
+    "cluster_label": 571,
+    "centroid_lat": 48.745368339188595,
+    "centroid_lon": 2.7467841235254133,
+    "radius": 61609.84719341214,
+    "point_count": 12
+  },
+  {
+    "cluster_label": 572,
+    "centroid_lat": 48.650758604181824,
+    "centroid_lon": 1.9263747135545453,
+    "radius": 18006.876087185323,
+    "point_count": 11
+  },
+  {
+    "cluster_label": 573,
+    "centroid_lat": 48.99861819823077,
+    "centroid_lon": 2.209566525707692,
+    "radius": 54997.14252914519,
+    "point_count": 13
+  },
+  {
+    "cluster_label": 574,
+    "centroid_lat": 48.83870953105663,
+    "centroid_lon": 2.714168570605171,
+    "radius": 2272.1935301034623,
+    "point_count": 10
+  },
+  {
+    "cluster_label": 575,
+    "centroid_lat": 48.67114086222786,
+    "centroid_lon": 2.748987065960176,
+    "radius": 38539.62633711463,
+    "point_count": 10
+  },
+  {
+    "cluster_label": 576,
+    "centroid_lat": 48.63318556809091,
+    "centroid_lon": 3.242481660027273,
+    "radius": 13431.663800215507,
+    "point_count": 11
+  },
+  {
+    "cluster_label": 577,
+    "centroid_lat": 48.804241699769236,
+    "centroid_lon": 2.756241497607692,
+    "radius": 18406.15075888713,
+    "point_count": 13
+  },
+  {
+    "cluster_label": 578,
+    "centroid_lat": 48.3954868326147,
+    "centroid_lon": 3.0101269272545763,
+    "radius": 6584.301409427049,
+    "point_count": 16
+  },
+  {
+    "cluster_label": 579,
+    "centroid_lat": 48.5470922718,
+    "centroid_lon": 2.4093117720199997,
+    "radius": 26255.349938755284,
+    "point_count": 10
+  },
+  {
+    "cluster_label": 580,
+    "centroid_lat": 48.80408632625731,
+    "centroid_lon": 3.019908342900665,
+    "radius": 14759.285212724708,
+    "point_count": 11
+  },
+  {
+    "cluster_label": 581,
+    "centroid_lat": 48.59916604959376,
+    "centroid_lon": 2.3123630474790193,
+    "radius": 50561.93051442138,
+    "point_count": 11
+  },
+  {
+    "cluster_label": 582,
+    "centroid_lat": 48.317327173857144,
+    "centroid_lon": 2.6474980118857148,
+    "radius": 300,
+    "point_count": 7
+  },
+  {
+    "cluster_label": 583,
+    "centroid_lat": 49.085878681653384,
+    "centroid_lon": 1.9212064130035078,
+    "radius": 331.1402024486217,
+    "point_count": 9
+  },
+  {
+    "cluster_label": 584,
+    "centroid_lat": 49.0722877533089,
+    "centroid_lon": 2.216658119990116,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 585,
+    "centroid_lat": 48.9445343674,
+    "centroid_lon": 1.71498574644,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 586,
+    "centroid_lat": 48.8641389455522,
+    "centroid_lon": 2.8547368835197515,
+    "radius": 358.32786976716886,
+    "point_count": 7
+  },
+  {
+    "cluster_label": 587,
+    "centroid_lat": 48.75244494160295,
+    "centroid_lon": 2.875613176759663,
+    "radius": 300,
+    "point_count": 12
+  },
+  {
+    "cluster_label": 588,
+    "centroid_lat": 48.735528550999994,
+    "centroid_lon": 2.844301749,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 589,
+    "centroid_lat": 48.50224014488889,
+    "centroid_lon": 2.5796342371222223,
+    "radius": 502.4369661983826,
+    "point_count": 9
+  },
+  {
+    "cluster_label": 590,
+    "centroid_lat": 48.34710815685714,
+    "centroid_lon": 2.5647373325571428,
+    "radius": 300,
+    "point_count": 7
+  },
+  {
+    "cluster_label": 591,
+    "centroid_lat": 48.41453241116667,
+    "centroid_lon": 2.5650393674000003,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 592,
+    "centroid_lat": 48.39835170283334,
+    "centroid_lon": 3.187988209466667,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 593,
+    "centroid_lat": 48.482018275375,
+    "centroid_lon": 3.2946832264625,
+    "radius": 300,
+    "point_count": 8
+  },
+  {
+    "cluster_label": 594,
+    "centroid_lat": 48.65417241475,
+    "centroid_lon": 3.0734796288375,
+    "radius": 314.9515561322305,
+    "point_count": 8
+  },
+  {
+    "cluster_label": 595,
+    "centroid_lat": 48.5584936995,
+    "centroid_lon": 2.9153041563,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 596,
+    "centroid_lat": 48.95469387483333,
+    "centroid_lon": 3.0697729828666667,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 597,
+    "centroid_lat": 48.830305536,
+    "centroid_lon": 1.72133778014,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 598,
+    "centroid_lat": 49.0121680355,
+    "centroid_lon": 1.93613641585,
+    "radius": 325.05060850558954,
+    "point_count": 4
+  },
+  {
+    "cluster_label": 599,
+    "centroid_lat": 48.7037851172,
+    "centroid_lon": 1.6182052011599999,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 600,
+    "centroid_lat": 49.045290444624996,
+    "centroid_lon": 1.6499634903,
+    "radius": 306.79177963078394,
+    "point_count": 8
+  },
+  {
+    "cluster_label": 601,
+    "centroid_lat": 49.040102915875,
+    "centroid_lon": 1.6879915736,
+    "radius": 300,
+    "point_count": 8
+  },
+  {
+    "cluster_label": 602,
+    "centroid_lat": 48.817832531600004,
+    "centroid_lon": 1.9993815092200002,
+    "radius": 492.42172894963,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 603,
+    "centroid_lat": 48.6196025064,
+    "centroid_lon": 2.1557495585399997,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 604,
+    "centroid_lat": 48.54787730566667,
+    "centroid_lon": 2.401186990933333,
+    "radius": 388.5501602833497,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 605,
+    "centroid_lat": 48.671193417487544,
+    "centroid_lon": 2.1266691243540117,
+    "radius": 300,
+    "point_count": 7
+  },
+  {
+    "cluster_label": 606,
+    "centroid_lat": 48.77562936296894,
+    "centroid_lon": 3.293906986760374,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 607,
+    "centroid_lat": 48.846748346,
+    "centroid_lon": 2.6731654263,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 608,
+    "centroid_lat": 48.56029269966667,
+    "centroid_lon": 3.0344621985416667,
+    "radius": 392.6871132244744,
+    "point_count": 12
+  },
+  {
+    "cluster_label": 609,
+    "centroid_lat": 48.5292556156,
+    "centroid_lon": 3.31280587114,
+    "radius": 330.544094942609,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 610,
+    "centroid_lat": 48.6864010274,
+    "centroid_lon": 2.57406763448,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 611,
+    "centroid_lat": 49.1434437625,
+    "centroid_lon": 2.2553200822833332,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 612,
+    "centroid_lat": 48.2720007408,
+    "centroid_lon": 2.7379442863000003,
+    "radius": 385.3166410161288,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 613,
+    "centroid_lat": 48.75425172883333,
+    "centroid_lon": 2.1828171469,
+    "radius": 409.27838398419857,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 614,
+    "centroid_lat": 49.00794830296552,
+    "centroid_lon": 2.828844433957596,
+    "radius": 382.7681407665239,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 615,
+    "centroid_lat": 48.5629782654,
+    "centroid_lon": 2.2486005584599997,
+    "radius": 370.1089876053572,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 616,
+    "centroid_lat": 48.6738640912,
+    "centroid_lon": 2.29911411918,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 617,
+    "centroid_lat": 48.92106098333334,
+    "centroid_lon": 1.7670752176499998,
+    "radius": 348.15349365874323,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 618,
+    "centroid_lat": 48.9869194698,
+    "centroid_lon": 2.8630701005600003,
+    "radius": 319.88900998495893,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 619,
+    "centroid_lat": 48.91117886010174,
+    "centroid_lon": 2.8200927921594774,
+    "radius": 524.2093843943231,
+    "point_count": 7
+  },
+  {
+    "cluster_label": 620,
+    "centroid_lat": 48.62597581866667,
+    "centroid_lon": 2.5168043527,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 621,
+    "centroid_lat": 48.7355661865,
+    "centroid_lon": 2.78077922185,
+    "radius": 313.3924302596963,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 622,
+    "centroid_lat": 48.3180003605,
+    "centroid_lon": 2.0039135094666665,
+    "radius": 303.6467408088838,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 623,
+    "centroid_lat": 48.99193800566667,
+    "centroid_lon": 2.6514685306166665,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 624,
+    "centroid_lat": 48.90763855833333,
+    "centroid_lon": 2.668327183116667,
+    "radius": 351.7616349712614,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 625,
+    "centroid_lat": 48.78382044071352,
+    "centroid_lon": 2.067349712524786,
+    "radius": 319.1346863950521,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 626,
+    "centroid_lat": 48.8306675624,
+    "centroid_lon": 2.74012990702,
+    "radius": 427.4640040445408,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 627,
+    "centroid_lat": 48.9702055048,
+    "centroid_lon": 2.57551069154,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 628,
+    "centroid_lat": 48.97645792248572,
+    "centroid_lon": 1.539962539390178,
+    "radius": 377.0679660618412,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 629,
+    "centroid_lat": 48.70149295,
+    "centroid_lon": 2.883384446,
+    "radius": 300,
+    "point_count": 4
+  },
+  {
+    "cluster_label": 630,
+    "centroid_lat": 48.73779800333333,
+    "centroid_lon": 2.5235654766,
+    "radius": 300,
+    "point_count": 6
+  },
+  {
+    "cluster_label": 631,
+    "centroid_lat": 49.1155051478,
+    "centroid_lon": 2.01789226912,
+    "radius": 428.3516572050389,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 632,
+    "centroid_lat": 48.8644057564356,
+    "centroid_lon": 1.7164939959063399,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 633,
+    "centroid_lat": 48.74345740810482,
+    "centroid_lon": 2.726194096955432,
+    "radius": 300,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 634,
+    "centroid_lat": 48.5594663025,
+    "centroid_lon": 2.210588032275,
+    "radius": 300,
+    "point_count": 4
+  },
+  {
+    "cluster_label": 635,
+    "centroid_lat": 48.938947738799996,
+    "centroid_lon": 2.64178184938,
+    "radius": 508.843775423382,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 636,
+    "centroid_lat": 48.5921909188,
+    "centroid_lon": 2.06616660794,
+    "radius": 359.02923998436785,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 637,
+    "centroid_lat": 48.2813192674,
+    "centroid_lon": 2.68095787908,
+    "radius": 321.712739995955,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 638,
+    "centroid_lat": 49.0890045698,
+    "centroid_lon": 2.27909418644,
+    "radius": 327.99330073210797,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 639,
+    "centroid_lat": 48.555519035399996,
+    "centroid_lon": 2.4220363109800003,
+    "radius": 490.1442314803976,
+    "point_count": 5
+  },
+  {
+    "cluster_label": 640,
+    "centroid_lat": 48.4873818612,
+    "centroid_lon": 2.75454610794,
+    "radius": 439.0611836415158,
+    "point_count": 5
+  }
+]

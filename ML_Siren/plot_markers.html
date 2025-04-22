@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBSCAN Cluster Markers Map (Île-de-France)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+    <style>
+        #map { height: 800px; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script>
+        var map = L.map('map').setView([48.8566, 2.3522], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markers = L.markerClusterGroup();
+        fetch('cluster_circles.json')
+            .then(response => {
+                if (!response.ok) throw new Error('JSON file not found or inaccessible');
+                return response.json();
+            })
+            .then(data => {
+                let totalClusters = data.length;
+                let displayedClusters = 0;
+                data.forEach(c => {
+                    if (c.cluster_label >= 0) {
+                        var color = `hsl(${c.cluster_label * 137.5 % 360}, 70%, 50%)`;
+                        var marker = L.marker([c.centroid_lat, c.centroid_lon]);
+                        marker.bindPopup(`Cluster: ${c.cluster_label}<br>Points: ${c.point_count}`);
+                        markers.addLayer(marker);
+                        displayedClusters++;
+                    }
+                });
+                map.addLayer(markers);
+                console.log(`Loaded ${totalClusters} total clusters, displayed ${displayedClusters}`);
+                alert(`Loaded ${totalClusters} total clusters, displayed ${displayedClusters} as markers (excluding noise)`);
+            })
+            .catch(error => {
+                console.error("Error loading data:", error);
+                alert("Error loading data. Check console for details.");
+            });
+    </script>
+</body>
+</html>
