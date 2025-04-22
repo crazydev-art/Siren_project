@@ -14,6 +14,7 @@ The Siren Project is a data engineering and web application platform designed to
 
 ## Project Structure
 
+```plaintext
 Siren_project/
 ├── Frontend/
 │   └── Frontend/                   # React/TypeScript frontend
@@ -47,8 +48,6 @@ Siren_project/
 │   ├── docker-compose.yaml         # Docker Compose for service orchestration
 │   ├── setenv.sh                   # Environment setup script
 │   └── setenvV2.sh                 # Alternative environment setup script
-
-
 ## Prerequisites
 
 - **Docker** and **Docker Compose**: For running services.
