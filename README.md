@@ -1,15 +1,19 @@
-Siren Project
-Overview
+# Siren Project
+
+## Overview
+
 The Siren Project is a data engineering and web application platform designed to process and visualize SIREN/SIRET data for French companies. It features a React/TypeScript frontend for user interaction, backend services for data processing using Redpanda and PostgreSQL, and monitoring with Prometheus and Grafana. The project is fully containerized with Docker, enabling easy deployment and scalability.
-Features
 
-Frontend Interface: A React-based UI with company search, map visualization, and user authentication.
-Data Processing: ETL pipelines for handling SIREN/SIRET datasets.
-Real-Time Streaming: Redpanda for high-throughput data streaming.
-Monitoring: Prometheus and Grafana dashboards for system and database performance.
-Containerization: Docker and Docker Compose for simplified service orchestration.
+## Features
 
-Project Structure
+- **Frontend Interface**: A React-based UI with company search, map visualization, and user authentication.
+- **Data Processing**: ETL pipelines for handling SIREN/SIRET datasets.
+- **Real-Time Streaming**: Redpanda for high-throughput data streaming.
+- **Monitoring**: Prometheus and Grafana dashboards for system and database performance.
+- **Containerization**: Docker and Docker Compose for simplified service orchestration.
+
+## Project Structure
+
 Siren_project/
 ├── Frontend/
 │   └── Frontend/                   # React/TypeScript frontend
@@ -44,20 +48,23 @@ Siren_project/
 │   ├── setenv.sh                   # Environment setup script
 │   └── setenvV2.sh                 # Alternative environment setup script
 
-Prerequisites
 
-Docker and Docker Compose: For running services.
-Node.js (v16 or higher): For frontend development.
-Python (3.8 or higher): For backend scripts and tests.
-Git: For version control.
-Redpanda: For streaming (included in Docker setup).
-PostgreSQL: For data storage (included in Docker setup).
+## Prerequisites
 
-Installation
+- **Docker** and **Docker Compose**: For running services.
+- **Node.js** (v16 or higher): For frontend development.
+- **Python** (3.8 or higher): For backend scripts and tests.
+- **Git**: For version control.
+- **Redpanda**: For streaming (included in Docker setup).
+- **PostgreSQL**: For data storage (included in Docker setup).
 
-Clone the repository:
-git clone https://github.com/crazydev-art/Siren_project.git
-cd Siren_project
+## Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/crazydev-art/Siren_project.git
+   cd Siren_project
 
 
 Set up environment variables:
